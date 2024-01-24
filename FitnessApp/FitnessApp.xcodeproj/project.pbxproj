@@ -12,7 +12,7 @@
 		631002352B60938B000DF0DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631002342B60938B000DF0DC /* ViewController.swift */; };
 		631002382B60938B000DF0DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 631002362B60938B000DF0DC /* Main.storyboard */; };
 		6310023A2B60938C000DF0DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 631002392B60938C000DF0DC /* Assets.xcassets */; };
-		6310023D2B60938C000DF0DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6310023B2B60938C000DF0DC /* LaunchScreen.storyboard */; };
+		631002462B609608000DF0DC /* NetworkManager2.0 in Frameworks */ = {isa = PBXBuildFile; productRef = 631002452B609608000DF0DC /* NetworkManager2.0 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +22,6 @@
 		631002342B60938B000DF0DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		631002372B60938B000DF0DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		631002392B60938C000DF0DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6310023C2B60938C000DF0DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6310023E2B60938C000DF0DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -31,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				631002462B609608000DF0DC /* NetworkManager2.0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +61,6 @@
 				631002342B60938B000DF0DC /* ViewController.swift */,
 				631002362B60938B000DF0DC /* Main.storyboard */,
 				631002392B60938C000DF0DC /* Assets.xcassets */,
-				6310023B2B60938C000DF0DC /* LaunchScreen.storyboard */,
 				6310023E2B60938C000DF0DC /* Info.plist */,
 			);
 			path = FitnessApp;
@@ -83,6 +82,9 @@
 			dependencies = (
 			);
 			name = FitnessApp;
+			packageProductDependencies = (
+				631002452B609608000DF0DC /* NetworkManager2.0 */,
+			);
 			productName = FitnessApp;
 			productReference = 6310022D2B60938B000DF0DC /* FitnessApp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +113,9 @@
 				Base,
 			);
 			mainGroup = 631002242B60938B000DF0DC;
+			packageReferences = (
+				631002442B609608000DF0DC /* XCRemoteSwiftPackageReference "NetworkManager2" */,
+			);
 			productRefGroup = 6310022E2B60938B000DF0DC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,7 +130,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6310023D2B60938C000DF0DC /* LaunchScreen.storyboard in Resources */,
 				6310023A2B60938C000DF0DC /* Assets.xcassets in Resources */,
 				631002382B60938B000DF0DC /* Main.storyboard in Resources */,
 			);
@@ -153,14 +157,6 @@
 				631002372B60938B000DF0DC /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		6310023B2B60938C000DF0DC /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6310023C2B60938C000DF0DC /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -363,6 +359,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		631002442B609608000DF0DC /* XCRemoteSwiftPackageReference "NetworkManager2" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dsila2017/NetworkManager2.0";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		631002452B609608000DF0DC /* NetworkManager2.0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 631002442B609608000DF0DC /* XCRemoteSwiftPackageReference "NetworkManager2" */;
+			productName = NetworkManager2.0;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 631002252B60938B000DF0DC /* Project object */;
 }

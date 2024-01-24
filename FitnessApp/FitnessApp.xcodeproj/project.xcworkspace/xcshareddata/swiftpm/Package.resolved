@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "networkmanager2.0",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dsila2017/NetworkManager2.0",
+      "state" : {
+        "branch" : "main",
+        "revision" : "afbe02e9b81b9814a4f03bd5f0fe6b9849822027"
+      }
+    }
+  ],
+  "version" : 2
+}

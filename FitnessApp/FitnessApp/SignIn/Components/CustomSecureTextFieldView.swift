@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CustomSecureTextFieldView: View {
     @Binding var text: String
+    
     var placeholder: String
     var iconName: String?
     

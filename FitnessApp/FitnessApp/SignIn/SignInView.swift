@@ -24,40 +24,12 @@ struct SignInView: View, MainNavigationController {
                 CustomTextFieldView(text: $model.email, placeholder: "Email")
                 CustomSecureTextFieldView(text: $model.password, placeholder: "Password")
                 ForgotButton(model: model)
-                    .alert(isPresented: $model.forgotAlert) {
-                        Alert(title: Text("Important message"), message: Text(model.error), dismissButton: .default(Text("OK")))
-                    }
             }
             
             Spacer()
             
             VStack(spacing: 12) {
                 SignInButton(model: model)
-                    .alert(isPresented: $model.showAlert) {
-                        switch model.alertType {
-                        case.IDAlert:
-                            Alert(title: Text("Face ID Message"), message: Text("Do you want to save Face ID?"),
-                                  primaryButton: .default(Text("Yes")) {
-                                model.writeID()
-                            },
-                                  secondaryButton: .default(Text("No")))
-                        case.mainAlert:
-                            Alert(title: Text("Important message"), message: Text(model.error), dismissButton: .default(Text("OK")))
-                        case.emptyAlert:
-                            Alert(title: Text("Important message"), message: Text("Email/Password is empty"), dismissButton: .default(Text("OK")))
-                        case.IDFail:
-                            Alert(title: Text("Face ID"), message: Text("Face ID is not set up, please sign in first."), dismissButton: .default(Text("OK")))
-                        case .none:
-                            Alert(title: Text("NONE Message"), message: Text("Error4"), dismissButton: .default(Text("OK")))
-                        }
-                    }
-                    .onChange(of: model.isActive) { oldValue, newValue in
-                        if newValue == true {
-                            self.push(viewController: ViewController(), animated: true)
-                            model.isActive = false
-                        }
-                    }
-                
                 SignUpButton(model: model)
                 FaceIDButton(model: model)
             }
@@ -88,7 +60,7 @@ struct LogoView: View {
 }
 
 struct ForgotButton: View {
-    @State var model: SignInViewModel
+    @ObservedObject var model: SignInViewModel
     
     var body: some View {
         Button(action: {
@@ -108,18 +80,21 @@ struct ForgotButton: View {
                 .foregroundStyle(Colors.darkGray)
                 .padding()
         })
+        .alert(isPresented: $model.forgotAlert) {
+            Alert(title: Text("Important message"), message: Text(model.error), dismissButton: .default(Text("OK")))
+        }
     }
 }
 
 struct SignInButton: View, MainNavigationController {
-    @State var model: SignInViewModel
+    @ObservedObject var model: SignInViewModel
     
     var body: some View {
         Button(action: {
             Task {
                 do {
                     try await model.signIn(email: model.email, password: model.password)
-                    self.push(viewController: UIViewController(), animated: true)
+                    model.pushNavigation = true
                     DispatchQueue.main.async {
                         model.askID()
                     }
@@ -133,11 +108,33 @@ struct SignInButton: View, MainNavigationController {
             Text("Sign In")
         })
         .primaryButtonStyle
+        .alert(isPresented: $model.showAlert) {
+            switch model.alertType {
+            case.IDAlert:
+                Alert(title: Text("Face ID"), message: Text(model.alertType?.rawValue ?? ""),
+                      primaryButton: .default(Text("Yes")) {
+                    model.writeID()
+                },
+                      secondaryButton: .default(Text("No")))
+            case.mainAlert:
+                Alert(title: Text("Important message"), message: Text(model.error), dismissButton: .default(Text("OK")))
+            case.IDFail:
+                Alert(title: Text("Face ID"), message: Text(model.alertType?.rawValue ?? ""), dismissButton: .default(Text("OK")))
+            case .none:
+                Alert(title: Text("Unknown Message"), message: Text("Unknown Error"), dismissButton: .default(Text("OK")))
+            }
+        }
+        .onChange(of: model.pushNavigation) { oldValue, newValue in
+            if newValue == true {
+                self.push(viewController: ViewController(), animated: true)
+                model.pushNavigation = false
+            }
+        }
     }
 }
 
 struct SignUpButton: View, MainNavigationController {
-    @State var model: SignInViewModel
+    @ObservedObject var model: SignInViewModel
     
     var body: some View {
         Button(action: {
@@ -151,16 +148,17 @@ struct SignUpButton: View, MainNavigationController {
 }
 
 struct FaceIDButton: View {
-    @State var model: SignInViewModel
+    @ObservedObject var model: SignInViewModel
     
     var body: some View {
         Button(action: {
-            // ViewModel FaceID Action
             Task {
                 do {
                     try await model.faceID()
                 } catch {
-                    
+                    model.error = error.localizedDescription
+                    model.alertType = .none
+                    model.showAlert = true
                 }
             }
         }, label: {

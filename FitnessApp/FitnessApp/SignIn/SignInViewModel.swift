@@ -9,31 +9,36 @@ import Foundation
 import Firebase
 import LocalAuthentication
 
+// MARK: - Enums
 enum MyError: Error {
     case emptyEmail
 }
 
-enum AlertType {
-    case mainAlert
-    case emptyAlert
-    case IDAlert
-    case IDFail
+enum AlertType: String {
+    case mainAlert = "mainAlert"
+    case IDAlert = "Do you want to save Face ID?"
+    case IDFail = "Face ID is not set up, please sign in first."
 }
 
+// MARK: - ViewModel
 final class SignInViewModel: ObservableObject {
+    
+    // MARK: - Published Properties
     @Published var email = ""
     @Published var password = ""
     @Published var showAlert = false
-    @Published var isActive = false
+    @Published var pushNavigation = false
     @Published var forgotAlert = false
     
+    // MARK: - Other Properties
     var IDEmail: String? = nil
     var IDPassword: String? = nil
     var policy = "This is policy"
     var wantID: Bool = false
     var alertType: AlertType?
-    var error = ""
+    var error: String = ""
     
+    // MARK: - Methods
     func signIn(email: String, password: String) async throws {
         guard !email.isEmpty else {
             throw MyError.emptyEmail
@@ -66,10 +71,10 @@ final class SignInViewModel: ObservableObject {
                             do {
                                 try await self.signIn(email: self.IDEmail!, password: self.IDPassword!)
                                 DispatchQueue.main.async { [weak self] in
-                                    self?.isActive = true
+                                    self?.pushNavigation = true
                                 }
                             } catch {
-                                print(error)
+                                print("Authentication error: \(authenticationError?.localizedDescription ?? "")")
                             }
                         }
                     } else {
@@ -78,7 +83,7 @@ final class SignInViewModel: ObservableObject {
                     }
                 }
             } else {
-                print("Can't Auth")
+                print("Cannot authenticate with biometrics")
             }
         } else {
             DispatchQueue.main.async { [weak self] in
@@ -106,6 +111,7 @@ final class SignInViewModel: ObservableObject {
     }
 }
 
+// MARK: - Extension for ErrorType
 extension MyError: LocalizedError {
     var errorDescription: String? {
         switch self {

@@ -130,8 +130,9 @@
 				631002322B60938B000DF0DC /* SceneDelegate.swift */,
 				631002342B60938B000DF0DC /* ViewController.swift */,
 				63B465D52B6154DA005062F8 /* SignIn */,
-				63B465DF2B618752005062F8 /* Extensions */,
+				63B465D82B61560B005062F8 /* Components */,
 				63B465E52B61C75E005062F8 /* Helper */,
+				63B465DF2B618752005062F8 /* Extensions */,
 				63B465E22B619E6A005062F8 /* MainNavigationController */,
 				631002472B6147C6000DF0DC /* GoogleService-Info.plist */,
 				631002392B60938C000DF0DC /* Assets.xcassets */,
@@ -145,7 +146,6 @@
 			children = (
 				63B465D12B6154B8005062F8 /* SignInView.swift */,
 				63B465D32B6154D6005062F8 /* SignInViewModel.swift */,
-				63B465D82B61560B005062F8 /* Components */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";

@@ -18,16 +18,16 @@ struct CustomSecureTextFieldView: View {
             
             if let iconName {
                 Image(systemName: iconName)
-                    .foregroundColor(AppColors.darkGray)
+                    .foregroundColor(Colors.darkGray)
                     .font(.system(size: 24))
                     .padding(.leading, 12)
             }
         }
         .frame(maxWidth: .infinity)
         .frame(height: 56)
-        .foregroundColor(AppColors.black)
+        .foregroundColor(Colors.black)
         .padding(.horizontal, 16)
-        .background(AppColors.silver)
+        .background(Colors.silver)
         .cornerRadius(16)
     }
 }

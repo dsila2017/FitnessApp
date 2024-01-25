@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppColors {
+struct Colors {
     static let primary = Color(hex: 0x2C64E3)
     static let black = Color(hex: 0x191B1F)
     static let darkGray = Color(hex: 0x7C8387)

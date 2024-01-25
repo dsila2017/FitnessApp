@@ -13,7 +13,7 @@ extension Button {
             .frame(maxWidth: .infinity)
             .frame(height: 56)
             .foregroundColor(.white)
-            .background(AppColors.black)
+            .background(Colors.black)
             .cornerRadius(40)
     }
     
@@ -21,8 +21,8 @@ extension Button {
         self
             .frame(maxWidth: .infinity)
             .frame(height: 56)
-            .foregroundColor(AppColors.black)
-            .background(AppColors.white)
+            .foregroundColor(Colors.black)
+            .background(Colors.white)
             .cornerRadius(40)
     }
 }

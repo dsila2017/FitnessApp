@@ -47,6 +47,7 @@
 		63B465DC2B618704005062F8 /* Button Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465DB2B618704005062F8 /* Button Extension.swift */; };
 		63B465DE2B618748005062F8 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465DD2B618747005062F8 /* ColorExtension.swift */; };
 		63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465E02B61981B005062F8 /* MainNavigationController.swift */; };
+		63B465E42B61C752005062F8 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465E32B61C752005062F8 /* AuthenticationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		63B465DB2B618704005062F8 /* Button Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button Extension.swift"; sourceTree = "<group>"; };
 		63B465DD2B618747005062F8 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		63B465E02B61981B005062F8 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		63B465E32B61C752005062F8 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				631002342B60938B000DF0DC /* ViewController.swift */,
 				63B465D52B6154DA005062F8 /* SignIn */,
 				63B465DF2B618752005062F8 /* Extensions */,
+				63B465E52B61C75E005062F8 /* Helper */,
 				63B465E22B619E6A005062F8 /* MainNavigationController */,
 				631002472B6147C6000DF0DC /* GoogleService-Info.plist */,
 				631002392B60938C000DF0DC /* Assets.xcassets */,
@@ -171,6 +174,14 @@
 				63B465E02B61981B005062F8 /* MainNavigationController.swift */,
 			);
 			path = MainNavigationController;
+			sourceTree = "<group>";
+		};
+		63B465E52B61C75E005062F8 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				63B465E32B61C752005062F8 /* AuthenticationManager.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +290,7 @@
 			files = (
 				631002352B60938B000DF0DC /* ViewController.swift in Sources */,
 				631002312B60938B000DF0DC /* AppDelegate.swift in Sources */,
+				63B465E42B61C752005062F8 /* AuthenticationManager.swift in Sources */,
 				63B465DC2B618704005062F8 /* Button Extension.swift in Sources */,
 				63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */,
 				63B465DE2B618748005062F8 /* ColorExtension.swift in Sources */,

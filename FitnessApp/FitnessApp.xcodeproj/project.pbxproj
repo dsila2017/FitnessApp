@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63049C082B62D6EA001DDF16 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63049C072B62D6EA001DDF16 /* SignUpView.swift */; };
+		63049C0B2B62D715001DDF16 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63049C0A2B62D715001DDF16 /* SignUpViewModel.swift */; };
 		631002312B60938B000DF0DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631002302B60938B000DF0DC /* AppDelegate.swift */; };
 		631002332B60938B000DF0DC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631002322B60938B000DF0DC /* SceneDelegate.swift */; };
 		631002352B60938B000DF0DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631002342B60938B000DF0DC /* ViewController.swift */; };
@@ -51,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63049C072B62D6EA001DDF16 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		63049C0A2B62D715001DDF16 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		6310022D2B60938B000DF0DC /* FitnessApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitnessApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		631002302B60938B000DF0DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		631002322B60938B000DF0DC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63049C092B62D704001DDF16 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				63049C072B62D6EA001DDF16 /* SignUpView.swift */,
+				63049C0A2B62D715001DDF16 /* SignUpViewModel.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		631002242B60938B000DF0DC = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +143,7 @@
 				631002322B60938B000DF0DC /* SceneDelegate.swift */,
 				631002342B60938B000DF0DC /* ViewController.swift */,
 				63B465D52B6154DA005062F8 /* SignIn */,
+				63049C092B62D704001DDF16 /* SignUp */,
 				63B465D82B61560B005062F8 /* Components */,
 				63B465E52B61C75E005062F8 /* Helper */,
 				63B465DF2B618752005062F8 /* Extensions */,
@@ -289,9 +303,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				631002352B60938B000DF0DC /* ViewController.swift in Sources */,
+				63049C0B2B62D715001DDF16 /* SignUpViewModel.swift in Sources */,
 				631002312B60938B000DF0DC /* AppDelegate.swift in Sources */,
 				63B465E42B61C752005062F8 /* AuthenticationManager.swift in Sources */,
 				63B465DC2B618704005062F8 /* Button Extension.swift in Sources */,
+				63049C082B62D6EA001DDF16 /* SignUpView.swift in Sources */,
 				63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */,
 				63B465DE2B618748005062F8 /* ColorExtension.swift in Sources */,
 				63B465DA2B6159FC005062F8 /* CustomSecureTextFieldView.swift in Sources */,

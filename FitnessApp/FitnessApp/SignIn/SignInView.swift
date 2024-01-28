@@ -6,10 +6,9 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct SignInView: View, MainNavigationController {
-    @StateObject var model: SignInViewModel = SignInViewModel()
+    @StateObject private var model: SignInViewModel = SignInViewModel()
     
     var body: some View {
         VStack {
@@ -25,6 +24,9 @@ struct SignInView: View, MainNavigationController {
                 CustomSecureTextFieldView(text: $model.password, placeholder: "Password")
                 ForgotButton(model: model)
             }
+            .onAppear(perform: {
+                model.clearForm()
+            })
             
             Spacer()
             
@@ -45,7 +47,7 @@ struct SignInView: View, MainNavigationController {
     SignInView()
 }
 
-struct LogoView: View {
+private struct LogoView: View {
     var body: some View {
         Label {
             Text("Fitness")
@@ -59,7 +61,7 @@ struct LogoView: View {
     }
 }
 
-struct ForgotButton: View {
+private struct ForgotButton: View {
     @ObservedObject var model: SignInViewModel
     
     var body: some View {
@@ -86,7 +88,7 @@ struct ForgotButton: View {
     }
 }
 
-struct SignInButton: View, MainNavigationController {
+private struct SignInButton: View, MainNavigationController {
     @ObservedObject var model: SignInViewModel
     
     var body: some View {
@@ -113,7 +115,7 @@ struct SignInButton: View, MainNavigationController {
             case.IDAlert:
                 Alert(title: Text("Face ID"), message: Text(model.alertType?.rawValue ?? ""),
                       primaryButton: .default(Text("Yes")) {
-                    model.writeID()
+                    model.storeBiometricCredentials()
                 },
                       secondaryButton: .default(Text("No")))
             case.mainAlert:
@@ -133,13 +135,13 @@ struct SignInButton: View, MainNavigationController {
     }
 }
 
-struct SignUpButton: View, MainNavigationController {
+private struct SignUpButton: View, MainNavigationController {
     @ObservedObject var model: SignInViewModel
     
     var body: some View {
         Button(action: {
             // Update to SignUpView()
-            self.push(viewController: UIHostingController(rootView: SignInView()), animated: true)
+            self.push(viewController: UIHostingController(rootView: SignUpView()), animated: true)
         }, label: {
             Text("Create Account")
         })
@@ -147,7 +149,7 @@ struct SignUpButton: View, MainNavigationController {
     }
 }
 
-struct FaceIDButton: View {
+private struct FaceIDButton: View {
     @ObservedObject var model: SignInViewModel
     
     var body: some View {

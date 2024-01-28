@@ -31,14 +31,16 @@ final class SignInViewModel: ObservableObject {
     @Published var forgotAlert = false
     
     // MARK: - Other Properties
-    var IDEmail: String? = nil
-    var IDPassword: String? = nil
-    var policy = "This is policy"
-    var wantID: Bool = false
+    private var IDEmail: String? = nil
+    private var IDPassword: String? = nil
+    private var policy = "This is policy"
+    private var wantID: Bool = false
     var alertType: AlertType?
     var error: String = ""
     
     // MARK: - Methods
+    
+    // Method for initiating the sign-in process
     func signIn(email: String, password: String) async throws {
         guard !email.isEmpty else {
             throw MyError.emptyEmail
@@ -46,17 +48,7 @@ final class SignInViewModel: ObservableObject {
         try await AuthenticationManager.shared.signIn(email: email, password: password)
     }
     
-//    func createUser() async throws {
-//        guard !email.isEmpty else {
-//            DispatchQueue.main.async { [weak self] in
-//                self?.alertType = .mainAlert
-//                self?.showAlert = true
-//            }
-//            throw MyError.emptyEmail
-//        }
-//        try await AuthenticationManager.shared.createUser(email: email, password: password)
-//    }
-    
+    // Method for handling biometric authentication
     func faceID() async throws {
         let scanner = LAContext()
         var error: NSError?
@@ -93,21 +85,30 @@ final class SignInViewModel: ObservableObject {
         }
     }
     
+    // Method for handling forgot password functionality
     func forgotPassword() async throws {
         try await AuthenticationManager.shared.forgotPassword(email: email)
     }
     
-    func writeID() {
+    // Method for storing biometric credentials
+    func storeBiometricCredentials() {
         self.wantID = true
         self.IDEmail = self.email
         self.IDPassword = self.password
     }
     
+    // Method for asking the user if they want to use biometric authentication
     func askID() {
         if self.wantID == false {
             self.alertType = .IDAlert
             self.showAlert = true
         }
+    }
+    
+    // Method for clearing the form
+    func clearForm() {
+        email = ""
+        password = ""
     }
 }
 

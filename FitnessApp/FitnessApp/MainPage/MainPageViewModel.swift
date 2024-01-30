@@ -6,3 +6,22 @@
 //
 
 import Foundation
+import UIKit
+
+final class MainPageViewModel {
+    
+    func setupDateButton(button: UIButton) {
+        
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d"
+        let nameOfMonth = dateFormatter.string(from: now)
+        
+        let dateFormatter1 = DateFormatter()
+        dateFormatter1.dateFormat = "LLL"
+        let nameOfMonth1 = dateFormatter1.string(from: now)
+        
+        button.configuration?.title = nameOfMonth
+        button.configuration?.subtitle = nameOfMonth1
+    }
+}

@@ -8,14 +8,14 @@
 import UIKit
 
 struct FoodModel {
-    let name: String
+    let name: FoodType
     let image: String
     let color: UIColor
     
     static var food: [FoodModel] = [
-        FoodModel(name: "Breakfast", image: "Breakfast.png", color: .darkText),
-        FoodModel(name: "Lunch", image: "Lunch.png", color: .darkText),
-        FoodModel(name: "Dinner", image: "Dinner.png", color: .darkText),
-        FoodModel(name: "Snack", image: "Snack.png", color: .darkText)
+        FoodModel(name: .breakfast, image: "Breakfast.png", color: .darkText),
+        FoodModel(name: .dinner, image: "Lunch.png", color: .darkText),
+        FoodModel(name: .lunch, image: "Dinner.png", color: .darkText),
+        FoodModel(name: .snack, image: "Snack.png", color: .darkText)
     ]
 }

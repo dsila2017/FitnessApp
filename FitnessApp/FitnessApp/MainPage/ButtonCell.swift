@@ -13,7 +13,7 @@ final class ButtonCell: UICollectionViewCell {
         let stackView = UIStackView(arrangedSubviews: [labelDummyView, calorieStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.layer.cornerRadius = 24
+        stackView.layer.cornerRadius = 20
         stackView.backgroundColor = .red
         return stackView
     }()

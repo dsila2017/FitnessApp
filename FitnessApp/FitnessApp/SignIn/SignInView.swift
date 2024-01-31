@@ -128,7 +128,7 @@ private struct SignInButton: View, MainNavigationController {
         }
         .onChange(of: model.pushNavigation) { oldValue, newValue in
             if newValue == true {
-                self.push(viewController: ViewController(), animated: true)
+                self.push(viewController: MainView(), animated: true)
                 model.pushNavigation = false
             }
         }

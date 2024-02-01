@@ -31,9 +31,11 @@ final class MainPageViewModel {
     var allowedFats = 10
     
     var dataUpdated: (()->Void)?
+    var reload: (()->Void)?
     var mainData: [Model] = [] {
         didSet {
             self.dataUpdated?()
+            self.reload?()
             print("Data Updated")
         }
     }

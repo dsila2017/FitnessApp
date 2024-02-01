@@ -9,7 +9,19 @@ import UIKit
 
 class AddProduct: UIViewController {
     
-    private var data: [Model] = []
+    var model: MainPageViewModel
+    var type: FoodType?
+    
+    init(model: MainPageViewModel) {
+        
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
+        setupMainView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private lazy var mainStackView = {
         let stackView = UIStackView(arrangedSubviews: [buttonStackView, tableViewStackView])
@@ -37,6 +49,17 @@ class AddProduct: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction(UIAction(handler: { [weak self] _ in
             print("add Button Pressed")
+            //self?.data?.append(Model(name: "Cake", calories: 10.0, servingSizeG: 1.0, fatTotalG: 1.0, fatSaturatedG: 1.0, proteinG: 1.0, sodiumMg: 1, potassiumMg: 1, cholesterolMg: 1, carbohydratesTotalG: 1.0, fiberG: 1.0, sugarG: 1.0))
+            
+            //self?.model.foodFetch(type: .breakfast, food: "banana")
+            
+            self?.model.foodFetch(type: self?.type ?? .breakfast, food: "banana")
+            self?.model.reload = { [weak self] in
+                DispatchQueue.main.async { [weak self] in
+                    self?.mainTableView.reloadData()
+                }
+            }
+            
         }), for: .touchUpInside)
         button.configuration?.subtitle = "add"
         return button
@@ -79,6 +102,7 @@ class AddProduct: UIViewController {
     
     func setupMainView() {
         view.addSubview(mainStackView)
+        view.backgroundColor = .white
         dummyViews.addSubview(addButton)
         dummyViews.addSubview(scanButton)
         
@@ -117,19 +141,42 @@ extension AddProduct: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        switch type {
+        case.breakfast:
+            return model.breakfastData.count
+        case.dinner:
+            return model.dinnerData.count
+        case.lunch:
+            return model.lunchData.count
+        case.snack:
+            return model.snackData.count
+        case .none:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //if
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell 
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
         //{
-            //cell.textLabel?.text = "Product"
-            //cell.label.text = "Product"
-            return cell
+        //cell.textLabel?.text = "Product"
+        //cell.label.text = "Product"
+        //cell.model = data?[indexPath.row] ?? Model(name: "1", calories: 1.0, servingSizeG: 1.0, fatTotalG: 1.0, fatSaturatedG: 1.0, proteinG: 1.0, sodiumMg: 1, potassiumMg: 1, cholesterolMg: 1, carbohydratesTotalG: 1.0, fiberG: 1, sugarG: 1.0)
+        switch type {
+        case.breakfast:
+            cell.model = model.breakfastData[indexPath.row]
+        case.dinner:
+            cell.model = model.dinnerData[indexPath.row]
+        case.lunch:
+            cell.model = model.lunchData[indexPath.row]
+        case.snack:
+            cell.model = model.snackData[indexPath.row]
+        case .none:
+            print("ERROR")
         }
-        //return UITableViewCell()
-    //}
+        cell.updateUI()
+        return cell
+    }
     
     
 }

@@ -7,10 +7,10 @@
 
 import UIKit
 
-class MainTableViewCell: UITableViewCell {
+final class MainTableViewCell: UITableViewCell {
     
     var model: Model = Model(name: "Apple", calories: 449.0, servingSizeG: 1.0, fatTotalG: 42.0, fatSaturatedG: 1.0, proteinG: 27.0, sodiumMg: 1, potassiumMg: 1, cholesterolMg: 1, carbohydratesTotalG: 32.0, fiberG: 1.0, sugarG: 1.0)
-    var textColor: UIColor = .black
+    private var textColor: UIColor = .black
     
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [topStackView, bottomStackView])
@@ -41,7 +41,6 @@ class MainTableViewCell: UITableViewCell {
     lazy var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.text = model.name
         label.textAlignment = .center
         label.textColor = textColor
         return label
@@ -58,7 +57,6 @@ class MainTableViewCell: UITableViewCell {
     private lazy var kCalLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = "\(Int(model.calories)) kCal"
         label.textAlignment = .center
         label.textColor = textColor
         return label
@@ -101,7 +99,6 @@ class MainTableViewCell: UITableViewCell {
     private lazy var proteinQuantity: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "\(Int(model.proteinG)) g"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = .center
         label.textColor = textColor
@@ -151,7 +148,6 @@ class MainTableViewCell: UITableViewCell {
     private lazy var carbsQuantity: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "\(Int(model.carbohydratesTotalG)) g"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = .center
         label.textColor = textColor
@@ -201,7 +197,6 @@ class MainTableViewCell: UITableViewCell {
     private lazy var fatsQuantity: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "\(Int(model.fatTotalG)) g"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = .center
         label.textColor = textColor
@@ -234,6 +229,29 @@ class MainTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.label.text = ""
+        self.weightLabel.text = ""
+        self.kCalLabel.text = ""
+        self.proteinQuantity.text = ""
+        self.carbsQuantity.text = ""
+        self.fatsQuantity.text = ""
+        
+        self.proteinProgress.progress = 0.0
+        self.carbsProgress.progress = 0.0
+        self.fatsProgress.progress = 0.0
+    }
+    
+    func updateUI() {
+        self.label.text = model.name
+        self.weightLabel.text = "\(model.servingSizeG.description) g"
+        self.kCalLabel.text = "\(model.calories.description) kCal"
+        self.proteinQuantity.text = model.proteinG.description
+        self.carbsQuantity.text = model.carbohydratesTotalG.description
+        self.fatsQuantity.text = model.fatTotalG.description
+        
+        self.proteinProgress.progress = Float(model.proteinG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
+        self.carbsProgress.progress = Float(model.carbohydratesTotalG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
+        self.fatsProgress.progress = Float(model.fatTotalG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
     }
     
     private func setupUI() {

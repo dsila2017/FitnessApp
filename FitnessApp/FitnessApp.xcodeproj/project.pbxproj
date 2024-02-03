@@ -48,6 +48,9 @@
 		6310027B2B614876000DF0DC /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6310027A2B614876000DF0DC /* FirebaseRemoteConfigSwift */; };
 		6310027D2B614876000DF0DC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6310027C2B614876000DF0DC /* FirebaseStorage */; };
 		6310027F2B614876000DF0DC /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 6310027E2B614876000DF0DC /* FirebaseStorageCombine-Community */; };
+		63344B552B6AFE8800499949 /* AddProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B542B6AFE8800499949 /* AddProduct.swift */; };
+		63344B582B6AFFCC00499949 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B572B6AFFCC00499949 /* MainTableViewCell.swift */; };
+		63344B5D2B6BFFE900499949 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B5C2B6BFFE900499949 /* AddView.swift */; };
 		63B465D22B6154B8005062F8 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D12B6154B8005062F8 /* SignInView.swift */; };
 		63B465D42B6154D6005062F8 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D32B6154D6005062F8 /* SignInViewModel.swift */; };
 		63B465D72B615606005062F8 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D62B615606005062F8 /* CustomTextField.swift */; };
@@ -74,6 +77,9 @@
 		631002392B60938C000DF0DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6310023E2B60938C000DF0DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		631002472B6147C6000DF0DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		63344B542B6AFE8800499949 /* AddProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProduct.swift; sourceTree = "<group>"; };
+		63344B572B6AFFCC00499949 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		63344B5C2B6BFFE900499949 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		63B465D12B6154B8005062F8 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		63B465D32B6154D6005062F8 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		63B465D62B615606005062F8 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -169,6 +175,7 @@
 				63B465D52B6154DA005062F8 /* SignIn */,
 				63049C092B62D704001DDF16 /* SignUp */,
 				630FCB352B66BF540068A6D5 /* MainPage */,
+				63344B562B6AFE9100499949 /* AddProductPage */,
 				63B465D82B61560B005062F8 /* Components */,
 				63B465E52B61C75E005062F8 /* Helper */,
 				63B465DF2B618752005062F8 /* Extensions */,
@@ -178,6 +185,24 @@
 				6310023E2B60938C000DF0DC /* Info.plist */,
 			);
 			path = FitnessApp;
+			sourceTree = "<group>";
+		};
+		63344B562B6AFE9100499949 /* AddProductPage */ = {
+			isa = PBXGroup;
+			children = (
+				63344B542B6AFE8800499949 /* AddProduct.swift */,
+				63344B5C2B6BFFE900499949 /* AddView.swift */,
+				63344B5B2B6B2E4D00499949 /* CustomCell */,
+			);
+			path = AddProductPage;
+			sourceTree = "<group>";
+		};
+		63344B5B2B6B2E4D00499949 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				63344B572B6AFFCC00499949 /* MainTableViewCell.swift */,
+			);
+			path = CustomCell;
 			sourceTree = "<group>";
 		};
 		63B465D52B6154DA005062F8 /* SignIn */ = {
@@ -338,9 +363,12 @@
 				63B465DC2B618704005062F8 /* Button Extension.swift in Sources */,
 				63049C082B62D6EA001DDF16 /* SignUpView.swift in Sources */,
 				63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */,
+				63344B582B6AFFCC00499949 /* MainTableViewCell.swift in Sources */,
 				630FCB372B66CB340068A6D5 /* ButtonCell.swift in Sources */,
 				630FCB3F2B6939CA0068A6D5 /* CircularProgressView.swift in Sources */,
 				63B465DE2B618748005062F8 /* ColorExtension.swift in Sources */,
+				63344B5D2B6BFFE900499949 /* AddView.swift in Sources */,
+				63344B552B6AFE8800499949 /* AddProduct.swift in Sources */,
 				63B465DA2B6159FC005062F8 /* CustomSecureTextFieldView.swift in Sources */,
 				63B465D72B615606005062F8 /* CustomTextField.swift in Sources */,
 				630FCB3B2B6725CE0068A6D5 /* FoodModel.swift in Sources */,

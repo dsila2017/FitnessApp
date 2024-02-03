@@ -395,5 +395,27 @@ extension MainView: UICollectionViewDelegateFlowLayout {
         //            vc.configure(with: FoodModel.food[indexPath.row])
         //            navigationController?.pushViewController(vc, animated: true)
         print(FoodModel.food[indexPath.row].name)
+        
+        let vc = AddProduct(model: model)
+        //            vc.configure(with: FoodModel.food[indexPath.row])
+        //navigationController?.pushViewController(vc, animated: true)
+        switch FoodModel.food[indexPath.row].name {
+        case .breakfast:
+            //let vc = AddProduct(model: MainPageViewModel())
+            
+            //vc.data = model.breakfastData
+            vc.type = .breakfast
+            navigationController?.pushViewController(vc, animated: true)
+        case .lunch:
+            //vc.data = model.lunchData
+            vc.type = .lunch
+            navigationController?.pushViewController(vc, animated: true)
+        case .dinner:
+            vc.type = .dinner
+            navigationController?.pushViewController(vc, animated: true)
+        case .snack:
+            vc.type = .snack
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

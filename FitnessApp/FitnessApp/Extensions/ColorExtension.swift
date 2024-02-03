@@ -24,3 +24,21 @@ extension Color {
         self.init(red: red, green: green, blue: blue, opacity: alpha)
     }
 }
+
+extension UIColor {
+    static let primary = UIColor(hex: 0x2C64E3)
+    static let black = UIColor(hex: 0x191B1F)
+    static let darkGray = UIColor(hex: 0x7C8387)
+    static let lightGray = UIColor(hex: 0xE1E3E7)
+    static let silver = UIColor(hex: 0xEDEFF3)
+    static let white = UIColor(hex: 0xF7F7F7)
+}
+
+extension UIColor {
+    convenience init(hex: UInt32, alpha: CGFloat = 1.0) {
+        let red = CGFloat((hex >> 16) & 0xFF) / 255.0
+        let green = CGFloat((hex >> 8) & 0xFF) / 255.0
+        let blue = CGFloat(hex & 0xFF) / 255.0
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+}

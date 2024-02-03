@@ -24,7 +24,6 @@ enum NutritionType: String {
 }
 
 final class MainPageViewModel {
-    
     var allowedCalories = 2740
     var allowedProtein = 10
     var allowedCarbs = 100
@@ -32,7 +31,8 @@ final class MainPageViewModel {
     
     var dataUpdated: (()->Void)?
     var reload: (()->Void)?
-    var mainData: [Model] = [] {
+    
+    lazy var mainData: [Model] = breakfastData + lunchData + dinnerData + snackData {
         didSet {
             self.dataUpdated?()
             self.reload?()
@@ -42,29 +42,29 @@ final class MainPageViewModel {
     
     var breakfastData: [Model] = [] {
         didSet {
-            //self.dataUpdated?()
             print("breakfastData Updated")
+            mainData = breakfastData + lunchData + dinnerData + snackData
         }
     }
     
     var lunchData: [Model] = [] {
         didSet {
-            //self.dataUpdated?()
             print("lunchData Updated")
+            mainData = breakfastData + lunchData + dinnerData + snackData
         }
     }
     
     var dinnerData: [Model] = [] {
         didSet {
-            self.dataUpdated?()
             print("dinnerData Updated")
+            mainData = breakfastData + lunchData + dinnerData + snackData
         }
     }
     
     var snackData: [Model] = [] {
         didSet {
-            self.dataUpdated?()
             print("snackData Updated")
+            mainData = breakfastData + lunchData + dinnerData + snackData
         }
     }
     
@@ -86,7 +86,6 @@ final class MainPageViewModel {
                     case .snack:
                         self?.snackData.append(contentsOf: model)
                     }
-                    self?.mainData += model
                 }
             case.failure(let error):
                 DispatchQueue.main.async {

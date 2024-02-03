@@ -26,7 +26,6 @@ class AddProduct: UIViewController {
     private lazy var mainStackView = {
         let stackView = UIStackView(arrangedSubviews: [buttonStackView, tableViewStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        //stackView.distribution = .fill
         stackView.axis = .vertical
         return stackView
     }()
@@ -48,17 +47,6 @@ class AddProduct: UIViewController {
         button.tintColor = .darkText
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction(UIAction(handler: { [weak self] _ in
-            print("add Button Pressed")
-            //self?.data?.append(Model(name: "Cake", calories: 10.0, servingSizeG: 1.0, fatTotalG: 1.0, fatSaturatedG: 1.0, proteinG: 1.0, sodiumMg: 1, potassiumMg: 1, cholesterolMg: 1, carbohydratesTotalG: 1.0, fiberG: 1.0, sugarG: 1.0))
-            
-            //self?.model.foodFetch(type: .breakfast, food: "banana")
-            
-            self?.model.foodFetch(type: self?.type ?? .breakfast, food: "banana")
-            self?.model.reload = { [weak self] in
-                DispatchQueue.main.async { [weak self] in
-                    self?.mainTableView.reloadData()
-                }
-            }
             
             let vc = AddView()
             vc.delegate = self

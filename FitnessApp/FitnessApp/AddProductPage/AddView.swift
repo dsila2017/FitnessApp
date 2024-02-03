@@ -99,7 +99,8 @@ class AddView: UIViewController {
         
         button.addAction(UIAction(handler: { [weak self]_ in
             print("Save Product")
-            self?.delegate?.fetchData(food: self?.foodTextField.text ?? "banana")
+            self?.delegate?.fetchData(food: self?.foodTextField.text ?? "banana", weight: self?.WeightTextField.text ?? "100")
+            self?.dismiss(animated: true)
         }), for: .touchUpInside)
         return button
     }()

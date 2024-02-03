@@ -209,8 +209,8 @@ extension AddProduct: UITableViewDelegate {
 }
 
 extension AddProduct: addViewDelegate {
-    func fetchData(food: String) {
-        self.model.foodFetch(type: self.type ?? .breakfast, food: food)
+    func fetchData(food: String, weight: String) {
+        self.model.foodFetch(type: self.type ?? .breakfast, food: food, weight: weight)
         self.model.reload = { [weak self] in
             DispatchQueue.main.async { [weak self] in
                 self?.mainTableView.reloadData()
@@ -220,5 +220,5 @@ extension AddProduct: addViewDelegate {
 }
 
 protocol addViewDelegate: AnyObject {
-    func fetchData(food: String)
+    func fetchData(food: String, weight: String)
 }

@@ -68,8 +68,9 @@ final class MainPageViewModel {
         }
     }
     
-    func foodFetch(type: FoodType, food: String) {
-        let query = food.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    func foodFetch(type: FoodType, food: String, weight: String? = "100") {
+        let queryItem = weight! + "g" + " " + food
+        let query = queryItem.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let string = "https://api.api-ninjas.com/v1/nutrition?query=" + "\(query)"
         
         NetworkManager2_0.NetworkManager.shared.fetchData(url: string, apiKey: "D4mxCWylaJ1eZRLj3A8Igg==E3BevRxVIsFkXpKb") { [weak self] (result: Result<[Model], Error>) in

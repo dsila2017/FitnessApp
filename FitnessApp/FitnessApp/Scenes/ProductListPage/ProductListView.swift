@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddProduct: UIViewController {
+class ProductListView: UIViewController {
     
     var model: MainPageViewModel
     var type: FoodType?
@@ -48,7 +48,7 @@ class AddProduct: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction(UIAction(handler: { [weak self] _ in
             
-            let vc = AddView()
+            let vc = AddProductView()
             vc.delegate = self
             self?.navigationController?.present(vc, animated: true)
             
@@ -126,7 +126,7 @@ class AddProduct: UIViewController {
     
 }
 
-extension AddProduct: UITableViewDataSource {
+extension ProductListView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         140.0
@@ -148,12 +148,7 @@ extension AddProduct: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //if
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
-        //{
-        //cell.textLabel?.text = "Product"
-        //cell.label.text = "Product"
-        //cell.model = data?[indexPath.row] ?? Model(name: "1", calories: 1.0, servingSizeG: 1.0, fatTotalG: 1.0, fatSaturatedG: 1.0, proteinG: 1.0, sodiumMg: 1, potassiumMg: 1, cholesterolMg: 1, carbohydratesTotalG: 1.0, fiberG: 1, sugarG: 1.0)
         switch type {
         case.breakfast:
             cell.model = model.breakfastData[indexPath.row]
@@ -199,16 +194,16 @@ extension AddProduct: UITableViewDataSource {
     
 }
 
-extension AddProduct: UITableViewDelegate {
+extension ProductListView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ProductDetailsView()
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
-    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        let vc = AddView()
-    //
-    //        vc.navigationController?.present(vc, animated: true)
-    //    }
 }
 
-extension AddProduct: addViewDelegate {
+extension ProductListView: addViewDelegate {
     func fetchData(food: String, weight: String) {
         self.model.foodFetch(type: self.type ?? .breakfast, food: food, weight: weight)
         self.model.reload = { [weak self] in

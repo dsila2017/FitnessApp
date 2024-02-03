@@ -396,7 +396,7 @@ extension MainView: UICollectionViewDelegateFlowLayout {
         //            navigationController?.pushViewController(vc, animated: true)
         print(FoodModel.food[indexPath.row].name)
         
-        let vc = AddProduct(model: model)
+        let vc = ProductListView(model: model)
         //            vc.configure(with: FoodModel.food[indexPath.row])
         //navigationController?.pushViewController(vc, animated: true)
         switch FoodModel.food[indexPath.row].name {

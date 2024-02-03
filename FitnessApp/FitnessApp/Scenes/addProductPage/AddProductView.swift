@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class AddView: UIViewController {
+class AddProductView: UIViewController {
 
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [foodLabel, mainImageView, foodNameLabel, foodNameDummyView, scaleImageView, foodWeightLabel, foodWeightDummyView, addButtonDummyView])
@@ -173,7 +173,7 @@ class AddView: UIViewController {
     }
 }
 
-extension AddView: UITextFieldDelegate {
+extension AddProductView: UITextFieldDelegate {
     func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {
         self.view.endEditing(true)
         return true

@@ -48,9 +48,10 @@
 		6310027B2B614876000DF0DC /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6310027A2B614876000DF0DC /* FirebaseRemoteConfigSwift */; };
 		6310027D2B614876000DF0DC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6310027C2B614876000DF0DC /* FirebaseStorage */; };
 		6310027F2B614876000DF0DC /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 6310027E2B614876000DF0DC /* FirebaseStorageCombine-Community */; };
-		63344B552B6AFE8800499949 /* AddProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B542B6AFE8800499949 /* AddProduct.swift */; };
+		63344B552B6AFE8800499949 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B542B6AFE8800499949 /* ProductListView.swift */; };
 		63344B582B6AFFCC00499949 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B572B6AFFCC00499949 /* MainTableViewCell.swift */; };
-		63344B5D2B6BFFE900499949 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B5C2B6BFFE900499949 /* AddView.swift */; };
+		63344B5D2B6BFFE900499949 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B5C2B6BFFE900499949 /* AddProductView.swift */; };
+		63344B692B6ED29000499949 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B682B6ED29000499949 /* ProductDetailsView.swift */; };
 		63B465D22B6154B8005062F8 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D12B6154B8005062F8 /* SignInView.swift */; };
 		63B465D42B6154D6005062F8 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D32B6154D6005062F8 /* SignInViewModel.swift */; };
 		63B465D72B615606005062F8 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D62B615606005062F8 /* CustomTextField.swift */; };
@@ -77,9 +78,10 @@
 		631002392B60938C000DF0DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6310023E2B60938C000DF0DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		631002472B6147C6000DF0DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		63344B542B6AFE8800499949 /* AddProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProduct.swift; sourceTree = "<group>"; };
+		63344B542B6AFE8800499949 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
 		63344B572B6AFFCC00499949 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
-		63344B5C2B6BFFE900499949 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		63344B5C2B6BFFE900499949 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
+		63344B682B6ED29000499949 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
 		63B465D12B6154B8005062F8 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		63B465D32B6154D6005062F8 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		63B465D62B615606005062F8 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -132,8 +134,8 @@
 		63049C092B62D704001DDF16 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				63049C072B62D6EA001DDF16 /* SignUpView.swift */,
-				63049C0A2B62D715001DDF16 /* SignUpViewModel.swift */,
+				63344B632B6ED13700499949 /* View */,
+				63344B642B6ED13F00499949 /* ViewModel */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -141,11 +143,9 @@
 		630FCB352B66BF540068A6D5 /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				630FCB332B66BF490068A6D5 /* MainView.swift */,
-				630FCB362B66CB340068A6D5 /* ButtonCell.swift */,
-				630FCB382B66CC130068A6D5 /* MainPageViewModel.swift */,
-				630FCB3A2B6725CE0068A6D5 /* FoodModel.swift */,
-				630FCB402B69B3460068A6D5 /* MainModel.swift */,
+				63344B5E2B6ED0C000499949 /* Model */,
+				63344B5F2B6ED0CF00499949 /* View */,
+				63344B602B6ED0DE00499949 /* ViewModel */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -169,13 +169,9 @@
 		6310022F2B60938B000DF0DC /* FitnessApp */ = {
 			isa = PBXGroup;
 			children = (
-				631002302B60938B000DF0DC /* AppDelegate.swift */,
-				631002322B60938B000DF0DC /* SceneDelegate.swift */,
+				63344B672B6ED24B00499949 /* App */,
 				631002342B60938B000DF0DC /* ViewController.swift */,
-				63B465D52B6154DA005062F8 /* SignIn */,
-				63049C092B62D704001DDF16 /* SignUp */,
-				630FCB352B66BF540068A6D5 /* MainPage */,
-				63344B562B6AFE9100499949 /* AddProductPage */,
+				63344B662B6ED23100499949 /* Scenes */,
 				63B465D82B61560B005062F8 /* Components */,
 				63B465E52B61C75E005062F8 /* Helper */,
 				63B465DF2B618752005062F8 /* Extensions */,
@@ -187,14 +183,13 @@
 			path = FitnessApp;
 			sourceTree = "<group>";
 		};
-		63344B562B6AFE9100499949 /* AddProductPage */ = {
+		63344B562B6AFE9100499949 /* ProductListPage */ = {
 			isa = PBXGroup;
 			children = (
-				63344B542B6AFE8800499949 /* AddProduct.swift */,
-				63344B5C2B6BFFE900499949 /* AddView.swift */,
+				63344B542B6AFE8800499949 /* ProductListView.swift */,
 				63344B5B2B6B2E4D00499949 /* CustomCell */,
 			);
-			path = AddProductPage;
+			path = ProductListPage;
 			sourceTree = "<group>";
 		};
 		63344B5B2B6B2E4D00499949 /* CustomCell */ = {
@@ -205,11 +200,115 @@
 			path = CustomCell;
 			sourceTree = "<group>";
 		};
-		63B465D52B6154DA005062F8 /* SignIn */ = {
+		63344B5E2B6ED0C000499949 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				630FCB402B69B3460068A6D5 /* MainModel.swift */,
+				630FCB3A2B6725CE0068A6D5 /* FoodModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		63344B5F2B6ED0CF00499949 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				630FCB332B66BF490068A6D5 /* MainView.swift */,
+				63344B652B6ED1B500499949 /* CustomCell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		63344B602B6ED0DE00499949 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				630FCB382B66CC130068A6D5 /* MainPageViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		63344B612B6ED11C00499949 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				63B465D12B6154B8005062F8 /* SignInView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		63344B622B6ED12600499949 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
 				63B465D32B6154D6005062F8 /* SignInViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		63344B632B6ED13700499949 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				63049C072B62D6EA001DDF16 /* SignUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		63344B642B6ED13F00499949 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				63049C0A2B62D715001DDF16 /* SignUpViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		63344B652B6ED1B500499949 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				630FCB362B66CB340068A6D5 /* ButtonCell.swift */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
+		63344B662B6ED23100499949 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				63B465D52B6154DA005062F8 /* SignIn */,
+				63049C092B62D704001DDF16 /* SignUp */,
+				630FCB352B66BF540068A6D5 /* MainPage */,
+				63344B562B6AFE9100499949 /* ProductListPage */,
+				63344B6B2B6ED41000499949 /* addProductPage */,
+				63344B6A2B6ED29800499949 /* ProductDetailsPage */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		63344B672B6ED24B00499949 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				631002302B60938B000DF0DC /* AppDelegate.swift */,
+				631002322B60938B000DF0DC /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		63344B6A2B6ED29800499949 /* ProductDetailsPage */ = {
+			isa = PBXGroup;
+			children = (
+				63344B682B6ED29000499949 /* ProductDetailsView.swift */,
+			);
+			path = ProductDetailsPage;
+			sourceTree = "<group>";
+		};
+		63344B6B2B6ED41000499949 /* addProductPage */ = {
+			isa = PBXGroup;
+			children = (
+				63344B5C2B6BFFE900499949 /* AddProductView.swift */,
+			);
+			path = addProductPage;
+			sourceTree = "<group>";
+		};
+		63B465D52B6154DA005062F8 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				63344B612B6ED11C00499949 /* View */,
+				63344B622B6ED12600499949 /* ViewModel */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -360,6 +459,7 @@
 				631002312B60938B000DF0DC /* AppDelegate.swift in Sources */,
 				63B465E42B61C752005062F8 /* AuthenticationManager.swift in Sources */,
 				630FCB412B69B3460068A6D5 /* MainModel.swift in Sources */,
+				63344B692B6ED29000499949 /* ProductDetailsView.swift in Sources */,
 				63B465DC2B618704005062F8 /* Button Extension.swift in Sources */,
 				63049C082B62D6EA001DDF16 /* SignUpView.swift in Sources */,
 				63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */,
@@ -367,8 +467,8 @@
 				630FCB372B66CB340068A6D5 /* ButtonCell.swift in Sources */,
 				630FCB3F2B6939CA0068A6D5 /* CircularProgressView.swift in Sources */,
 				63B465DE2B618748005062F8 /* ColorExtension.swift in Sources */,
-				63344B5D2B6BFFE900499949 /* AddView.swift in Sources */,
-				63344B552B6AFE8800499949 /* AddProduct.swift in Sources */,
+				63344B5D2B6BFFE900499949 /* AddProductView.swift in Sources */,
+				63344B552B6AFE8800499949 /* ProductListView.swift in Sources */,
 				63B465DA2B6159FC005062F8 /* CustomSecureTextFieldView.swift in Sources */,
 				63B465D72B615606005062F8 /* CustomTextField.swift in Sources */,
 				630FCB3B2B6725CE0068A6D5 /* FoodModel.swift in Sources */,

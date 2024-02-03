@@ -60,6 +60,10 @@ class AddProduct: UIViewController {
                 }
             }
             
+            let vc = AddView()
+            vc.delegate = self
+            self?.navigationController?.present(vc, animated: true)
+            
         }), for: .touchUpInside)
         button.configuration?.subtitle = "add"
         return button
@@ -178,9 +182,55 @@ extension AddProduct: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return.delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            switch type {
+            case.breakfast:
+                model.breakfastData.remove(at: indexPath.row)
+            case.dinner:
+                model.dinnerData.remove(at: indexPath.row)
+            case.lunch:
+                model.lunchData.remove(at: indexPath.row)
+            case.snack:
+                model.snackData.remove(at: indexPath.row)
+            case .none:
+                print("ERROR")
+            }
+            mainTableView.reloadData()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            tableView.endUpdates()
+        }
+    }
+    
     
 }
 
 extension AddProduct: UITableViewDelegate {
     
+    //    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //        let vc = AddView()
+    //
+    //        vc.navigationController?.present(vc, animated: true)
+    //    }
+}
+
+extension AddProduct: addViewDelegate {
+    func fetchData(food: String) {
+        self.model.foodFetch(type: self.type ?? .breakfast, food: food)
+        self.model.reload = { [weak self] in
+            DispatchQueue.main.async { [weak self] in
+                self?.mainTableView.reloadData()
+            }
+        }
+    }
+}
+
+protocol addViewDelegate: AnyObject {
+    func fetchData(food: String)
 }

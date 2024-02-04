@@ -199,6 +199,23 @@ extension ProductListView: UITableViewDelegate {
         let vc = ProductDetailsView()
         
         self.navigationController?.pushViewController(vc, animated: true)
+        
+//        switch type {
+//        case.breakfast:
+//            let vc = ProductDetailsView(model: model.breakfastData[indexPath.row])
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        case.dinner:
+//            let vc = ProductDetailsView(model: model.dinnerData[indexPath.row])
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        case.lunch:
+//            let vc = ProductDetailsView(model: model.lunchData[indexPath.row])
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        case.snack:
+//            let vc = ProductDetailsView(model: model.snackData[indexPath.row])
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        case .none:
+//            print("ERROR")
+//        }
     }
     
 }

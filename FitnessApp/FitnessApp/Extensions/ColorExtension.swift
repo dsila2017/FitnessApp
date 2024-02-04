@@ -32,6 +32,10 @@ extension UIColor {
     static let lightGray = UIColor(hex: 0xE1E3E7)
     static let silver = UIColor(hex: 0xEDEFF3)
     static let white = UIColor(hex: 0xF7F7F7)
+    
+    static let proteinColor = UIColor.systemPink
+    static let fatsColor = UIColor.systemCyan
+    static let carbsColor = UIColor.systemGreen
 }
 
 extension UIColor {

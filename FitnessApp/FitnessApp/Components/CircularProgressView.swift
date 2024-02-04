@@ -11,7 +11,7 @@ import UIKit
 final class CircularProgressView: UIView {
     
     fileprivate var progressLayer = CAShapeLayer()
-    fileprivate var trackLayer = CAShapeLayer()
+    var trackLayer = CAShapeLayer()
     fileprivate var didConfigureLabel = false
     fileprivate var rounded: Bool
     fileprivate var filled: Bool

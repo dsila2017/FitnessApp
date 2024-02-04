@@ -9,22 +9,19 @@ import UIKit
 
 class ProductDetailsView: UIViewController {
 
-    var model: Model = Model(name: "Apple", calories: 1.0, servingSizeG: 1.0, fatTotalG: 17.0, fatSaturatedG: 1.0, proteinG: 19.0, sodiumMg: 1, potassiumMg: 1, cholesterolMg: 1, carbohydratesTotalG: 24.0, fiberG: 1.0, sugarG: 1.0)
-    
-//    init(model: Model) {
-//            self.model = model
-//            super.init(nibName: nil, bundle: nil)
-//        }
-//
-//        required init?(coder: NSCoder) {
-//            fatalError("init(coder:) has not been implemented")
-//        }
-    
-    //Model(name: "Apple", calories: 1.0, servingSizeG: 1.0, fatTotalG: 17.0, fatSaturatedG: 1.0, proteinG: 19.0, sodiumMg: 1, potassiumMg: 1, cholesterolMg: 1, carbohydratesTotalG: 24.0, fiberG: 1.0, sugarG: 1.0)
-    
+    var model: Model
     var proteinColor: UIColor = .proteinColor
     var carbsColor: UIColor = .carbsColor
     var fatsColor: UIColor = .fatsColor
+    
+    init(model: Model) {
+            self.model = model
+            super.init(nibName: nil, bundle: nil)
+        }
+
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
     
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [productName, progressView, nutritionStackView, nutritionalName, bottomStackView])
@@ -61,7 +58,7 @@ class ProductDetailsView: UIViewController {
         progressView.progressColor = proteinColor
         progressView.trackColor = .lightGray
         progressView.progress = Float(model.proteinG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
-        //progressView.trackLayer.lineWidth = 20.0
+        progressView.trackLayer.lineWidth = 20.0
         return progressView
     }()
     
@@ -72,7 +69,7 @@ class ProductDetailsView: UIViewController {
         progressView.progressColor = carbsColor
         progressView.trackColor = .lightGray
         progressView.progress = Float(model.carbohydratesTotalG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
-        //progressView.trackLayer.lineWidth = 20.0
+        progressView.trackLayer.lineWidth = 20.0
         return progressView
     }()
     
@@ -83,7 +80,7 @@ class ProductDetailsView: UIViewController {
         progressView.progressColor = fatsColor
         progressView.trackColor = .lightGray
         progressView.progress = Float(model.fatTotalG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
-        //progressView.trackLayer.lineWidth = 20.0
+        progressView.trackLayer.lineWidth = 20.0
         return progressView
     }()
     
@@ -112,25 +109,6 @@ class ProductDetailsView: UIViewController {
         let stack = createStackView(imageName: "circle.fill", imageColor: fatsColor, labelName: "Fats", gram: model.fatTotalG)
         return stack
     }()
-    
-    lazy var button = {
-        let button = UIButton()
-        button.addAction(UIAction(handler: { _ in
-            print("x")
-        }), for: .touchUpInside)
-        return button
-    }()
-    
-    
-    
-//    private lazy var nutritionInfoStackView: UIStackView = {
-//        let stackView = UIStackView(arrangedSubviews: [caloriesStack, servingSizeStack])
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.distribution = .fillEqually
-//        stackView.axis = .horizontal
-//        stackView.backgroundColor = .gray
-//        return stackView
-//    }()
     
     lazy var caloriesStack = {
         let stack = createNutri(nutriName: "Calories:", value: model.calories)
@@ -191,23 +169,7 @@ class ProductDetailsView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-
-        // Do any additional setup after loading the view.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-        
-    
     
     private func setupUI() {
         view.backgroundColor = .white
@@ -217,6 +179,7 @@ class ProductDetailsView: UIViewController {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
+            
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
@@ -233,9 +196,7 @@ class ProductDetailsView: UIViewController {
             fatProgressView.centerXAnchor.constraint(equalTo: progressView.centerXAnchor),
             fatProgressView.centerYAnchor.constraint(equalTo: progressView.centerYAnchor),
             
-            nutritionStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.03),
-            
-            
+            nutritionStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.03)
             
         ])
     }

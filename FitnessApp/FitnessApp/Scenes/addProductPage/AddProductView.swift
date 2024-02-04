@@ -138,10 +138,11 @@ class AddProductView: UIViewController {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
+            
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            mainStackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             foodLabel.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.14),
             
@@ -167,7 +168,6 @@ class AddProductView: UIViewController {
             button.centerYAnchor.constraint(equalTo: addButtonDummyView.centerYAnchor),
             button.widthAnchor.constraint(equalTo: addButtonDummyView.widthAnchor, multiplier: 0.4),
             button.heightAnchor.constraint(equalToConstant: 56.0)
-            
             
         ])
     }

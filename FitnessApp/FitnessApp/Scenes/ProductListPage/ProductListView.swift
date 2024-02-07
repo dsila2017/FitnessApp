@@ -67,6 +67,11 @@ class ProductListView: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction(UIAction(handler: { [weak self] _ in
             print("add Button Pressed")
+            
+            let vc = ScanViewPage()
+            vc.delegate = self
+            self?.navigationController?.pushViewController(vc, animated: true)
+            
         }), for: .touchUpInside)
         button.configuration?.subtitle = "scan"
         return button

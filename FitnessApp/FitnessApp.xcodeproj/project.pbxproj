@@ -52,6 +52,9 @@
 		63344B582B6AFFCC00499949 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B572B6AFFCC00499949 /* MainTableViewCell.swift */; };
 		63344B5D2B6BFFE900499949 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B5C2B6BFFE900499949 /* AddProductView.swift */; };
 		63344B692B6ED29000499949 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B682B6ED29000499949 /* ProductDetailsView.swift */; };
+		63344B6D2B71166E00499949 /* ScanPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63344B6C2B71166E00499949 /* ScanPageView.swift */; };
+		63B463F12B73119400CF3B7D /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B463F02B73119400CF3B7D /* Scanner.swift */; };
+		63B463F62B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */; };
 		63B465D22B6154B8005062F8 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D12B6154B8005062F8 /* SignInView.swift */; };
 		63B465D42B6154D6005062F8 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D32B6154D6005062F8 /* SignInViewModel.swift */; };
 		63B465D72B615606005062F8 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D62B615606005062F8 /* CustomTextField.swift */; };
@@ -82,6 +85,9 @@
 		63344B572B6AFFCC00499949 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		63344B5C2B6BFFE900499949 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		63344B682B6ED29000499949 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
+		63344B6C2B71166E00499949 /* ScanPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPageView.swift; sourceTree = "<group>"; };
+		63B463F02B73119400CF3B7D /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
+		63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
 		63B465D12B6154B8005062F8 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		63B465D32B6154D6005062F8 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		63B465D62B615606005062F8 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -275,6 +281,7 @@
 				63344B562B6AFE9100499949 /* ProductListPage */,
 				63344B6B2B6ED41000499949 /* addProductPage */,
 				63344B6A2B6ED29800499949 /* ProductDetailsPage */,
+				63344B6E2B71167200499949 /* ScanPage */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -302,6 +309,24 @@
 				63344B5C2B6BFFE900499949 /* AddProductView.swift */,
 			);
 			path = addProductPage;
+			sourceTree = "<group>";
+		};
+		63344B6E2B71167200499949 /* ScanPage */ = {
+			isa = PBXGroup;
+			children = (
+				63344B6C2B71166E00499949 /* ScanPageView.swift */,
+				63B463F42B7317C900CF3B7D /* Helper */,
+			);
+			path = ScanPage;
+			sourceTree = "<group>";
+		};
+		63B463F42B7317C900CF3B7D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				63B463F02B73119400CF3B7D /* Scanner.swift */,
+				63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		63B465D52B6154DA005062F8 /* SignIn */ = {
@@ -455,11 +480,14 @@
 				630FCB392B66CC130068A6D5 /* MainPageViewModel.swift in Sources */,
 				631002352B60938B000DF0DC /* ViewController.swift in Sources */,
 				630FCB342B66BF490068A6D5 /* MainView.swift in Sources */,
+				63344B6D2B71166E00499949 /* ScanPageView.swift in Sources */,
 				63049C0B2B62D715001DDF16 /* SignUpViewModel.swift in Sources */,
 				631002312B60938B000DF0DC /* AppDelegate.swift in Sources */,
+				63B463F12B73119400CF3B7D /* Scanner.swift in Sources */,
 				63B465E42B61C752005062F8 /* AuthenticationManager.swift in Sources */,
 				630FCB412B69B3460068A6D5 /* MainModel.swift in Sources */,
 				63344B692B6ED29000499949 /* ProductDetailsView.swift in Sources */,
+				63B463F62B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel in Sources */,
 				63B465DC2B618704005062F8 /* Button Extension.swift in Sources */,
 				63049C082B62D6EA001DDF16 /* SignUpView.swift in Sources */,
 				63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */,

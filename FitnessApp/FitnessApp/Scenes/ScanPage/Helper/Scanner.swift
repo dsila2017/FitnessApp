@@ -39,16 +39,11 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addAction(UIAction(handler: { [weak self]_ in
-            print(self?.productName)
-            
-                let vc = AddProductView()
-            
+            let vc = AddProductView()
+            vc.foodTextField.text = self?.productName
             vc.delegate = self?.delegate
-            
-                //vc.foodTextField.text = self!.productName
-                self?.navigationController?.present(vc, animated: true)
-            
-            self?.session.stopRunning()
+            self?.navigationController?.present(vc, animated: true)
+            //self?.session.stopRunning()
             self?.navigationController?.popViewController(animated: true)
             
         }), for: .touchUpInside)
@@ -90,7 +85,7 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
             button.centerYAnchor.constraint(equalTo: addButtonDummyView.centerYAnchor),
             button.widthAnchor.constraint(equalTo: addButtonDummyView.widthAnchor, multiplier: 0.9),
             button.heightAnchor.constraint(equalTo: addButtonDummyView.heightAnchor, multiplier: 0.7)
-        
+            
         ])
     }
     

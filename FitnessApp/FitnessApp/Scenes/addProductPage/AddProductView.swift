@@ -42,7 +42,7 @@ class AddProductView: UIViewController {
         return label
     }()
     
-    private let foodTextField: UITextField = {
+    let foodTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Enter Food Name"

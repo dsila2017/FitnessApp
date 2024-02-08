@@ -11,12 +11,13 @@ import Vision
 
 class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var delegate: addViewDelegate?
+    
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [imageDummy, labelDummy, chooseButtonDummy, labelButtonDummy])
-        stackView.setCustomSpacing(100, after: labelButtonDummy)
+        stackView.setCustomSpacing(40, after: labelDummy)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        //stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -24,10 +25,13 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: "doc.text.image")
+        let configuration = UIImage.SymbolConfiguration(pointSize: 10)
+        imageView.image = UIImage(systemName: "photo.stack.fill", withConfiguration: configuration)
+        imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .black
+        imageView.layer.cornerRadius = 10
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -40,7 +44,8 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
     private let nameLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Product:"
+        label.text = ""
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     
@@ -61,13 +66,14 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
     private var confidenceLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Confidence:"
+        label.text = ""
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     
     private var confidenceLabelText: String = "Product" {
         didSet {
-            confidenceLabel.text = "Confidence:" + " " + confidenceLabelText
+            confidenceLabel.text = "Accuracy:" + " " + confidenceLabelText
         }
     }
     
@@ -84,17 +90,17 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     private lazy var labelButton: UIButton = {
        var button = createButton(label: "Choose Photo", action: UIAction(handler: { [weak self] _ in
-           //self?.chooseButton.titleLabel?.text = "x"
+           let vc = AddProductView()
+           vc.foodTextField.text = self?.nameLabelText
+           vc.delegate = self?.delegate
+           self?.navigationController?.present(vc, animated: true)
+           self?.navigationController?.popViewController(animated: true)
        }))
-        
         button.configurationUpdateHandler = { [unowned self] button in
             var configuration = button.configuration
             configuration?.title = self.nameLabelText
             button.configuration = configuration
-        
-            
         }
-        
         return button
     }()
     
@@ -123,26 +129,26 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
             mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
             
-            imageDummy.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.5),
+            imageDummy.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.64),
             
             imageView.centerXAnchor.constraint(equalTo: imageDummy.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: imageDummy.centerYAnchor),
-            imageView.widthAnchor.constraint(equalTo: imageDummy.widthAnchor, multiplier: 0.9),
-            imageView.heightAnchor.constraint(equalTo: imageDummy.heightAnchor, multiplier: 0.9),
+            imageView.widthAnchor.constraint(equalTo: imageDummy.widthAnchor, multiplier: 0.7),
+            imageView.heightAnchor.constraint(equalTo: imageDummy.heightAnchor, multiplier: 0.7),
             
             
             //chooseButton.centerYAnchor.constraint(equalTo: imageDummy.centerYAnchor),
             //chooseButton.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.4),
             
-            chooseButtonDummy.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.14),
+            chooseButtonDummy.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.1),
             chooseButton.widthAnchor.constraint(equalTo: chooseButtonDummy.widthAnchor, multiplier: 0.4),
-            chooseButton.heightAnchor.constraint(equalToConstant: 56),
+            chooseButton.heightAnchor.constraint(equalToConstant: 46),
             chooseButton.centerXAnchor.constraint(equalTo: chooseButtonDummy.centerXAnchor),
             chooseButton.centerYAnchor.constraint(equalTo: chooseButtonDummy.centerYAnchor),
             
-            labelButtonDummy.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.14),
+            labelButtonDummy.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.1),
             labelButton.widthAnchor.constraint(equalTo: labelButtonDummy.widthAnchor, multiplier: 0.4),
-            labelButton.heightAnchor.constraint(equalToConstant: 56),
+            labelButton.heightAnchor.constraint(equalToConstant: 46),
             labelButton.centerXAnchor.constraint(equalTo: labelButtonDummy.centerXAnchor),
             labelButton.centerYAnchor.constraint(equalTo: labelButtonDummy.centerYAnchor),
             
@@ -156,14 +162,14 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
         ])
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         imageView.image = image
         imagePicker.dismiss(animated: true)
         identifyModel(image: image!)
     }
     
-    func identifyModel(image: UIImage) {
+    private func identifyModel(image: UIImage) {
         guard let model = try? VNCoreMLModel(for: Resnet50FP16().model) else {
             return
         }
@@ -175,9 +181,8 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
             }
             
             DispatchQueue.main.async {
-                print("Here")
                 self?.nameLabelText = String(firstResult.identifier)
-                self?.confidenceLabelText = String(firstResult.confidence)
+                self?.confidenceLabelText = String(Int(firstResult.confidence * 100)) + "%"
             }
         }
             
@@ -189,7 +194,6 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
             
             DispatchQueue.global().async {
                 do{
-                    print("Here1234")
                     try imageHandler.perform([request])
                 } catch {
                     return
@@ -198,7 +202,7 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
     }
     
-    func createButton(label: String, action: UIAction) -> UIButton {
+    private func createButton(label: String, action: UIAction) -> UIButton {
         var config = UIButton.Configuration.filled()
         config.contentInsets = .zero
         config.title = "Choose Photo"

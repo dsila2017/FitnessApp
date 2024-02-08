@@ -321,7 +321,6 @@
 			children = (
 				63344B6C2B71166E00499949 /* ScanPageView.swift */,
 				63B463F42B7317C900CF3B7D /* Helper */,
-				63B4643B2B74692B00CF3B7D /* New Group */,
 			);
 			path = ScanPage;
 			sourceTree = "<group>";
@@ -333,13 +332,6 @@
 				63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */,
 			);
 			path = Helper;
-			sourceTree = "<group>";
-		};
-		63B4643B2B74692B00CF3B7D /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		63B4643C2B74693E00CF3B7D /* ScanPhoto */ = {

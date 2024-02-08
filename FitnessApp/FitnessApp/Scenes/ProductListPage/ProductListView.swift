@@ -31,7 +31,7 @@ class ProductListView: UIViewController {
     }()
     
     private lazy var buttonStackView = {
-        let stackView = UIStackView(arrangedSubviews: [buttonDummyView])
+        let stackView = UIStackView(arrangedSubviews: [dummyViews])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
         stackView.backgroundColor = .white
@@ -52,12 +52,14 @@ class ProductListView: UIViewController {
                 self?.navigationController?.present(vc, animated: true)
             }),
             UIAction(title: "Photo detection", image: UIImage(systemName: "camera.viewfinder"), handler: { [weak self] _ in
-                let vc = ScanViewPage()
+                let vc = ScanPhotoView()
                 vc.delegate = self
                 self?.navigationController?.pushViewController(vc, animated: true)
             }),
-            UIAction(title: "Live detection", image: UIImage(systemName: "dot.circle.viewfinder"), handler: { _ in
-                print("x")
+            UIAction(title: "Live detection", image: UIImage(systemName: "dot.circle.viewfinder"), handler: { [weak self] _ in
+                let vc = ScanViewPage()
+                vc.delegate = self
+                self?.navigationController?.pushViewController(vc, animated: true)
             })
         ])
         button.showsMenuAsPrimaryAction = true
@@ -67,7 +69,7 @@ class ProductListView: UIViewController {
         return button
     }()
     
-    private var buttonDummyView = UIView()
+    private var dummyViews = UIView()
     
     private lazy var tableViewStackView = {
         let stackView = UIStackView(arrangedSubviews: [mainTableView])
@@ -90,7 +92,7 @@ class ProductListView: UIViewController {
     func setupMainView() {
         view.addSubview(mainStackView)
         view.backgroundColor = .white
-        buttonDummyView.addSubview(menuButton)
+        dummyViews.addSubview(menuButton)
         
         setupTableView()
         setupConstraints()
@@ -111,8 +113,8 @@ class ProductListView: UIViewController {
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             buttonStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.05),
-            menuButton.trailingAnchor.constraint(equalTo: buttonDummyView.trailingAnchor, constant: -40),
-            menuButton.centerYAnchor.constraint(equalTo: buttonDummyView.centerYAnchor),
+            menuButton.trailingAnchor.constraint(equalTo: dummyViews.trailingAnchor, constant: -40),
+            menuButton.centerYAnchor.constraint(equalTo: dummyViews.centerYAnchor),
         ])
     }
     

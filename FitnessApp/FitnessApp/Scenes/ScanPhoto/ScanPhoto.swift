@@ -9,7 +9,7 @@ import UIKit
 import CoreML
 import Vision
 
-class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var delegate: addViewDelegate?
     
@@ -36,13 +36,13 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }()
     
     private lazy var imageDummy: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.addSubview(imageView)
         return view
     }()
     
     private let nameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = ""
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -57,14 +57,14 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     private lazy var labelDummy: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.addSubview(nameLabel)
         view.addSubview(confidenceLabel)
         return view
     }()
     
     private var confidenceLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = ""
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -83,19 +83,20 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }))
     
     private lazy var chooseButtonDummy: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.addSubview(chooseButton)
         return view
     }()
     
     private lazy var labelButton: UIButton = {
-       var button = createButton(label: "Choose Photo", action: UIAction(handler: { [weak self] _ in
-           let vc = AddProductView()
-           vc.foodTextField.text = self?.nameLabelText
-           vc.delegate = self?.delegate
-           self?.navigationController?.present(vc, animated: true)
-           self?.navigationController?.popViewController(animated: true)
-       }))
+        var button = createButton(label: "Choose Photo", action: UIAction(handler: { [weak self] _ in
+            let vc = AddProductView()
+            vc.foodTextField.text = self?.nameLabelText
+            vc.delegate = self?.delegate
+            self?.navigationController?.present(vc, animated: true)
+            self?.navigationController?.popViewController(animated: true)
+        }))
+        button.isEnabled = false
         button.configurationUpdateHandler = { [unowned self] button in
             var configuration = button.configuration
             configuration?.title = self.nameLabelText
@@ -105,14 +106,13 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }()
     
     private lazy var labelButtonDummy: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.addSubview(labelButton)
         return view
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .white
         // Do any additional setup after loading the view.
         view.addSubview(mainStackView)
@@ -167,31 +167,33 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
         imageView.image = image
         imagePicker.dismiss(animated: true)
         identifyModel(image: image!)
+        labelButton.isEnabled = true
     }
     
     private func identifyModel(image: UIImage) {
-        guard let model = try? VNCoreMLModel(for: Resnet50FP16().model) else {
+        
+        guard let modelURL = Bundle.main.url(forResource: "Resnet50FP16", withExtension: "mlmodelc") else {
             return
         }
-        
-        let request = VNCoreMLRequest(model: model) { [weak self] request, error in
-            guard let results = request.results as? [VNClassificationObservation],
-                  let firstResult = results.first else {
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self?.nameLabelText = String(firstResult.identifier)
-                self?.confidenceLabelText = String(Int(firstResult.confidence * 100)) + "%"
-            }
-        }
+        do {
+            let model = try VNCoreMLModel(for: MLModel(contentsOf: modelURL))
+            let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] (request, error) in
+                
+                guard let results = request.results as? [VNClassificationObservation],
+                      let firstResult = results.first else {
+                    return
+                }
+                DispatchQueue.main.async(execute: {
+                    self?.nameLabelText = String(firstResult.identifier)
+                    self?.confidenceLabelText = String(Int(firstResult.confidence * 100)) + "%"
+                })
+            })
             
             guard let ciImage = CIImage(image: image) else {
                 return
             }
             
             let imageHandler = VNImageRequestHandler(ciImage: ciImage)
-            
             DispatchQueue.global().async {
                 do{
                     try imageHandler.perform([request])
@@ -199,7 +201,9 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
                     return
                 }
             }
-        
+        } catch let error as NSError {
+            print("Model loading went wrong: \(error)")
+        }
     }
     
     private func createButton(label: String, action: UIAction) -> UIButton {
@@ -210,8 +214,7 @@ class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINaviga
         let button = UIButton(configuration: config)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction(action, for: .touchUpInside)
-        button.backgroundColor = .yellow
         return button
     }
-
+    
 }

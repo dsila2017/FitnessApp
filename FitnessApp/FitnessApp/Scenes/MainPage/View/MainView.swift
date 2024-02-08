@@ -249,6 +249,7 @@ class MainView: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         // Do any additional setup after loading the view.
+        self.navigationItem.setHidesBackButton(true, animated: true)
         model.setupDateButton(button: calendarButton)
         setupUI()
         
@@ -261,7 +262,6 @@ class MainView: UIViewController {
     
     private func configure() {
         self.calories.text = String((self.model.calcCalories()))
-        //self?.proteinProgress.progress = (self?.model.calcProtein1())!
         self.progressView.progress = (self.model.calcProgress(type: .Calories))
         self.proteinProgress.setProgress(self.model.calcProgress(type: .Protein), animated: true)
         self.carbsProgress.setProgress(self.model.calcProgress(type: .Carbs), animated: true)

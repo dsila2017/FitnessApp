@@ -38,42 +38,34 @@ class ProductListView: UIViewController {
         return stackView
     }()
     
-    private lazy var addButton = {
+    private lazy var menuButton = {
         var configuration = UIButton.Configuration.plain()
-        configuration.image = UIImage(systemName: "plus")!
+        configuration.image = UIImage(systemName: "plus.viewfinder")!
             .applyingSymbolConfiguration(.init(pointSize: 20))
         configuration.contentInsets = .zero
-        let button = UIButton(configuration: configuration)
+        
+        let button = UIButton(configuration: configuration, primaryAction: nil)
+        button.menu = UIMenu(children: [
+            UIAction(title: "add manually", image: UIImage(systemName: "plus"), handler: { [weak self] _ in
+                let vc = AddProductView()
+                vc.delegate = self
+                self?.navigationController?.present(vc, animated: true)
+            }),
+            UIAction(title: "Photo detection", image: UIImage(systemName: "camera.viewfinder"), handler: { [weak self] _ in
+                let vc = ScanPhotoView()
+                vc.delegate = self
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }),
+            UIAction(title: "Live detection", image: UIImage(systemName: "dot.circle.viewfinder"), handler: { [weak self] _ in
+                let vc = ScanViewPage()
+                vc.delegate = self
+                self?.navigationController?.pushViewController(vc, animated: true)
+            })
+        ])
+        button.showsMenuAsPrimaryAction = true
         button.tintColor = .darkText
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addAction(UIAction(handler: { [weak self] _ in
-            
-            let vc = AddProductView()
-            vc.delegate = self
-            self?.navigationController?.present(vc, animated: true)
-            
-        }), for: .touchUpInside)
         button.configuration?.subtitle = "add"
-        return button
-    }()
-    
-    private lazy var scanButton = {
-        var configuration = UIButton.Configuration.plain()
-        configuration.image = UIImage(systemName: "viewfinder")!
-            .applyingSymbolConfiguration(.init(pointSize: 20))
-        configuration.contentInsets = .zero
-        let button = UIButton(configuration: configuration)
-        button.tintColor = .darkText
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addAction(UIAction(handler: { [weak self] _ in
-            print("add Button Pressed")
-            
-            let vc = ScanViewPage()
-            vc.delegate = self
-            self?.navigationController?.pushViewController(vc, animated: true)
-            
-        }), for: .touchUpInside)
-        button.configuration?.subtitle = "scan"
         return button
     }()
     
@@ -100,8 +92,7 @@ class ProductListView: UIViewController {
     func setupMainView() {
         view.addSubview(mainStackView)
         view.backgroundColor = .white
-        dummyViews.addSubview(addButton)
-        dummyViews.addSubview(scanButton)
+        dummyViews.addSubview(menuButton)
         
         setupTableView()
         setupConstraints()
@@ -122,10 +113,8 @@ class ProductListView: UIViewController {
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             buttonStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.05),
-            scanButton.trailingAnchor.constraint(equalTo: dummyViews.trailingAnchor, constant: -20),
-            scanButton.centerYAnchor.constraint(equalTo: dummyViews.centerYAnchor),
-            addButton.trailingAnchor.constraint(equalTo: scanButton.leadingAnchor, constant: -10),
-            addButton.centerYAnchor.constraint(equalTo: dummyViews.centerYAnchor),
+            menuButton.trailingAnchor.constraint(equalTo: dummyViews.trailingAnchor, constant: -40),
+            menuButton.centerYAnchor.constraint(equalTo: dummyViews.centerYAnchor),
         ])
     }
     

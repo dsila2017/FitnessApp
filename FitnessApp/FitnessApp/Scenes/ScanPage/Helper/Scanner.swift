@@ -20,7 +20,11 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
     private var previewLayer: AVCaptureVideoPreviewLayer! = nil
     private let videoDataOutput = AVCaptureVideoDataOutput()
     var delegate: addViewDelegate?
-    var productName = ""
+    var productName: String = "Product" {
+        didSet {
+            button.setNeedsUpdateConfiguration()
+        }
+    }
     
     private lazy var addButtonDummyView: UIView = {
         let view = UIView()
@@ -34,8 +38,9 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
         configuration.title = "add Product"
         configuration.cornerStyle = .capsule
         configuration.contentInsets = .zero
+        configuration.baseBackgroundColor = .black
+        configuration.baseForegroundColor = .white
         let button = UIButton(configuration: configuration)
-        button.tintColor = .darkText
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addAction(UIAction(handler: { [weak self]_ in
@@ -43,10 +48,14 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
             vc.foodTextField.text = self?.productName
             vc.delegate = self?.delegate
             self?.navigationController?.present(vc, animated: true)
-            //self?.session.stopRunning()
             self?.navigationController?.popViewController(animated: true)
             
         }), for: .touchUpInside)
+        button.configurationUpdateHandler = { [unowned self] button in
+            var configuration = button.configuration
+            configuration?.title = self.productName
+            button.configuration = configuration
+        }
         return button
     }()
     

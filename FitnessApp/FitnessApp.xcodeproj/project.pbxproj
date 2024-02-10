@@ -10,7 +10,7 @@
 		63049C082B62D6EA001DDF16 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63049C072B62D6EA001DDF16 /* SignUpView.swift */; };
 		63049C0B2B62D715001DDF16 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63049C0A2B62D715001DDF16 /* SignUpViewModel.swift */; };
 		630FCB342B66BF490068A6D5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB332B66BF490068A6D5 /* MainView.swift */; };
-		630FCB372B66CB340068A6D5 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB362B66CB340068A6D5 /* ButtonCell.swift */; };
+		630FCB372B66CB340068A6D5 /* MainViewButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB362B66CB340068A6D5 /* MainViewButtonCell.swift */; };
 		630FCB392B66CC130068A6D5 /* MainPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB382B66CC130068A6D5 /* MainPageViewModel.swift */; };
 		630FCB3B2B6725CE0068A6D5 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB3A2B6725CE0068A6D5 /* FoodModel.swift */; };
 		630FCB3F2B6939CA0068A6D5 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB3E2B6939CA0068A6D5 /* CircularProgressView.swift */; };
@@ -73,7 +73,7 @@
 		63049C072B62D6EA001DDF16 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		63049C0A2B62D715001DDF16 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		630FCB332B66BF490068A6D5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		630FCB362B66CB340068A6D5 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		630FCB362B66CB340068A6D5 /* MainViewButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewButtonCell.swift; sourceTree = "<group>"; };
 		630FCB382B66CC130068A6D5 /* MainPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModel.swift; sourceTree = "<group>"; };
 		630FCB3A2B6725CE0068A6D5 /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
 		630FCB3E2B6939CA0068A6D5 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 		63344B652B6ED1B500499949 /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
-				630FCB362B66CB340068A6D5 /* ButtonCell.swift */,
+				630FCB362B66CB340068A6D5 /* MainViewButtonCell.swift */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -523,7 +523,7 @@
 				63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */,
 				63B464402B7493F600CF3B7D /* Resnet50FP16.mlmodel in Sources */,
 				63344B582B6AFFCC00499949 /* MainTableViewCell.swift in Sources */,
-				630FCB372B66CB340068A6D5 /* ButtonCell.swift in Sources */,
+				630FCB372B66CB340068A6D5 /* MainViewButtonCell.swift in Sources */,
 				630FCB3F2B6939CA0068A6D5 /* CircularProgressView.swift in Sources */,
 				63B465DE2B618748005062F8 /* ColorExtension.swift in Sources */,
 				63344B5D2B6BFFE900499949 /* AddProductView.swift in Sources */,

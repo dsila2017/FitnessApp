@@ -26,9 +26,8 @@ enum NutritionType: String {
 final class MainPageViewModel {
     var settingsModel = ProfileViewModel.shared
     
-    var allowedCalories = 2740 {
+    var allowedCalories = 2500 {
         didSet {
-            print("HERE")
             self.dataUpdated?()
             allowedProtein = Int(Double(allowedCalories / 4) * 0.4)
             allowedCarbs = Int(Double(allowedCalories / 4) * 0.3)

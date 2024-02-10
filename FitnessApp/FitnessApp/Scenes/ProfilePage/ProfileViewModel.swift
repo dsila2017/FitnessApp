@@ -49,6 +49,9 @@ final class ProfileViewModel: ObservableObject {
     }
     
     func button() {
+        if calories == "" {
+            calories = "2500"
+        }
         settingsUpdated?()
     }
 }

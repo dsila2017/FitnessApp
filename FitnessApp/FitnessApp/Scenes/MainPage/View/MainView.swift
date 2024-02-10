@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import SwiftUI
 
 class MainView: UIViewController {
     
     private var model: MainPageViewModel = MainPageViewModel()
+    private var settingsModel = ProfileViewModel.shared
     private let spacing: CGFloat = 14.0
     
     private lazy var mainStackView = {
@@ -19,7 +21,6 @@ class MainView: UIViewController {
         stackView.setCustomSpacing(24, after: nutritionStackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.backgroundColor = .white
         return stackView
     }()
     
@@ -42,7 +43,8 @@ class MainView: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addAction(UIAction(handler: { [weak self] _ in
-            self?.model.foodFetch(type: .lunch, food: "apple")
+            
+            self?.present(UIHostingController(rootView: ProfileView()), animated: true)
         }), for: .touchUpInside)
         return button
     }()
@@ -69,18 +71,18 @@ class MainView: UIViewController {
         return stackView
     }()
     
-    let calendarDummy = UIView()
+    private let calendarDummy = UIView()
     
-    let helloLabel: UILabel = {
+    private let helloLabel: UILabel = {
         let label = UILabel()
         label.text = "Hello,"
         return label
     }()
     
-    let usernameLabel: UILabel = {
+    private lazy var usernameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.text = "Katherine"
+        label.text = model.name
         return label
     }()
     
@@ -107,10 +109,11 @@ class MainView: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clear
         return collectionView
     }()
     
-    let dummyProgressView = UIView()
+    private let dummyProgressView = UIView()
     
     lazy var progressView: CircularProgressView = {
         let diameter = 250
@@ -248,7 +251,6 @@ class MainView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        // Do any additional setup after loading the view.
         self.navigationItem.setHidesBackButton(true, animated: true)
         model.setupDateButton(button: calendarButton)
         setupUI()
@@ -256,6 +258,14 @@ class MainView: UIViewController {
         self.model.dataUpdated = { [weak self] in
             DispatchQueue.main.async { [weak self] in
                 self?.configure()
+            }
+        }
+        
+        self.settingsModel.settingsUpdated = { [weak self] in
+            DispatchQueue.main.async { [weak self] in
+                self?.updateColors()
+                self?.updateSettingsLabels()
+                self?.model.allowedCalories = Int(self?.settingsModel.calories ?? "") ?? 100
             }
         }
     }
@@ -267,7 +277,22 @@ class MainView: UIViewController {
         self.carbsProgress.setProgress(self.model.calcProgress(type: .Carbs), animated: true)
         self.fatsProgress.setProgress(self.model.calcProgress(type: .Fats), animated: true)
         
+        self.usernameLabel.text = settingsModel.nickname
+        self.caloriesLimit.text = "of \(settingsModel.calories) kCal"
+        
         self.mainCollectionView.reloadData()
+    }
+    
+    private func updateColors() {
+        self.view.backgroundColor = UIColor(settingsModel.backgroundColor)
+        self.progressView.progressColor = UIColor(settingsModel.mainProgressColor)
+        self.progressView.trackColor = UIColor(settingsModel.mainProgressTrackColor)
+    }
+    
+    private func updateSettingsLabels() {
+        self.usernameLabel.text = settingsModel.nickname
+        self.caloriesLimit.text = "of \(settingsModel.calories) kCal"
+        
     }
     
     private func setupUI() {
@@ -355,7 +380,6 @@ extension MainView: UICollectionViewDataSource {
 
 extension MainView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //if
         let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ButtonCell
         cell?.mainLabel.text = FoodModel.food[indexPath.row].name.rawValue
         cell?.imageView.image = UIImage(named: FoodModel.food[indexPath.row].image)
@@ -370,10 +394,7 @@ extension MainView: UICollectionViewDelegate {
         case .snack:
             cell?.calorieLabel.text = String(self.model.calcTypeCalories(type: .snack))
         }
-        
         return cell!
-        //}
-        //return UICollectionViewCell()
     }
 }
 
@@ -381,9 +402,7 @@ extension MainView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfItemsPerRow:CGFloat = 2
         let spacingBetweenCells:CGFloat = spacing
-        
-        let totalSpacing = (2 * self.spacing) + ((numberOfItemsPerRow - 1) * spacingBetweenCells) //Amount of total spacing in a row
-        
+        let totalSpacing = (2 * self.spacing) + ((numberOfItemsPerRow - 1) * spacingBetweenCells)
         let width = (mainCollectionView.bounds.width - totalSpacing) / numberOfItemsPerRow
         let height = (mainCollectionView.bounds.height - totalSpacing) / numberOfItemsPerRow / 1.10
         return CGSize(width: width, height: height)
@@ -391,23 +410,12 @@ extension MainView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //            let vc = MainView()
-        //            vc.configure(with: FoodModel.food[indexPath.row])
-        //            navigationController?.pushViewController(vc, animated: true)
-        print(FoodModel.food[indexPath.row].name)
-        
         let vc = ProductListView(model: model)
-        //            vc.configure(with: FoodModel.food[indexPath.row])
-        //navigationController?.pushViewController(vc, animated: true)
         switch FoodModel.food[indexPath.row].name {
         case .breakfast:
-            //let vc = AddProduct(model: MainPageViewModel())
-            
-            //vc.data = model.breakfastData
             vc.type = .breakfast
             navigationController?.pushViewController(vc, animated: true)
         case .lunch:
-            //vc.data = model.lunchData
             vc.type = .lunch
             navigationController?.pushViewController(vc, animated: true)
         case .dinner:

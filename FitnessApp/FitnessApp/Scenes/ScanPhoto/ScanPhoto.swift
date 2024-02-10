@@ -11,6 +11,8 @@ import Vision
 
 final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    private var settingsModel = ProfileViewModel.shared
+    
     var delegate: addViewDelegate?
     
     private lazy var mainStackView: UIStackView = {
@@ -113,7 +115,7 @@ final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(settingsModel.backgroundColor)
         // Do any additional setup after loading the view.
         view.addSubview(mainStackView)
         imagePicker.delegate = self

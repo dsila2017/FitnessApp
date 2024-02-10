@@ -12,13 +12,20 @@ final class MainTableViewCell: UITableViewCell {
     var model: Model = Model(name: "Apple", calories: 449.0, servingSizeG: 1.0, fatTotalG: 42.0, fatSaturatedG: 1.0, proteinG: 27.0, sodiumMg: 1, potassiumMg: 1, cholesterolMg: 1, carbohydratesTotalG: 32.0, fiberG: 1.0, sugarG: 1.0)
     private var textColor: UIColor = .black
     
+    private lazy var mainView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(mainStackView)
+        view.layer.cornerRadius = 20
+        view.backgroundColor = UIColor.tertiaryLabel.withAlphaComponent(0.1)
+        return view
+    }()
+    
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [topStackView, bottomStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
-        stackView.layer.cornerRadius = 20
-        stackView.backgroundColor = .white
         return stackView
     }()
     
@@ -255,17 +262,24 @@ final class MainTableViewCell: UITableViewCell {
     }
     
     private func setupUI() {
-        addSubview(mainStackView)
+        addSubview(mainView)
         setupConstraints()
+        backgroundColor = .clear
+        selectedBackgroundView?.backgroundColor = .clear
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             
-            mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            mainView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            mainView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            mainView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            mainView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            
+            mainStackView.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 10),
+            mainStackView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10),
+            mainStackView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: -10),
+            mainStackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -10),
             
             proteinProgress.centerXAnchor.constraint(equalTo: proteinDummy.centerXAnchor),
             proteinProgress.centerYAnchor.constraint(equalTo: proteinDummy.centerYAnchor),

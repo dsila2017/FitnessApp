@@ -24,10 +24,24 @@ enum NutritionType: String {
 }
 
 final class MainPageViewModel {
-    var allowedCalories = 2740
-    var allowedProtein = 10
-    var allowedCarbs = 100
-    var allowedFats = 10
+    var allowedCalories = 2740 {
+        didSet {
+            self.dataUpdated?()
+            allowedProtein = Int(Double(allowedCalories / 4) * 0.4)
+            allowedCarbs = Int(Double(allowedCalories / 4) * 0.3)
+            allowedFats = Int(Double(allowedCalories / 9) * 0.3)
+        }
+    }
+    lazy var allowedProtein = 0
+    lazy var allowedCarbs = 0
+    lazy var allowedFats = 0
+    
+    var name = "Username" {
+        didSet {
+            print("Data Name")
+            self.dataUpdated?()
+        }
+    }
     
     var dataUpdated: (()->Void)?
     var reload: (()->Void)?

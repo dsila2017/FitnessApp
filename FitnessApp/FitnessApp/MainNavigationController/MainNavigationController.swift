@@ -43,4 +43,8 @@ extension MainNavigationController where Self:View {
     func pop(animated: Bool) {
         rootNavigationController?.popViewController(animated: animated)
     }
+    
+    func dismiss(animated: Bool) {
+        rootNavigationController?.dismiss(animated: animated)
+    }
 }

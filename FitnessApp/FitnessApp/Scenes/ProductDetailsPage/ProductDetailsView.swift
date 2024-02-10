@@ -10,9 +10,10 @@ import UIKit
 class ProductDetailsView: UIViewController {
 
     var model: Model
-    var proteinColor: UIColor = .proteinColor
-    var carbsColor: UIColor = .carbsColor
-    var fatsColor: UIColor = .fatsColor
+    private var settingsModel = ProfileViewModel.shared
+    private var proteinColor: UIColor = .proteinColor
+    private var carbsColor: UIColor = .carbsColor
+    private var fatsColor: UIColor = .fatsColor
     
     init(model: Model) {
             self.model = model
@@ -172,7 +173,7 @@ class ProductDetailsView: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(settingsModel.backgroundColor)
         view.addSubview(mainStackView)
         setupConstraints()
     }

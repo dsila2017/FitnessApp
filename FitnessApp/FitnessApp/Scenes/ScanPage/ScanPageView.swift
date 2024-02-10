@@ -22,7 +22,6 @@ final class ScanViewPage: ScannerView {
             let visionModel = try VNCoreMLModel(for: MLModel(contentsOf: modelURL))
             let objectRecognition = VNCoreMLRequest(model: visionModel, completionHandler: { (request, error) in
                 DispatchQueue.main.async(execute: {
-                    // perform all the UI updates on the main queue
                     if let results = request.results {
                         self.drawVisionRequestResults(results)
                     }
@@ -44,7 +43,7 @@ final class ScanViewPage: ScannerView {
             guard let objectObservation = observation as? VNRecognizedObjectObservation else {
                 continue
             }
-            // Select only the label with the highest confidence.
+            // Select only the label with the highest confidence
             let topLabelObservation = objectObservation.labels[0]
             let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
             

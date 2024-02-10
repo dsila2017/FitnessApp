@@ -88,25 +88,22 @@ class ProductDetailsView: UIViewController {
     private lazy var nutritionStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [proteinStackView, carbsStackView, fatStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillProportionally
+        stackView.setCustomSpacing(16, after: carbsStackView)
         stackView.axis = .horizontal
         return stackView
     }()
     
     lazy var proteinStackView = {
-        var protein = Int(model.proteinG )
         var stack = createStackView(imageName: "circle.fill", imageColor: proteinColor, labelName: "Protein", gram: model.proteinG)
         return stack
     }()
     
     lazy var carbsStackView = {
-        let carbs = Int(model.proteinG )
         let stack = createStackView(imageName: "circle.fill", imageColor: carbsColor, labelName: "Carbs", gram: model.carbohydratesTotalG)
         return stack
     }()
     
     lazy var fatStackView = {
-        let fats = Int(model.proteinG )
         let stack = createStackView(imageName: "circle.fill", imageColor: fatsColor, labelName: "Fats", gram: model.fatTotalG)
         return stack
     }()
@@ -186,7 +183,7 @@ class ProductDetailsView: UIViewController {
             mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40),
             
-            progressView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.34),
+            progressView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.4),
             
             proteinProgressView.centerXAnchor.constraint(equalTo: progressView.centerXAnchor),
             proteinProgressView.centerYAnchor.constraint(equalTo: progressView.centerYAnchor),
@@ -197,7 +194,10 @@ class ProductDetailsView: UIViewController {
             fatProgressView.centerXAnchor.constraint(equalTo: progressView.centerXAnchor),
             fatProgressView.centerYAnchor.constraint(equalTo: progressView.centerYAnchor),
             
-            nutritionStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.03)
+            nutritionStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.04),
+            
+            proteinStackView.widthAnchor.constraint(equalTo: nutritionStackView.widthAnchor, multiplier: 0.36),
+            carbsStackView.widthAnchor.constraint(equalTo: nutritionStackView.widthAnchor, multiplier: 0.32),
             
         ])
     }

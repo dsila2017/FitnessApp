@@ -11,47 +11,19 @@ import SwiftUI
 final class ProfileViewModel: ObservableObject {
     static let shared = ProfileViewModel()
     
-    @Published var gender = 0 {
-        didSet {
-            settingsUpdated?()
-        }
-    }
+    @Published var gender = 0
     
-    @Published var nickname = "" {
-        didSet {
-            settingsUpdated?()
-        }
-    }
+    @Published var nickname = ""
     
-    @Published var weight = "" {
-        didSet {
-            settingsUpdated?()
-        }
-    }
+    @Published var weight = ""
     
-    @Published var calories = "" {
-        didSet {
-            settingsUpdated?()
-        }
-    }
+    @Published var calories = ""
     
-    @Published var backgroundColor = Color(UIColor.white) {
-        didSet {
-            settingsUpdated?()
-        }
-    }
+    @Published var backgroundColor = Color(UIColor.white)
     
-    @Published var mainProgressColor = Color(UIColor.darkText) {
-        didSet {
-            settingsUpdated?()
-        }
-    }
+    @Published var mainProgressColor = Color(UIColor.darkText)
     
-    @Published var mainProgressTrackColor = Color(UIColor.lightGray) {
-        didSet {
-            settingsUpdated?()
-        }
-    }
+    @Published var mainProgressTrackColor = Color(UIColor.lightGray)
     
     var settingsUpdated: (()->Void)?
     
@@ -74,5 +46,9 @@ final class ProfileViewModel: ObservableObject {
         default:
             return 0
         }
+    }
+    
+    func button() {
+        settingsUpdated?()
     }
 }

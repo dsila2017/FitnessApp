@@ -24,8 +24,11 @@ enum NutritionType: String {
 }
 
 final class MainPageViewModel {
+    var settingsModel = ProfileViewModel.shared
+    
     var allowedCalories = 2740 {
         didSet {
+            print("HERE")
             self.dataUpdated?()
             allowedProtein = Int(Double(allowedCalories / 4) * 0.4)
             allowedCarbs = Int(Double(allowedCalories / 4) * 0.3)
@@ -80,6 +83,10 @@ final class MainPageViewModel {
             print("snackData Updated")
             mainData = breakfastData + lunchData + dinnerData + snackData
         }
+    }
+    
+    func fetchCaloriesLimit() {
+        self.allowedCalories = Int(settingsModel.calories) ?? 0
     }
     
     func foodFetch(type: FoodType, food: String, weight: String? = "100") {

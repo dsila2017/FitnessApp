@@ -265,7 +265,7 @@ class MainView: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.updateColors()
                 self?.updateSettingsLabels()
-                self?.model.allowedCalories = Int(self?.settingsModel.calories ?? "") ?? 100
+                self?.updateCalLimit()
             }
         }
     }
@@ -292,7 +292,10 @@ class MainView: UIViewController {
     private func updateSettingsLabels() {
         self.usernameLabel.text = settingsModel.nickname
         self.caloriesLimit.text = "of \(settingsModel.calories) kCal"
-        
+    }
+    
+    private func updateCalLimit() {
+        self.model.fetchCaloriesLimit()
     }
     
     private func setupUI() {

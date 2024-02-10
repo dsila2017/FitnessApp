@@ -78,6 +78,7 @@ struct ProfileView: View, MainNavigationController {
             }
             
             Button(action: {
+                self.model.button()
                 self.dismiss(animated: true)
             }, label: {
                 Text("Save")

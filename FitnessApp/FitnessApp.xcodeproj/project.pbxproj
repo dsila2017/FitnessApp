@@ -59,6 +59,7 @@
 		63B464402B7493F600CF3B7D /* Resnet50FP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63B4643F2B7493F600CF3B7D /* Resnet50FP16.mlmodel */; };
 		63B464422B754C3D00CF3B7D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464412B754C3D00CF3B7D /* ProfileView.swift */; };
 		63B464452B75A6E200CF3B7D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464442B75A6E200CF3B7D /* ProfileViewModel.swift */; };
+		63B464472B78033600CF3B7D /* MainDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464462B78033600CF3B7D /* MainDB.swift */; };
 		63B465D22B6154B8005062F8 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D12B6154B8005062F8 /* SignInView.swift */; };
 		63B465D42B6154D6005062F8 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D32B6154D6005062F8 /* SignInViewModel.swift */; };
 		63B465D72B615606005062F8 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D62B615606005062F8 /* CustomTextField.swift */; };
@@ -96,6 +97,7 @@
 		63B4643F2B7493F600CF3B7D /* Resnet50FP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50FP16.mlmodel; sourceTree = "<group>"; };
 		63B464412B754C3D00CF3B7D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		63B464442B75A6E200CF3B7D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		63B464462B78033600CF3B7D /* MainDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDB.swift; sourceTree = "<group>"; };
 		63B465D12B6154B8005062F8 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		63B465D32B6154D6005062F8 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		63B465D62B615606005062F8 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				63B4643C2B74693E00CF3B7D /* ScanPhoto */,
 				63344B6E2B71167200499949 /* ScanPage */,
 				63B464432B754C4200CF3B7D /* ProfilePage */,
+				63B464462B78033600CF3B7D /* MainDB.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				63344B552B6AFE8800499949 /* ProductListView.swift in Sources */,
 				63B465DA2B6159FC005062F8 /* CustomSecureTextFieldView.swift in Sources */,
 				63B464452B75A6E200CF3B7D /* ProfileViewModel.swift in Sources */,
+				63B464472B78033600CF3B7D /* MainDB.swift in Sources */,
 				63B465D72B615606005062F8 /* CustomTextField.swift in Sources */,
 				630FCB3B2B6725CE0068A6D5 /* FoodModel.swift in Sources */,
 				63B465D22B6154B8005062F8 /* SignInView.swift in Sources */,

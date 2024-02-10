@@ -8,14 +8,13 @@
 import UIKit
 
 class ProductListView: UIViewController {
-    
-    var model: MainPageViewModel
+    var mainDB: MainDB
     var type: FoodType?
     private var settingsModel = ProfileViewModel.shared
     
-    init(model: MainPageViewModel) {
+    init(mainDB: MainDB) {
         
-        self.model = model
+        self.mainDB = mainDB
         super.init(nibName: nil, bundle: nil)
         setupMainView()
     }
@@ -133,13 +132,13 @@ extension ProductListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch type {
         case.breakfast:
-            return model.breakfastData.count
+            return mainDB.breakfastData.count
         case.dinner:
-            return model.dinnerData.count
+            return mainDB.dinnerData.count
         case.lunch:
-            return model.lunchData.count
+            return mainDB.lunchData.count
         case.snack:
-            return model.snackData.count
+            return mainDB.snackData.count
         case .none:
             return 0
         }
@@ -149,13 +148,13 @@ extension ProductListView: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
         switch type {
         case.breakfast:
-            cell.model = model.breakfastData[indexPath.row]
+            cell.model = mainDB.breakfastData[indexPath.row]
         case.dinner:
-            cell.model = model.dinnerData[indexPath.row]
+            cell.model = mainDB.dinnerData[indexPath.row]
         case.lunch:
-            cell.model = model.lunchData[indexPath.row]
+            cell.model = mainDB.lunchData[indexPath.row]
         case.snack:
-            cell.model = model.snackData[indexPath.row]
+            cell.model = mainDB.snackData[indexPath.row]
         case .none:
             print("ERROR")
         }
@@ -172,13 +171,13 @@ extension ProductListView: UITableViewDataSource {
             tableView.beginUpdates()
             switch type {
             case.breakfast:
-                model.breakfastData.remove(at: indexPath.row)
+                mainDB.breakfastData.remove(at: indexPath.row)
             case.dinner:
-                model.dinnerData.remove(at: indexPath.row)
+                mainDB.dinnerData.remove(at: indexPath.row)
             case.lunch:
-                model.lunchData.remove(at: indexPath.row)
+                mainDB.lunchData.remove(at: indexPath.row)
             case.snack:
-                model.snackData.remove(at: indexPath.row)
+                mainDB.snackData.remove(at: indexPath.row)
             case .none:
                 print("ERROR")
             }
@@ -197,16 +196,16 @@ extension ProductListView: UITableViewDelegate {
         tableView.reloadRows(at: [indexPath], with: .fade)
         switch type {
         case.breakfast:
-            let vc = ProductDetailsView(model: model.breakfastData[indexPath.row])
+            let vc = ProductDetailsView(model: mainDB.breakfastData[indexPath.row])
             self.navigationController?.pushViewController(vc, animated: true)
         case.dinner:
-            let vc = ProductDetailsView(model: model.dinnerData[indexPath.row])
+            let vc = ProductDetailsView(model: mainDB.dinnerData[indexPath.row])
             self.navigationController?.pushViewController(vc, animated: true)
         case.lunch:
-            let vc = ProductDetailsView(model: model.lunchData[indexPath.row])
+            let vc = ProductDetailsView(model: mainDB.lunchData[indexPath.row])
             self.navigationController?.pushViewController(vc, animated: true)
         case.snack:
-            let vc = ProductDetailsView(model: model.snackData[indexPath.row])
+            let vc = ProductDetailsView(model: mainDB.snackData[indexPath.row])
             self.navigationController?.pushViewController(vc, animated: true)
         case .none:
             print("ERROR")
@@ -217,8 +216,8 @@ extension ProductListView: UITableViewDelegate {
 
 extension ProductListView: addViewDelegate {
     func fetchData(food: String, weight: String) {
-        self.model.foodFetch(type: self.type ?? .breakfast, food: food, weight: weight)
-        self.model.reload = { [weak self] in
+        self.mainDB.foodFetch(type: self.type ?? .breakfast, food: food, weight: weight)
+        self.mainDB.reload = { [weak self] in
             DispatchQueue.main.async { [weak self] in
                 self?.mainTableView.reloadData()
             }

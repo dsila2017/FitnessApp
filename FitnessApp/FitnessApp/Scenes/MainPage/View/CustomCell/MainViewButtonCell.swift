@@ -116,10 +116,10 @@ final class MainViewButtonCell: UICollectionViewCell {
         ])
     }
     
-    func configure(model: FoodModel, mainModel: MainPageViewModel) {
+    func configure(model: FoodModel, result: Int) {
         mainLabel.text = model.name.rawValue
         imageView.image = UIImage(named: model.image)
         stackView.backgroundColor = UIColor(settingsModel.mainProgressColor)
-        calorieLabel.text = String(mainModel.calcTypeCalories(type: model.name))
+        calorieLabel.text = String(result)
     }
 }

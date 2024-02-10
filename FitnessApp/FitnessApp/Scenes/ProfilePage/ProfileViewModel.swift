@@ -13,11 +13,11 @@ final class ProfileViewModel: ObservableObject {
     
     @Published var gender = 0
     
-    @Published var nickname = ""
+    @Published var nickname = "Username"
     
     @Published var weight = ""
     
-    @Published var calories = ""
+    @Published var calories = "2500"
     
     @Published var backgroundColor = Color(UIColor.white)
     
@@ -49,9 +49,6 @@ final class ProfileViewModel: ObservableObject {
     }
     
     func button() {
-        if calories == "" {
-            calories = "2500"
-        }
         settingsUpdated?()
     }
 }

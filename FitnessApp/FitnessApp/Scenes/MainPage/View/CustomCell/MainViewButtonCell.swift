@@ -7,18 +7,18 @@
 
 import UIKit
 
-final class ButtonCell: UICollectionViewCell {
+final class MainViewButtonCell: UICollectionViewCell {
     
+    private var settingsModel = ProfileViewModel.shared
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [labelDummyView, calorieStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.layer.cornerRadius = 20
-        stackView.backgroundColor = .red
         return stackView
     }()
     
-    lazy var mainLabel: UILabel = {
+    private lazy var mainLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .white
@@ -26,15 +26,14 @@ final class ButtonCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var calorieStackView = {
-        
+    private lazy var calorieStackView = {
         let stackView = UIStackView(arrangedSubviews: [dummyView, calorieLabel, calorieUnit])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         return stackView
     }()
     
-    var calorieLabel: UILabel = {
+    private var calorieLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.text = "240"
@@ -42,14 +41,14 @@ final class ButtonCell: UICollectionViewCell {
         return label
     }()
     
-    var calorieUnit: UILabel = {
+    private var calorieUnit: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.text = "kcal"
         return label
     }()
     
-    var imageView: UIImageView = {
+    private var imageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
@@ -58,13 +57,13 @@ final class ButtonCell: UICollectionViewCell {
         return image
     }()
     
-    var dummyView: UIView = {
+    private var dummyView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    var labelDummyView: UIView = {
+    private var labelDummyView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -79,6 +78,13 @@ final class ButtonCell: UICollectionViewCell {
         super.init(coder: coder)
         
         setupCell()
+    }
+    
+    override func prepareForReuse() {
+        mainLabel.text = nil
+        imageView.image = nil
+        stackView.backgroundColor = nil
+        calorieLabel.text = nil
     }
     
     private func setupCell() {
@@ -110,4 +116,10 @@ final class ButtonCell: UICollectionViewCell {
         ])
     }
     
+    func configure(model: FoodModel, mainModel: MainPageViewModel) {
+        mainLabel.text = model.name.rawValue
+        imageView.image = UIImage(named: model.image)
+        stackView.backgroundColor = UIColor(settingsModel.mainProgressColor)
+        calorieLabel.text = String(mainModel.calcTypeCalories(type: model.name))
+    }
 }

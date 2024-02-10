@@ -10,7 +10,7 @@
 		63049C082B62D6EA001DDF16 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63049C072B62D6EA001DDF16 /* SignUpView.swift */; };
 		63049C0B2B62D715001DDF16 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63049C0A2B62D715001DDF16 /* SignUpViewModel.swift */; };
 		630FCB342B66BF490068A6D5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB332B66BF490068A6D5 /* MainView.swift */; };
-		630FCB372B66CB340068A6D5 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB362B66CB340068A6D5 /* ButtonCell.swift */; };
+		630FCB372B66CB340068A6D5 /* MainViewButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB362B66CB340068A6D5 /* MainViewButtonCell.swift */; };
 		630FCB392B66CC130068A6D5 /* MainPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB382B66CC130068A6D5 /* MainPageViewModel.swift */; };
 		630FCB3B2B6725CE0068A6D5 /* FoodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB3A2B6725CE0068A6D5 /* FoodModel.swift */; };
 		630FCB3F2B6939CA0068A6D5 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630FCB3E2B6939CA0068A6D5 /* CircularProgressView.swift */; };
@@ -57,6 +57,8 @@
 		63B463F62B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */; };
 		63B4643A2B74692100CF3B7D /* ScanPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464392B74692100CF3B7D /* ScanPhoto.swift */; };
 		63B464402B7493F600CF3B7D /* Resnet50FP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63B4643F2B7493F600CF3B7D /* Resnet50FP16.mlmodel */; };
+		63B464422B754C3D00CF3B7D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464412B754C3D00CF3B7D /* ProfileView.swift */; };
+		63B464452B75A6E200CF3B7D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464442B75A6E200CF3B7D /* ProfileViewModel.swift */; };
 		63B465D22B6154B8005062F8 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D12B6154B8005062F8 /* SignInView.swift */; };
 		63B465D42B6154D6005062F8 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D32B6154D6005062F8 /* SignInViewModel.swift */; };
 		63B465D72B615606005062F8 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465D62B615606005062F8 /* CustomTextField.swift */; };
@@ -71,7 +73,7 @@
 		63049C072B62D6EA001DDF16 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		63049C0A2B62D715001DDF16 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		630FCB332B66BF490068A6D5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		630FCB362B66CB340068A6D5 /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		630FCB362B66CB340068A6D5 /* MainViewButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewButtonCell.swift; sourceTree = "<group>"; };
 		630FCB382B66CC130068A6D5 /* MainPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModel.swift; sourceTree = "<group>"; };
 		630FCB3A2B6725CE0068A6D5 /* FoodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodModel.swift; sourceTree = "<group>"; };
 		630FCB3E2B6939CA0068A6D5 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
@@ -92,6 +94,8 @@
 		63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
 		63B464392B74692100CF3B7D /* ScanPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPhoto.swift; sourceTree = "<group>"; };
 		63B4643F2B7493F600CF3B7D /* Resnet50FP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50FP16.mlmodel; sourceTree = "<group>"; };
+		63B464412B754C3D00CF3B7D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		63B464442B75A6E200CF3B7D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		63B465D12B6154B8005062F8 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		63B465D32B6154D6005062F8 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		63B465D62B615606005062F8 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -271,7 +275,7 @@
 		63344B652B6ED1B500499949 /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
-				630FCB362B66CB340068A6D5 /* ButtonCell.swift */,
+				630FCB362B66CB340068A6D5 /* MainViewButtonCell.swift */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -285,8 +289,9 @@
 				63344B562B6AFE9100499949 /* ProductListPage */,
 				63344B6B2B6ED41000499949 /* addProductPage */,
 				63344B6A2B6ED29800499949 /* ProductDetailsPage */,
-				63344B6E2B71167200499949 /* ScanPage */,
 				63B4643C2B74693E00CF3B7D /* ScanPhoto */,
+				63344B6E2B71167200499949 /* ScanPage */,
+				63B464432B754C4200CF3B7D /* ProfilePage */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -341,6 +346,15 @@
 				63B4643F2B7493F600CF3B7D /* Resnet50FP16.mlmodel */,
 			);
 			path = ScanPhoto;
+			sourceTree = "<group>";
+		};
+		63B464432B754C4200CF3B7D /* ProfilePage */ = {
+			isa = PBXGroup;
+			children = (
+				63B464412B754C3D00CF3B7D /* ProfileView.swift */,
+				63B464442B75A6E200CF3B7D /* ProfileViewModel.swift */,
+			);
+			path = ProfilePage;
 			sourceTree = "<group>";
 		};
 		63B465D52B6154DA005062F8 /* SignIn */ = {
@@ -502,18 +516,20 @@
 				63B465E42B61C752005062F8 /* AuthenticationManager.swift in Sources */,
 				630FCB412B69B3460068A6D5 /* MainModel.swift in Sources */,
 				63344B692B6ED29000499949 /* ProductDetailsView.swift in Sources */,
+				63B464422B754C3D00CF3B7D /* ProfileView.swift in Sources */,
 				63B463F62B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel in Sources */,
 				63B465DC2B618704005062F8 /* Button Extension.swift in Sources */,
 				63049C082B62D6EA001DDF16 /* SignUpView.swift in Sources */,
 				63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */,
 				63B464402B7493F600CF3B7D /* Resnet50FP16.mlmodel in Sources */,
 				63344B582B6AFFCC00499949 /* MainTableViewCell.swift in Sources */,
-				630FCB372B66CB340068A6D5 /* ButtonCell.swift in Sources */,
+				630FCB372B66CB340068A6D5 /* MainViewButtonCell.swift in Sources */,
 				630FCB3F2B6939CA0068A6D5 /* CircularProgressView.swift in Sources */,
 				63B465DE2B618748005062F8 /* ColorExtension.swift in Sources */,
 				63344B5D2B6BFFE900499949 /* AddProductView.swift in Sources */,
 				63344B552B6AFE8800499949 /* ProductListView.swift in Sources */,
 				63B465DA2B6159FC005062F8 /* CustomSecureTextFieldView.swift in Sources */,
+				63B464452B75A6E200CF3B7D /* ProfileViewModel.swift in Sources */,
 				63B465D72B615606005062F8 /* CustomTextField.swift in Sources */,
 				630FCB3B2B6725CE0068A6D5 /* FoodModel.swift in Sources */,
 				63B465D22B6154B8005062F8 /* SignInView.swift in Sources */,

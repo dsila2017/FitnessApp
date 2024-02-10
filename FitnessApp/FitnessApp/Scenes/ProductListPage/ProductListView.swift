@@ -11,6 +11,7 @@ class ProductListView: UIViewController {
     
     var model: MainPageViewModel
     var type: FoodType?
+    private var settingsModel = ProfileViewModel.shared
     
     init(model: MainPageViewModel) {
         
@@ -27,6 +28,7 @@ class ProductListView: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [buttonStackView, tableViewStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.backgroundColor = .clear
         return stackView
     }()
     
@@ -34,7 +36,7 @@ class ProductListView: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [dummyViews])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
-        stackView.backgroundColor = .white
+        stackView.backgroundColor = .clear
         return stackView
     }()
     
@@ -75,11 +77,13 @@ class ProductListView: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [mainTableView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fill
+        stackView.backgroundColor = .clear
         return stackView
     }()
     
     private var mainTableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .clear
         return tableView
     }()
     
@@ -91,7 +95,7 @@ class ProductListView: UIViewController {
     
     func setupMainView() {
         view.addSubview(mainStackView)
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(settingsModel.backgroundColor)
         dummyViews.addSubview(menuButton)
         
         setupTableView()
@@ -123,7 +127,7 @@ class ProductListView: UIViewController {
 extension ProductListView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        140.0
+        170.0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -190,6 +194,7 @@ extension ProductListView: UITableViewDataSource {
 
 extension ProductListView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .fade)
         switch type {
         case.breakfast:
             let vc = ProductDetailsView(model: model.breakfastData[indexPath.row])
@@ -207,7 +212,7 @@ extension ProductListView: UITableViewDelegate {
             print("ERROR")
         }
     }
-    
+        
 }
 
 extension ProductListView: addViewDelegate {

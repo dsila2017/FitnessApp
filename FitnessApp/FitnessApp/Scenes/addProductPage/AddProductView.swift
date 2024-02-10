@@ -10,13 +10,15 @@ import UIKit
 import SwiftUI
 
 class AddProductView: UIViewController {
+    
+    private var settingsModel = ProfileViewModel.shared
 
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [foodLabel, mainImageView, foodNameLabel, foodNameDummyView, scaleImageView, foodWeightLabel, foodWeightDummyView, addButtonDummyView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.setCustomSpacing(16, after: foodNameDummyView)
         stackView.axis = .vertical
-        stackView.backgroundColor = .white
+        stackView.backgroundColor = .clear
         return stackView
     }()
     
@@ -47,7 +49,7 @@ class AddProductView: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Enter Food Name"
         textField.layer.cornerRadius = 24
-        textField.backgroundColor = .silver
+        textField.backgroundColor = UIColor.tertiaryLabel.withAlphaComponent(0.1)
         textField.returnKeyType = .done
         
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: textField.heightAnchor.hashValue))
@@ -74,7 +76,7 @@ class AddProductView: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Enter Food Weight"
         textField.layer.cornerRadius = 24
-        textField.backgroundColor = .silver
+        textField.backgroundColor = UIColor.tertiaryLabel.withAlphaComponent(0.1)
         textField.keyboardType = .numberPad
         textField.returnKeyType = .done
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: textField.heightAnchor.hashValue))
@@ -131,6 +133,7 @@ class AddProductView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.addSubview(mainStackView)
+        view.backgroundColor = UIColor(settingsModel.backgroundColor)
         foodTextField.delegate = self
         WeightTextField.delegate = self
         setupConstraints()

@@ -5,7 +5,9 @@
 //  Created by David on 2/1/24.
 //
 
+import Foundation
 import UIKit
+import SwiftUI
 
 class ProductListView: UIViewController {
     var mainDB: MainDB
@@ -13,33 +15,33 @@ class ProductListView: UIViewController {
     private var settingsModel = ProfileViewModel.shared
     private var array: [Model] {
         get {
-                switch self.type {
-                case .breakfast:
-                    return mainDB.breakfastData
-                case .dinner:
-                    return mainDB.dinnerData
-                case .lunch:
-                    return mainDB.lunchData
-                case .snack:
-                    return mainDB.snackData
-                case .none:
-                    return [Model]()
-                }
+            switch self.type {
+            case .breakfast:
+                return mainDB.breakfastData
+            case .dinner:
+                return mainDB.dinnerData
+            case .lunch:
+                return mainDB.lunchData
+            case .snack:
+                return mainDB.snackData
+            case .none:
+                return [Model]()
             }
-            set {
-                switch self.type {
-                case .breakfast:
-                    mainDB.breakfastData = newValue
-                case .dinner:
-                    mainDB.dinnerData = newValue
-                case .lunch:
-                    mainDB.lunchData = newValue
-                case .snack:
-                    mainDB.snackData = newValue
-                case .none:
-                    break
-                }
+        }
+        set {
+            switch self.type {
+            case .breakfast:
+                mainDB.breakfastData = newValue
+            case .dinner:
+                mainDB.dinnerData = newValue
+            case .lunch:
+                mainDB.lunchData = newValue
+            case .snack:
+                mainDB.snackData = newValue
+            case .none:
+                break
             }
+        }
     }
     
     init(mainDB: MainDB) {
@@ -112,6 +114,8 @@ class ProductListView: UIViewController {
     private var mainTableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
+        let view = UIView()
+        tableView.backgroundView = view
         return tableView
     }()
     
@@ -119,6 +123,10 @@ class ProductListView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupMainView()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkEmptyTableView()
     }
     
     func setupMainView() {
@@ -133,6 +141,19 @@ class ProductListView: UIViewController {
         mainTableView.delegate = self
         mainTableView.dataSource = self
         mainTableView.register(MainTableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    private func checkEmptyTableView() {
+        let emptyView = UIHostingController(rootView: EmptyView())
+        if array.isEmpty {
+            UIView.transition(with: mainTableView, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                self.mainTableView.backgroundView = emptyView.view
+            }, completion: nil)
+        } else {
+            UIView.transition(with: mainTableView, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                self.mainTableView.backgroundView = nil
+            }, completion: nil)
+        }
     }
     
     func setupConstraints() {
@@ -158,18 +179,14 @@ extension ProductListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        array.count == 0 ? 1 : array.count
+        array.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
-        if array.count == 0 {
-            cell.label.text = "Please add some products"
-        } else {
-            cell.model = array[indexPath.row]
-            cell.updateUI()
-        }
+        cell.model = array[indexPath.row]
+        cell.updateUI()
         return cell
     }
     
@@ -181,6 +198,7 @@ extension ProductListView: UITableViewDataSource {
         if editingStyle == .delete {
             tableView.beginUpdates()
             array.remove(at: indexPath.row)
+            checkEmptyTableView()
             mainTableView.reloadData()
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
@@ -201,6 +219,7 @@ extension ProductListView: addViewDelegate {
         self.mainDB.foodFetch(type: self.type ?? .breakfast, food: food, weight: weight)
         self.mainDB.reload = { [weak self] in
             DispatchQueue.main.async { [weak self] in
+                self?.checkEmptyTableView()
                 self?.mainTableView.reloadData()
             }
         }

@@ -125,7 +125,6 @@ class ProductListView: UIViewController {
         view.addSubview(mainStackView)
         view.backgroundColor = UIColor(settingsModel.backgroundColor)
         dummyViews.addSubview(menuButton)
-        
         setupTableView()
         setupConstraints()
     }
@@ -147,9 +146,9 @@ class ProductListView: UIViewController {
             buttonStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.05),
             menuButton.trailingAnchor.constraint(equalTo: dummyViews.trailingAnchor, constant: -40),
             menuButton.centerYAnchor.constraint(equalTo: dummyViews.centerYAnchor),
+            
         ])
     }
-    
 }
 
 extension ProductListView: UITableViewDataSource {
@@ -159,13 +158,18 @@ extension ProductListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        array.count
+        array.count == 0 ? 1 : array.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
-        cell.model = array[indexPath.row]
-        cell.updateUI()
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
+        if array.count == 0 {
+            cell.label.text = "Please add some products"
+        } else {
+            cell.model = array[indexPath.row]
+            cell.updateUI()
+        }
         return cell
     }
     

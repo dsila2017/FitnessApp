@@ -6,48 +6,41 @@
 //
 
 import Foundation
-import NetworkManager2_0
 import UIKit
 
 final class MainPageViewModel {
     
-    var mainDB: MainDB
-    var settingsModel = ProfileViewModel.shared
+    private var mainDB: MainDB
+    private let settingsModel = ProfileViewModel.shared
+    private var allowedProtein: Int
+    private var allowedCarbs: Int
+    private var allowedFats: Int
     
-    var allowedCalories = 2500 {
+    var dataUpdated: (()->Void)?
+    var name: String {
         didSet {
             self.dataUpdated?()
-            print("THis happended too")
+        }
+    }
+    var allowedCalories: Int {
+        didSet {
+            self.dataUpdated?()
             allowedProtein = Int(Double(allowedCalories / 4) * 0.4)
             allowedCarbs = Int(Double(allowedCalories / 4) * 0.3)
             allowedFats = Int(Double(allowedCalories / 9) * 0.3)
         }
     }
     
-    lazy var allowedProtein = 0
-    lazy var allowedCarbs = 0
-    lazy var allowedFats = 0
-    
-    var name = "Username" {
-        didSet {
-            print("Data Name")
-            self.dataUpdated?()
-        }
+    init(mainDB: MainDB) {
+        self.mainDB = mainDB
+        self.name = "Username"
+        self.allowedCalories = 2500
+        self.allowedProtein = 0
+        self.allowedCarbs = 0
+        self.allowedFats = 0
     }
     
-    var dataUpdated: (()->Void)?
-    
-    init(mainDB: MainDB) {
-            self.mainDB = mainDB
-//            self.name = "Username" // Default value for name
-//            self.allowedCalories = 2500 // Default value for allowedCalories
-//            self.allowedProtein = 0 // Default value for allowedProtein
-//            self.allowedCarbs = 0 // Default value for allowedCarbs
-//            self.allowedFats = 0 // Default value for allowedFats
-        }
-    
     func fetchCaloriesLimit() {
-        print("Fetch Happened")
         self.allowedCalories = Int(settingsModel.calories) ?? 0
     }
     
@@ -127,7 +120,6 @@ enum FoodType: String {
     case dinner = "Dinner"
     case snack = "Snack"
 }
-
 
 enum NutritionType: String {
     case Calories = "Calories"

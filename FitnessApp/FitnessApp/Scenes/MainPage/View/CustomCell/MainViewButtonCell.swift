@@ -10,7 +10,8 @@ import UIKit
 final class MainViewButtonCell: UICollectionViewCell {
     
     private var settingsModel = ProfileViewModel.shared
-    lazy var stackView: UIStackView = {
+    
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [labelDummyView, calorieStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical

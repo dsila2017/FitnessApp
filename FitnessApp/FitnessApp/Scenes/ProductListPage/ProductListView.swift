@@ -11,9 +11,38 @@ class ProductListView: UIViewController {
     var mainDB: MainDB
     var type: FoodType?
     private var settingsModel = ProfileViewModel.shared
+    private var array: [Model] {
+        get {
+                switch self.type {
+                case .breakfast:
+                    return mainDB.breakfastData
+                case .dinner:
+                    return mainDB.dinnerData
+                case .lunch:
+                    return mainDB.lunchData
+                case .snack:
+                    return mainDB.snackData
+                case .none:
+                    return [Model]()
+                }
+            }
+            set {
+                switch self.type {
+                case .breakfast:
+                    mainDB.breakfastData = newValue
+                case .dinner:
+                    mainDB.dinnerData = newValue
+                case .lunch:
+                    mainDB.lunchData = newValue
+                case .snack:
+                    mainDB.snackData = newValue
+                case .none:
+                    break
+                }
+            }
+    }
     
     init(mainDB: MainDB) {
-        
         self.mainDB = mainDB
         super.init(nibName: nil, bundle: nil)
         setupMainView()
@@ -130,34 +159,12 @@ extension ProductListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch type {
-        case.breakfast:
-            return mainDB.breakfastData.count
-        case.dinner:
-            return mainDB.dinnerData.count
-        case.lunch:
-            return mainDB.lunchData.count
-        case.snack:
-            return mainDB.snackData.count
-        case .none:
-            return 0
-        }
+        array.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MainTableViewCell
-        switch type {
-        case.breakfast:
-            cell.model = mainDB.breakfastData[indexPath.row]
-        case.dinner:
-            cell.model = mainDB.dinnerData[indexPath.row]
-        case.lunch:
-            cell.model = mainDB.lunchData[indexPath.row]
-        case.snack:
-            cell.model = mainDB.snackData[indexPath.row]
-        case .none:
-            print("ERROR")
-        }
+        cell.model = array[indexPath.row]
         cell.updateUI()
         return cell
     }
@@ -169,49 +176,20 @@ extension ProductListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            switch type {
-            case.breakfast:
-                mainDB.breakfastData.remove(at: indexPath.row)
-            case.dinner:
-                mainDB.dinnerData.remove(at: indexPath.row)
-            case.lunch:
-                mainDB.lunchData.remove(at: indexPath.row)
-            case.snack:
-                mainDB.snackData.remove(at: indexPath.row)
-            case .none:
-                print("ERROR")
-            }
+            array.remove(at: indexPath.row)
             mainTableView.reloadData()
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
             tableView.endUpdates()
         }
     }
-    
-    
 }
 
 extension ProductListView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.reloadRows(at: [indexPath], with: .fade)
-        switch type {
-        case.breakfast:
-            let vc = ProductDetailsView(model: mainDB.breakfastData[indexPath.row])
-            self.navigationController?.pushViewController(vc, animated: true)
-        case.dinner:
-            let vc = ProductDetailsView(model: mainDB.dinnerData[indexPath.row])
-            self.navigationController?.pushViewController(vc, animated: true)
-        case.lunch:
-            let vc = ProductDetailsView(model: mainDB.lunchData[indexPath.row])
-            self.navigationController?.pushViewController(vc, animated: true)
-        case.snack:
-            let vc = ProductDetailsView(model: mainDB.snackData[indexPath.row])
-            self.navigationController?.pushViewController(vc, animated: true)
-        case .none:
-            print("ERROR")
-        }
+        let vc = ProductDetailsView(model: array[indexPath.row])
+        self.navigationController?.pushViewController(vc, animated: true)
     }
-        
 }
 
 extension ProductListView: addViewDelegate {

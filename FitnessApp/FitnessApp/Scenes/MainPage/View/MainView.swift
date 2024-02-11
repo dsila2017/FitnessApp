@@ -8,9 +8,10 @@
 import UIKit
 import SwiftUI
 
-class MainView: UIViewController {
+final class MainView: UIViewController {
     
-    private var model: MainPageViewModel = MainPageViewModel()
+    private var mainDB = MainDB()
+    private lazy var model: MainPageViewModel = MainPageViewModel(mainDB: mainDB)
     private var settingsModel = ProfileViewModel.shared
     private let spacing: CGFloat = 14.0
     
@@ -57,7 +58,7 @@ class MainView: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addAction(UIAction(handler: { [weak self] _ in
-            self?.model.foodFetch(type: .breakfast, food: "orange")
+            self?.mainDB.foodFetch(type: .breakfast, food: "orange")
         }), for: .touchUpInside)
         return button
     }()
@@ -114,7 +115,7 @@ class MainView: UIViewController {
     
     private let dummyProgressView = UIView()
     
-    lazy var progressView: CircularProgressView = {
+    private lazy var progressView: CircularProgressView = {
         let diameter = 250
         let progressView = CircularProgressView(frame: CGRect(x: -diameter/2, y: -diameter/2, width: diameter, height: diameter), lineWidth: 24, rounded: true)
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -260,6 +261,12 @@ class MainView: UIViewController {
             }
         }
         
+        self.mainDB.dataUpdated = { [weak self] in
+            DispatchQueue.main.async { [weak self] in
+                self?.configure()
+            }
+        }
+        
         self.settingsModel.settingsUpdated = { [weak self] in
             DispatchQueue.main.async { [weak self] in
                 self?.updateColors()
@@ -276,8 +283,9 @@ class MainView: UIViewController {
         self.carbsProgress.setProgress(self.model.calcProgress(type: .Carbs), animated: true)
         self.fatsProgress.setProgress(self.model.calcProgress(type: .Fats), animated: true)
         
-        self.usernameLabel.text = settingsModel.nickname
-        self.caloriesLimit.text = "of \(settingsModel.calories) kCal"
+        updateSettingsLabels()
+        
+        
         
         self.mainCollectionView.reloadData()
     }
@@ -387,7 +395,8 @@ extension MainView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? MainViewButtonCell else { return UICollectionViewCell() }
         let model = FoodModel.food[indexPath.row]
-        cell.configure(model: model, mainModel: self.model)
+        let result = self.model.calcTypeCalories(type: model.name)
+        cell.configure(model: model, result: result)
         return cell
     }
 }
@@ -404,7 +413,7 @@ extension MainView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = ProductListView(model: model)
+        let vc = ProductListView(mainDB: mainDB)
         let model = FoodModel.food[indexPath.row]
         vc.type = model.name
         navigationController?.pushViewController(vc, animated: true)

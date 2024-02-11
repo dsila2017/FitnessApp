@@ -100,14 +100,15 @@ class AddProductView: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addAction(UIAction(handler: { [weak self]_ in
-            print("Save Product")
-            self?.delegate?.fetchData(food: self?.foodTextField.text ?? "banana", weight: self?.WeightTextField.text ?? "100")
+            guard let foodNameString = self?.foodTextField.text, let weight = self?.WeightTextField.text  else { return }
+            guard foodNameString.count > 0 else { return }
+            self?.delegate?.fetchData(food: foodNameString, weight: weight)
             self?.dismiss(animated: true)
         }), for: .touchUpInside)
         return button
     }()
     
-    var mainImageView: UIImageView = {
+    private var mainImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true
@@ -117,7 +118,7 @@ class AddProductView: UIViewController {
         return image
     }()
     
-    var scaleImageView: UIImageView = {
+    private var scaleImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.clipsToBounds = true

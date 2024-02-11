@@ -6,27 +6,23 @@
 //
 
 import Foundation
-import NetworkManager2_0
 import UIKit
 
-enum FoodType: String {
-    case breakfast = "Breakfast"
-    case lunch = "Lunch"
-    case dinner = "Dinner"
-    case snack = "Snack"
-}
-
-enum NutritionType: String {
-    case Calories = "Calories"
-    case Protein = "Protein"
-    case Carbs = "Carbs"
-    case Fats = "Fats"
-}
-
 final class MainPageViewModel {
-    var settingsModel = ProfileViewModel.shared
     
-    var allowedCalories = 2500 {
+    private var mainDB: MainDB
+    private let settingsModel = ProfileViewModel.shared
+    private var allowedProtein: Int
+    private var allowedCarbs: Int
+    private var allowedFats: Int
+    
+    var dataUpdated: (()->Void)?
+    var name: String {
+        didSet {
+            self.dataUpdated?()
+        }
+    }
+    var allowedCalories: Int {
         didSet {
             self.dataUpdated?()
             allowedProtein = Int(Double(allowedCalories / 4) * 0.4)
@@ -34,90 +30,22 @@ final class MainPageViewModel {
             allowedFats = Int(Double(allowedCalories / 9) * 0.3)
         }
     }
-    lazy var allowedProtein = 0
-    lazy var allowedCarbs = 0
-    lazy var allowedFats = 0
     
-    var name = "Username" {
-        didSet {
-            print("Data Name")
-            self.dataUpdated?()
-        }
-    }
-    
-    var dataUpdated: (()->Void)?
-    var reload: (()->Void)?
-    
-    lazy var mainData: [Model] = breakfastData + lunchData + dinnerData + snackData {
-        didSet {
-            self.dataUpdated?()
-            self.reload?()
-            print("Data Updated")
-        }
-    }
-    
-    var breakfastData: [Model] = [] {
-        didSet {
-            print("breakfastData Updated")
-            mainData = breakfastData + lunchData + dinnerData + snackData
-        }
-    }
-    
-    var lunchData: [Model] = [] {
-        didSet {
-            print("lunchData Updated")
-            mainData = breakfastData + lunchData + dinnerData + snackData
-        }
-    }
-    
-    var dinnerData: [Model] = [] {
-        didSet {
-            print("dinnerData Updated")
-            mainData = breakfastData + lunchData + dinnerData + snackData
-        }
-    }
-    
-    var snackData: [Model] = [] {
-        didSet {
-            print("snackData Updated")
-            mainData = breakfastData + lunchData + dinnerData + snackData
-        }
+    init(mainDB: MainDB) {
+        self.mainDB = mainDB
+        self.name = "Username"
+        self.allowedCalories = 2500
+        self.allowedProtein = 0
+        self.allowedCarbs = 0
+        self.allowedFats = 0
     }
     
     func fetchCaloriesLimit() {
         self.allowedCalories = Int(settingsModel.calories) ?? 0
     }
     
-    func foodFetch(type: FoodType, food: String, weight: String? = "100") {
-        let queryItem = weight! + "g" + " " + food
-        let query = queryItem.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let string = "https://api.api-ninjas.com/v1/nutrition?query=" + "\(query)"
-        
-        NetworkManager2_0.NetworkManager.shared.fetchData(url: string, apiKey: "D4mxCWylaJ1eZRLj3A8Igg==E3BevRxVIsFkXpKb") { [weak self] (result: Result<[Model], Error>) in
-            switch result {
-            case .success(let model):
-                DispatchQueue.main.async {
-                    switch type {
-                    case.breakfast:
-                        self?.breakfastData.append(contentsOf: model)
-                    case .lunch:
-                        self?.lunchData.append(contentsOf: model)
-                    case .dinner:
-                        self?.dinnerData.append(contentsOf: model)
-                    case .snack:
-                        self?.snackData.append(contentsOf: model)
-                    }
-                }
-            case.failure(let error):
-                DispatchQueue.main.async {
-                    print(error)
-                }
-            }
-        }
-    }
-    
     func calcCalories() -> Int {
-        let result = mainData.reduce(0.0) { partialResult, model in
+        let result = mainDB.mainData.reduce(0.0) { partialResult, model in
             return partialResult + model.calories
         }
         return Int(result)
@@ -129,17 +57,17 @@ final class MainPageViewModel {
         case .Calories:
             finalResult = Float(calcCalories()) / Float(allowedCalories)
         case .Protein:
-            let result = mainData.reduce(0.0) { partialResult, model in
+            let result = mainDB.mainData.reduce(0.0) { partialResult, model in
                 return partialResult + model.proteinG
             }
             finalResult = Float(result) / Float(allowedProtein)
         case .Carbs:
-            let result = mainData.reduce(0.0) { partialResult, model in
+            let result = mainDB.mainData.reduce(0.0) { partialResult, model in
                 return partialResult + model.carbohydratesTotalG
             }
             finalResult = Float(result) / Float(allowedCarbs)
         case .Fats:
-            let result = mainData.reduce(0.0) { partialResult, model in
+            let result = mainDB.mainData.reduce(0.0) { partialResult, model in
                 return partialResult + model.fatTotalG
             }
             finalResult = Float(result) / Float(allowedFats)
@@ -151,19 +79,19 @@ final class MainPageViewModel {
         var result = 0
         switch type {
         case .breakfast:
-            result = breakfastData.reduce(0) { partialResult, model in
+            result = mainDB.breakfastData.reduce(0) { partialResult, model in
                 return partialResult + Int(model.calories)
             }
         case .lunch:
-            result = lunchData.reduce(0) { partialResult, model in
+            result = mainDB.lunchData.reduce(0) { partialResult, model in
                 return partialResult + Int(model.calories)
             }
         case .dinner:
-            result = dinnerData.reduce(0) { partialResult, model in
+            result = mainDB.dinnerData.reduce(0) { partialResult, model in
                 return partialResult + Int(model.calories)
             }
         case .snack:
-            result = snackData.reduce(0) { partialResult, model in
+            result = mainDB.snackData.reduce(0) { partialResult, model in
                 return partialResult + Int(model.calories)
             }
         }
@@ -184,4 +112,18 @@ final class MainPageViewModel {
         button.configuration?.titleAlignment = .center
         button.configuration?.subtitle = nameOfMonth
     }
+}
+
+enum FoodType: String {
+    case breakfast = "Breakfast"
+    case lunch = "Lunch"
+    case dinner = "Dinner"
+    case snack = "Snack"
+}
+
+enum NutritionType: String {
+    case Calories = "Calories"
+    case Protein = "Protein"
+    case Carbs = "Carbs"
+    case Fats = "Fats"
 }

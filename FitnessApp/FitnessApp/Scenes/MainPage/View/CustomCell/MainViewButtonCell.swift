@@ -10,7 +10,8 @@ import UIKit
 final class MainViewButtonCell: UICollectionViewCell {
     
     private var settingsModel = ProfileViewModel.shared
-    lazy var stackView: UIStackView = {
+    
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [labelDummyView, calorieStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -116,10 +117,10 @@ final class MainViewButtonCell: UICollectionViewCell {
         ])
     }
     
-    func configure(model: FoodModel, mainModel: MainPageViewModel) {
+    func configure(model: FoodModel, result: Int) {
         mainLabel.text = model.name.rawValue
         imageView.image = UIImage(named: model.image)
         stackView.backgroundColor = UIColor(settingsModel.mainProgressColor)
-        calorieLabel.text = String(mainModel.calcTypeCalories(type: model.name))
+        calorieLabel.text = String(result)
     }
 }

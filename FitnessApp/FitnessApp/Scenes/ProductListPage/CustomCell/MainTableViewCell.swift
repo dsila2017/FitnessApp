@@ -9,7 +9,7 @@ import UIKit
 
 final class MainTableViewCell: UITableViewCell {
     
-    var model: Model = Model(name: "Apple", calories: 449.0, servingSizeG: 1.0, fatTotalG: 42.0, fatSaturatedG: 1.0, proteinG: 27.0, sodiumMg: 1, potassiumMg: 1, cholesterolMg: 1, carbohydratesTotalG: 32.0, fiberG: 1.0, sugarG: 1.0)
+    var model: Model?
     private var textColor: UIColor = .black
     
     private lazy var mainView: UIView = {
@@ -249,13 +249,13 @@ final class MainTableViewCell: UITableViewCell {
     }
     
     func updateUI() {
+        guard let model else { return }
         self.label.text = model.name
         self.weightLabel.text = "\(model.servingSizeG.description) g"
         self.kCalLabel.text = "\(model.calories.description) kCal"
         self.proteinQuantity.text = model.proteinG.description
         self.carbsQuantity.text = model.carbohydratesTotalG.description
         self.fatsQuantity.text = model.fatTotalG.description
-        
         self.proteinProgress.progress = Float(model.proteinG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
         self.carbsProgress.progress = Float(model.carbohydratesTotalG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
         self.fatsProgress.progress = Float(model.fatTotalG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
@@ -302,5 +302,4 @@ final class MainTableViewCell: UITableViewCell {
         carbsProgress.transform = CGAffineTransform(rotationAngle: -.pi / 2)
         fatsProgress.transform = CGAffineTransform(rotationAngle: -.pi / 2)
     }
-    
 }

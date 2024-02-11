@@ -44,33 +44,42 @@ final class MainPageViewModel {
         self.allowedCalories = Int(settingsModel.calories) ?? 0
     }
     
-    func calcCalories() -> Int {
-        let result = mainDB.mainData.reduce(0.0) { partialResult, model in
-            return partialResult + model.calories
+    func calcNutrition(type: NutritionType) -> Int {
+        switch type {
+        case.Calories:
+            let result = mainDB.mainData.reduce(0.0) { partialResult, model in
+                return partialResult + model.calories
+            }
+            return Int(result)
+        case .Protein:
+            let result = mainDB.mainData.reduce(0.0) { partialResult, model in
+                return partialResult + model.proteinG
+            }
+            return Int(result)
+        case .Carbs:
+            let result = mainDB.mainData.reduce(0.0) { partialResult, model in
+                return partialResult + model.carbohydratesTotalG
+            }
+            return Int(result)
+        case .Fats:
+            let result = mainDB.mainData.reduce(0.0) { partialResult, model in
+                return partialResult + model.fatTotalG
+            }
+            return Int(result)
         }
-        return Int(result)
     }
     
     func calcProgress(type: NutritionType) -> Float {
         var finalResult: Float = 0.0
         switch type {
         case .Calories:
-            finalResult = Float(calcCalories()) / Float(allowedCalories)
+            finalResult = Float(calcNutrition(type: .Calories)) / Float(allowedCalories)
         case .Protein:
-            let result = mainDB.mainData.reduce(0.0) { partialResult, model in
-                return partialResult + model.proteinG
-            }
-            finalResult = Float(result) / Float(allowedProtein)
+            finalResult = Float(calcNutrition(type: .Protein)) / Float(Double(allowedCalories / 4) * 0.4)
         case .Carbs:
-            let result = mainDB.mainData.reduce(0.0) { partialResult, model in
-                return partialResult + model.carbohydratesTotalG
-            }
-            finalResult = Float(result) / Float(allowedCarbs)
+            finalResult = Float(calcNutrition(type: .Carbs)) / Float(Double(allowedCalories / 4) * 0.3)
         case .Fats:
-            let result = mainDB.mainData.reduce(0.0) { partialResult, model in
-                return partialResult + model.fatTotalG
-            }
-            finalResult = Float(result) / Float(allowedFats)
+            finalResult = Float(calcNutrition(type: .Fats)) / Float(Double(allowedCalories / 9) * 0.3)
         }
         return finalResult
     }

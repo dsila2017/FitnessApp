@@ -131,7 +131,7 @@ final class MainView: UIViewController {
     private lazy var calories: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "\(self.model.calcCalories())"
+        label.text = "\(self.model.calcNutrition(type: .Calories))"
         label.font = UIFont.boldSystemFont(ofSize: 24)
         return label
     }()
@@ -277,9 +277,9 @@ final class MainView: UIViewController {
     }
     
     private func configure() {
-        self.calories.text = String((self.model.calcCalories()))
+        self.calories.text = String((self.model.calcNutrition(type: .Calories)))
         self.progressView.progress = (self.model.calcProgress(type: .Calories))
-        self.proteinProgress.setProgress(self.model.calcProgress(type: .Protein), animated: true)
+        self.proteinProgress.setProgress(0.1, animated: true)
         self.carbsProgress.setProgress(self.model.calcProgress(type: .Carbs), animated: true)
         self.fatsProgress.setProgress(self.model.calcProgress(type: .Fats), animated: true)
         

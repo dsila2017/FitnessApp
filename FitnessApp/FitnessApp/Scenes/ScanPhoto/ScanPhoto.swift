@@ -8,6 +8,7 @@
 import UIKit
 import CoreML
 import Vision
+import SwiftUI
 
 final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -29,7 +30,7 @@ final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UI
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         let configuration = UIImage.SymbolConfiguration(pointSize: 10)
-        imageView.image = UIImage(systemName: "photo.stack.fill", withConfiguration: configuration)
+        imageView.image = UIImage(systemName: "", withConfiguration: configuration)
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .black
         imageView.layer.cornerRadius = 10
@@ -113,14 +114,30 @@ final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UI
         return view
     }()
     
+    let emptyView = {
+        let emptyView = UIHostingController(rootView: ScanEmptyView())
+        guard let view = emptyView.view else { return UIView()}
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(settingsModel.backgroundColor)
+        
+        
+        imageDummy.addSubview(emptyView)
+            // Bring emptyView to the front
+        imageDummy.bringSubviewToFront(emptyView)
+        
         // Do any additional setup after loading the view.
         view.addSubview(mainStackView)
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         setupConstraints()
+        
+        
     }
     
     private func setupConstraints() {
@@ -160,12 +177,16 @@ final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UI
             confidenceLabel.centerXAnchor.constraint(equalTo: labelDummy.centerXAnchor),
             confidenceLabel.centerYAnchor.constraint(equalTo: labelDummy.centerYAnchor, constant: 20),
             
-            
+            emptyView.topAnchor.constraint(equalTo: imageDummy.topAnchor),
+            emptyView.leadingAnchor.constraint(equalTo: imageDummy.leadingAnchor),
+            emptyView.trailingAnchor.constraint(equalTo: imageDummy.trailingAnchor),
+            emptyView.bottomAnchor.constraint(equalTo: imageDummy.bottomAnchor)
         ])
     }
     
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        emptyView.isHidden = true
         imageView.image = image
         imagePicker.dismiss(animated: true)
         identifyModel(image: image!)

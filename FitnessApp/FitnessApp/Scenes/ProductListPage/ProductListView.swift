@@ -145,6 +145,7 @@ class ProductListView: UIViewController {
     
     private func checkEmptyTableView() {
         let emptyView = UIHostingController(rootView: EmptyView())
+        emptyView.view.backgroundColor = .clear
         if array.isEmpty {
             UIView.transition(with: mainTableView, duration: 0.3, options: .transitionCrossDissolve, animations: {
                 self.mainTableView.backgroundView = emptyView.view

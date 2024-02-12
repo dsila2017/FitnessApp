@@ -58,10 +58,17 @@
 		63743CF62B792E47005D3E61 /* ScanEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63743CF52B792E47005D3E61 /* ScanEmptyView.swift */; };
 		63743D0C2B793602005D3E61 /* Scan_Color.json in Resources */ = {isa = PBXBuildFile; fileRef = 63743D0B2B793602005D3E61 /* Scan_Color.json */; };
 		63743D0E2B793654005D3E61 /* Scan.json in Resources */ = {isa = PBXBuildFile; fileRef = 63743D0D2B793654005D3E61 /* Scan.json */; };
+		63743D112B793D6E005D3E61 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63743D102B793D6E005D3E61 /* OnboardView.swift */; };
+		63743D142B793DA8005D3E61 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63743D132B793DA8005D3E61 /* Lottie.swift */; };
+		63743D162B793F79005D3E61 /* MainOnboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63743D152B793F79005D3E61 /* MainOnboard.swift */; };
+		63743D182B794DE7005D3E61 /* secondPage.json in Resources */ = {isa = PBXBuildFile; fileRef = 63743D172B794DE7005D3E61 /* secondPage.json */; };
+		63743D1A2B794F20005D3E61 /* firstPage.json in Resources */ = {isa = PBXBuildFile; fileRef = 63743D192B794F1F005D3E61 /* firstPage.json */; };
+		63743D1C2B79518F005D3E61 /* thirdPage.json in Resources */ = {isa = PBXBuildFile; fileRef = 63743D1B2B79518F005D3E61 /* thirdPage.json */; };
+		63743D262B7999CF005D3E61 /* CoreMLFruit.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63743D252B7999CF005D3E61 /* CoreMLFruit.mlmodel */; };
+		63743D282B799EAD005D3E61 /* Fruit.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63743D272B799EAD005D3E61 /* Fruit.mlmodel */; };
 		63B463F12B73119400CF3B7D /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B463F02B73119400CF3B7D /* Scanner.swift */; };
 		63B463F62B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */; };
 		63B4643A2B74692100CF3B7D /* ScanPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464392B74692100CF3B7D /* ScanPhoto.swift */; };
-		63B464402B7493F600CF3B7D /* Resnet50FP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63B4643F2B7493F600CF3B7D /* Resnet50FP16.mlmodel */; };
 		63B464422B754C3D00CF3B7D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464412B754C3D00CF3B7D /* ProfileView.swift */; };
 		63B464452B75A6E200CF3B7D /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464442B75A6E200CF3B7D /* ProfileViewModel.swift */; };
 		63B464472B78033600CF3B7D /* MainDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464462B78033600CF3B7D /* MainDB.swift */; };
@@ -101,10 +108,17 @@
 		63743CF52B792E47005D3E61 /* ScanEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanEmptyView.swift; sourceTree = "<group>"; };
 		63743D0B2B793602005D3E61 /* Scan_Color.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Scan_Color.json; sourceTree = "<group>"; };
 		63743D0D2B793654005D3E61 /* Scan.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Scan.json; path = ../../../../../../Downloads/Scan.json; sourceTree = "<group>"; };
+		63743D102B793D6E005D3E61 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
+		63743D132B793DA8005D3E61 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
+		63743D152B793F79005D3E61 /* MainOnboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainOnboard.swift; sourceTree = "<group>"; };
+		63743D172B794DE7005D3E61 /* secondPage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = secondPage.json; sourceTree = "<group>"; };
+		63743D192B794F1F005D3E61 /* firstPage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = firstPage.json; sourceTree = "<group>"; };
+		63743D1B2B79518F005D3E61 /* thirdPage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = thirdPage.json; sourceTree = "<group>"; };
+		63743D252B7999CF005D3E61 /* CoreMLFruit.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CoreMLFruit.mlmodel; sourceTree = "<group>"; };
+		63743D272B799EAD005D3E61 /* Fruit.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Fruit.mlmodel; sourceTree = "<group>"; };
 		63B463F02B73119400CF3B7D /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
 		63B464392B74692100CF3B7D /* ScanPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPhoto.swift; sourceTree = "<group>"; };
-		63B4643F2B7493F600CF3B7D /* Resnet50FP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50FP16.mlmodel; sourceTree = "<group>"; };
 		63B464412B754C3D00CF3B7D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		63B464442B75A6E200CF3B7D /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		63B464462B78033600CF3B7D /* MainDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDB.swift; sourceTree = "<group>"; };
@@ -299,6 +313,7 @@
 		63344B662B6ED23100499949 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				63743D0F2B793D50005D3E61 /* DataBase */,
 				63B465D52B6154DA005062F8 /* SignIn */,
 				63049C092B62D704001DDF16 /* SignUp */,
 				630FCB352B66BF540068A6D5 /* MainPage */,
@@ -308,7 +323,7 @@
 				63B4643C2B74693E00CF3B7D /* ScanPhoto */,
 				63344B6E2B71167200499949 /* ScanPage */,
 				63B464432B754C4200CF3B7D /* ProfilePage */,
-				63B464462B78033600CF3B7D /* MainDB.swift */,
+				63743D122B793D74005D3E61 /* OnboardPage */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -347,10 +362,31 @@
 			path = ScanPage;
 			sourceTree = "<group>";
 		};
+		63743D0F2B793D50005D3E61 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				63B464462B78033600CF3B7D /* MainDB.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		63743D122B793D74005D3E61 /* OnboardPage */ = {
+			isa = PBXGroup;
+			children = (
+				63743D102B793D6E005D3E61 /* OnboardView.swift */,
+				63743D192B794F1F005D3E61 /* firstPage.json */,
+				63743D172B794DE7005D3E61 /* secondPage.json */,
+				63743D1B2B79518F005D3E61 /* thirdPage.json */,
+				63743D152B793F79005D3E61 /* MainOnboard.swift */,
+			);
+			path = OnboardPage;
+			sourceTree = "<group>";
+		};
 		63B463F42B7317C900CF3B7D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				63B463F02B73119400CF3B7D /* Scanner.swift */,
+				63743D272B799EAD005D3E61 /* Fruit.mlmodel */,
 				63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */,
 			);
 			path = Helper;
@@ -363,7 +399,7 @@
 				63743CF52B792E47005D3E61 /* ScanEmptyView.swift */,
 				63743D0D2B793654005D3E61 /* Scan.json */,
 				63743D0B2B793602005D3E61 /* Scan_Color.json */,
-				63B4643F2B7493F600CF3B7D /* Resnet50FP16.mlmodel */,
+				63743D252B7999CF005D3E61 /* CoreMLFruit.mlmodel */,
 			);
 			path = ScanPhoto;
 			sourceTree = "<group>";
@@ -392,6 +428,7 @@
 				63B465D62B615606005062F8 /* CustomTextField.swift */,
 				63B465D92B6159FC005062F8 /* CustomSecureTextFieldView.swift */,
 				630FCB3E2B6939CA0068A6D5 /* CircularProgressView.swift */,
+				63743D132B793DA8005D3E61 /* Lottie.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -515,10 +552,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63743D1A2B794F20005D3E61 /* firstPage.json in Resources */,
 				63743D0C2B793602005D3E61 /* Scan_Color.json in Resources */,
 				63743D0E2B793654005D3E61 /* Scan.json in Resources */,
 				6310023A2B60938C000DF0DC /* Assets.xcassets in Resources */,
+				63743D182B794DE7005D3E61 /* secondPage.json in Resources */,
 				631002482B6147C7000DF0DC /* GoogleService-Info.plist in Resources */,
+				63743D1C2B79518F005D3E61 /* thirdPage.json in Resources */,
 				63743CF42B7924E6005D3E61 /* EmptyCart.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,8 +572,12 @@
 			files = (
 				630FCB392B66CC130068A6D5 /* MainPageViewModel.swift in Sources */,
 				631002352B60938B000DF0DC /* ViewController.swift in Sources */,
+				63743D112B793D6E005D3E61 /* OnboardView.swift in Sources */,
 				630FCB342B66BF490068A6D5 /* MainView.swift in Sources */,
 				63344B6D2B71166E00499949 /* ScanPageView.swift in Sources */,
+				63743D262B7999CF005D3E61 /* CoreMLFruit.mlmodel in Sources */,
+				63743D142B793DA8005D3E61 /* Lottie.swift in Sources */,
+				63743D282B799EAD005D3E61 /* Fruit.mlmodel in Sources */,
 				63049C0B2B62D715001DDF16 /* SignUpViewModel.swift in Sources */,
 				63B4643A2B74692100CF3B7D /* ScanPhoto.swift in Sources */,
 				631002312B60938B000DF0DC /* AppDelegate.swift in Sources */,
@@ -547,7 +591,6 @@
 				63B465DC2B618704005062F8 /* Button Extension.swift in Sources */,
 				63049C082B62D6EA001DDF16 /* SignUpView.swift in Sources */,
 				63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */,
-				63B464402B7493F600CF3B7D /* Resnet50FP16.mlmodel in Sources */,
 				63344B582B6AFFCC00499949 /* MainTableViewCell.swift in Sources */,
 				630FCB372B66CB340068A6D5 /* MainViewButtonCell.swift in Sources */,
 				630FCB3F2B6939CA0068A6D5 /* CircularProgressView.swift in Sources */,
@@ -562,6 +605,7 @@
 				630FCB3B2B6725CE0068A6D5 /* FoodModel.swift in Sources */,
 				63B465D22B6154B8005062F8 /* SignInView.swift in Sources */,
 				631002332B60938B000DF0DC /* SceneDelegate.swift in Sources */,
+				63743D162B793F79005D3E61 /* MainOnboard.swift in Sources */,
 				63B465D42B6154D6005062F8 /* SignInViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

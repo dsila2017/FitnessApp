@@ -28,13 +28,23 @@ final class MainView: UIViewController {
     }()
     
     private lazy var ProfileStackView = {
-        let stackView = UIStackView(arrangedSubviews: [settingsView, usernameStack, calendarDummy])
+        let stackView = UIStackView(arrangedSubviews: [settingsView, usernameStack, ActivityView, dummyDummy])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
+    private var dummyDummy = UIView()
+    
     private var settingsView: UIView = {
         let lottieView = LottieView(animationName: "settings")
+        let hostingController = UIHostingController(rootView: lottieView)
+        let view = hostingController.view
+        view?.backgroundColor = .clear
+        return view!
+    }()
+    
+    private var ActivityView: UIView = {
+        let lottieView = LottieView(animationName: "Run")
         let hostingController = UIHostingController(rootView: lottieView)
         let view = hostingController.view
         view?.backgroundColor = .clear
@@ -51,16 +61,16 @@ final class MainView: UIViewController {
         return button
     }()
     
-    private lazy var calendarButton = {
-        var configuration = UIButton.Configuration.filled()
+    private lazy var activityButton = {
+        var configuration = UIButton.Configuration.plain()
         configuration.cornerStyle = .medium
         configuration.contentInsets = .zero
+        configuration.baseForegroundColor = .black
         let button = UIButton(configuration: configuration)
-        button.tintColor = .darkText
         button.translatesAutoresizingMaskIntoConstraints = false
         
         button.addAction(UIAction(handler: { [weak self] _ in
-            self?.mainDB.foodFetch(type: .breakfast, food: "orange")
+            self?.navigationController?.pushViewController(UIHostingController(rootView: MainSportsView()), animated: true)
         }), for: .touchUpInside)
         return button
     }()
@@ -250,7 +260,7 @@ final class MainView: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         self.navigationItem.setHidesBackButton(true, animated: true)
-        model.setupDateButton(button: calendarButton)
+        //model.setupDateButton(button: calendarButton)
         setupUI()
         
         self.model.dataUpdated = { [weak self] in
@@ -310,8 +320,7 @@ final class MainView: UIViewController {
     
     private func setupUI() {
         view.addSubview(mainStackView)
-        calendarDummy.addSubview(calendarButton)
-        
+        ActivityView.addSubview(activityButton)
         settingsView.addSubview(profileButton)
         dummyProgressView.addSubview(progressView)
         setupConstraints()
@@ -339,13 +348,13 @@ final class MainView: UIViewController {
             
             ProfileStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.08),
             ProfileStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            
+            dummyDummy.widthAnchor.constraint(equalToConstant: 30),
             ProgressStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             
-            calendarButton.centerXAnchor.constraint(equalTo: calendarDummy.centerXAnchor),
-            calendarButton.centerYAnchor.constraint(equalTo: calendarDummy.centerYAnchor),
-            calendarButton.widthAnchor.constraint(equalToConstant: 44),
-            calendarButton.heightAnchor.constraint(equalToConstant: 56),
+            activityButton.centerXAnchor.constraint(equalTo: ActivityView.centerXAnchor),
+            activityButton.centerYAnchor.constraint(equalTo: ActivityView.centerYAnchor),
+            activityButton.widthAnchor.constraint(equalToConstant: 44),
+            activityButton.heightAnchor.constraint(equalToConstant: 56),
             
             profileButton.centerXAnchor.constraint(equalTo: settingsView.centerXAnchor),
             profileButton.centerYAnchor.constraint(equalTo: settingsView.centerYAnchor),
@@ -353,7 +362,7 @@ final class MainView: UIViewController {
             profileButton.heightAnchor.constraint(equalTo: settingsView.heightAnchor),
             
             settingsView.widthAnchor.constraint(equalTo: ProfileStackView.widthAnchor, multiplier: 0.2),
-            calendarDummy.widthAnchor.constraint(equalTo: ProfileStackView.widthAnchor, multiplier: 0.2),
+            ActivityView.widthAnchor.constraint(equalTo: ProfileStackView.widthAnchor, multiplier: 0.1),
             
             progressView.centerXAnchor.constraint(equalTo: dummyProgressView.centerXAnchor),
             progressView.centerYAnchor.constraint(equalTo: dummyProgressView.centerYAnchor),

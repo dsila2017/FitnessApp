@@ -65,7 +65,8 @@
 		63743D1A2B794F20005D3E61 /* firstPage.json in Resources */ = {isa = PBXBuildFile; fileRef = 63743D192B794F1F005D3E61 /* firstPage.json */; };
 		63743D1C2B79518F005D3E61 /* thirdPage.json in Resources */ = {isa = PBXBuildFile; fileRef = 63743D1B2B79518F005D3E61 /* thirdPage.json */; };
 		63743D262B7999CF005D3E61 /* CoreMLFruit.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63743D252B7999CF005D3E61 /* CoreMLFruit.mlmodel */; };
-		63743D282B799EAD005D3E61 /* Fruit.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63743D272B799EAD005D3E61 /* Fruit.mlmodel */; };
+		63743D2A2B7A52CF005D3E61 /* settings.json in Resources */ = {isa = PBXBuildFile; fileRef = 63743D292B7A52CF005D3E61 /* settings.json */; };
+		63743D362B7A57EC005D3E61 /* profileSettings.json in Resources */ = {isa = PBXBuildFile; fileRef = 63743D352B7A57EC005D3E61 /* profileSettings.json */; };
 		63B463F12B73119400CF3B7D /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B463F02B73119400CF3B7D /* Scanner.swift */; };
 		63B463F62B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */; };
 		63B4643A2B74692100CF3B7D /* ScanPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464392B74692100CF3B7D /* ScanPhoto.swift */; };
@@ -115,7 +116,8 @@
 		63743D192B794F1F005D3E61 /* firstPage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = firstPage.json; sourceTree = "<group>"; };
 		63743D1B2B79518F005D3E61 /* thirdPage.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = thirdPage.json; sourceTree = "<group>"; };
 		63743D252B7999CF005D3E61 /* CoreMLFruit.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CoreMLFruit.mlmodel; sourceTree = "<group>"; };
-		63743D272B799EAD005D3E61 /* Fruit.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Fruit.mlmodel; sourceTree = "<group>"; };
+		63743D292B7A52CF005D3E61 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
+		63743D352B7A57EC005D3E61 /* profileSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profileSettings.json; sourceTree = "<group>"; };
 		63B463F02B73119400CF3B7D /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
 		63B464392B74692100CF3B7D /* ScanPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPhoto.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				630FCB332B66BF490068A6D5 /* MainView.swift */,
+				63743D292B7A52CF005D3E61 /* settings.json */,
 				63344B652B6ED1B500499949 /* CustomCell */,
 			);
 			path = View;
@@ -386,7 +389,6 @@
 			isa = PBXGroup;
 			children = (
 				63B463F02B73119400CF3B7D /* Scanner.swift */,
-				63743D272B799EAD005D3E61 /* Fruit.mlmodel */,
 				63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */,
 			);
 			path = Helper;
@@ -408,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				63B464412B754C3D00CF3B7D /* ProfileView.swift */,
+				63743D352B7A57EC005D3E61 /* profileSettings.json */,
 				63B464442B75A6E200CF3B7D /* ProfileViewModel.swift */,
 			);
 			path = ProfilePage;
@@ -557,6 +560,8 @@
 				63743D0E2B793654005D3E61 /* Scan.json in Resources */,
 				6310023A2B60938C000DF0DC /* Assets.xcassets in Resources */,
 				63743D182B794DE7005D3E61 /* secondPage.json in Resources */,
+				63743D2A2B7A52CF005D3E61 /* settings.json in Resources */,
+				63743D362B7A57EC005D3E61 /* profileSettings.json in Resources */,
 				631002482B6147C7000DF0DC /* GoogleService-Info.plist in Resources */,
 				63743D1C2B79518F005D3E61 /* thirdPage.json in Resources */,
 				63743CF42B7924E6005D3E61 /* EmptyCart.json in Resources */,
@@ -577,7 +582,6 @@
 				63344B6D2B71166E00499949 /* ScanPageView.swift in Sources */,
 				63743D262B7999CF005D3E61 /* CoreMLFruit.mlmodel in Sources */,
 				63743D142B793DA8005D3E61 /* Lottie.swift in Sources */,
-				63743D282B799EAD005D3E61 /* Fruit.mlmodel in Sources */,
 				63049C0B2B62D715001DDF16 /* SignUpViewModel.swift in Sources */,
 				63B4643A2B74692100CF3B7D /* ScanPhoto.swift in Sources */,
 				631002312B60938B000DF0DC /* AppDelegate.swift in Sources */,

@@ -9,7 +9,25 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class AddProductView: UIViewController {
+final class AddProductView: UIViewController {
+    
+    // MARK: - Properties
+    
+    var delegate: addViewDelegate?
+    let foodTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Enter Food Name"
+        textField.layer.cornerRadius = 24
+        textField.backgroundColor = UIColor.tertiaryLabel.withAlphaComponent(0.1)
+        textField.returnKeyType = .done
+        
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: textField.heightAnchor.hashValue))
+        textField.leftViewMode = .always
+        return textField
+    }()
+    
+    // MARK: - Private Properties
     
     private var settingsModel = ProfileViewModel.shared
 
@@ -42,19 +60,6 @@ class AddProductView: UIViewController {
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = .center
         return label
-    }()
-    
-    let foodTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Enter Food Name"
-        textField.layer.cornerRadius = 24
-        textField.backgroundColor = UIColor.tertiaryLabel.withAlphaComponent(0.1)
-        textField.returnKeyType = .done
-        
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: textField.heightAnchor.hashValue))
-        textField.leftViewMode = .always
-        return textField
     }()
     
     private lazy var foodWeightDummyView: UIView = {
@@ -128,8 +133,8 @@ class AddProductView: UIViewController {
         return image
     }()
     
-    var delegate: addViewDelegate?
-
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -139,7 +144,9 @@ class AddProductView: UIViewController {
         WeightTextField.delegate = self
         setupConstraints()
     }
-
+    
+    // MARK: - Private Methods
+    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             
@@ -176,6 +183,8 @@ class AddProductView: UIViewController {
         ])
     }
 }
+
+// MARK: - Extension
 
 extension AddProductView: UITextFieldDelegate {
     func textFieldShouldReturn(_ scoreText: UITextField) -> Bool {

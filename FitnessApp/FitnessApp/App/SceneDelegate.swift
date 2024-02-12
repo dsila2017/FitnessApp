@@ -28,8 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             rootView = AnyView(MainOnboard())
         }
         
-        window?.rootViewController = UINavigationController(rootViewController: UIHostingController(rootView: rootView))
-        //window?.rootViewController = UINavigationController(rootViewController: MainView())
+        //window?.rootViewController = UINavigationController(rootViewController: UIHostingController(rootView: rootView))
+        window?.rootViewController = UINavigationController(rootViewController: MainView())
         window?.makeKeyAndVisible()
     }
 

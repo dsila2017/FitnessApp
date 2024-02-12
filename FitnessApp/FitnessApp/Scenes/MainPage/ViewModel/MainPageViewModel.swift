@@ -10,6 +10,8 @@ import UIKit
 
 final class MainPageViewModel {
     
+    // MARK: - Private Properties
+    
     private var mainDB: MainDB
     private let settingsModel = ProfileViewModel.shared
     private var allowedProtein: Int
@@ -31,6 +33,8 @@ final class MainPageViewModel {
         }
     }
     
+    // MARK: - Init
+    
     init(mainDB: MainDB) {
         self.mainDB = mainDB
         self.name = "Username"
@@ -39,6 +43,8 @@ final class MainPageViewModel {
         self.allowedCarbs = 0
         self.allowedFats = 0
     }
+    
+    // MARK: - Properties
     
     func fetchCaloriesLimit() {
         self.allowedCalories = Int(settingsModel.calories) ?? 0

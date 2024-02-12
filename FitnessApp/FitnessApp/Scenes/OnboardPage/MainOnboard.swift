@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MainOnboard: View {
+    
+    // MARK: - Body
+    
     var body: some View {
         TabView {
             OnboardView(title: "Daily Nutrition", image: LottieView(animationName: "firstPage"), description: "Track meals, calories, nutrients for healthier lifestyle. Simple, intuitive.", isLast: false)

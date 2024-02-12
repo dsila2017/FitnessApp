@@ -9,11 +9,17 @@ import UIKit
 
 class ProductDetailsView: UIViewController {
 
+    // MARK: - Methods
+    
     var model: Model
+    
+    // MARK: - Private Methods
     private var settingsModel = ProfileViewModel.shared
     private var proteinColor: UIColor = .proteinColor
     private var carbsColor: UIColor = .carbsColor
     private var fatsColor: UIColor = .fatsColor
+    
+    // MARK: - Init
     
     init(model: Model) {
             self.model = model
@@ -23,6 +29,30 @@ class ProductDetailsView: UIViewController {
         required init?(coder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+    
+    // MARK: - Private Methods
+    
+    private lazy var proteinProgressView: CircularProgressView = {
+        let diameter = 250
+        let progressView = CircularProgressView(frame: CGRect(x: -diameter/2, y: -diameter/2, width: diameter, height: diameter), lineWidth: 24, rounded: true)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.progressColor = proteinColor
+        progressView.trackColor = .lightGray
+        progressView.progress = Float(model.proteinG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
+        progressView.trackLayer.lineWidth = 20.0
+        return progressView
+    }()
+    
+    private lazy var fatProgressView: CircularProgressView = {
+        let diameter = 100
+        let progressView = CircularProgressView(frame: CGRect(x: -diameter/2, y: -diameter/2, width: diameter, height: diameter), lineWidth: 24, rounded: true)
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.progressColor = fatsColor
+        progressView.trackColor = .lightGray
+        progressView.progress = Float(model.fatTotalG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
+        progressView.trackLayer.lineWidth = 20.0
+        return progressView
+    }()
     
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [productName, progressView, nutritionStackView, nutritionalName, bottomStackView])
@@ -52,17 +82,6 @@ class ProductDetailsView: UIViewController {
         return stackView
     }()
     
-    lazy var proteinProgressView: CircularProgressView = {
-        let diameter = 250
-        let progressView = CircularProgressView(frame: CGRect(x: -diameter/2, y: -diameter/2, width: diameter, height: diameter), lineWidth: 24, rounded: true)
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.progressColor = proteinColor
-        progressView.trackColor = .lightGray
-        progressView.progress = Float(model.proteinG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
-        progressView.trackLayer.lineWidth = 20.0
-        return progressView
-    }()
-    
     private lazy var carbProgressView: CircularProgressView = {
         let diameter = 180
         let progressView = CircularProgressView(frame: CGRect(x: -diameter/2, y: -diameter/2, width: diameter, height: diameter), lineWidth: 24, rounded: true)
@@ -70,17 +89,6 @@ class ProductDetailsView: UIViewController {
         progressView.progressColor = carbsColor
         progressView.trackColor = .lightGray
         progressView.progress = Float(model.carbohydratesTotalG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
-        progressView.trackLayer.lineWidth = 20.0
-        return progressView
-    }()
-    
-    lazy var fatProgressView: CircularProgressView = {
-        let diameter = 100
-        let progressView = CircularProgressView(frame: CGRect(x: -diameter/2, y: -diameter/2, width: diameter, height: diameter), lineWidth: 24, rounded: true)
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressView.progressColor = fatsColor
-        progressView.trackColor = .lightGray
-        progressView.progress = Float(model.fatTotalG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
         progressView.trackLayer.lineWidth = 20.0
         return progressView
     }()
@@ -93,62 +101,62 @@ class ProductDetailsView: UIViewController {
         return stackView
     }()
     
-    lazy var proteinStackView = {
+    private lazy var proteinStackView = {
         var stack = createStackView(imageName: "circle.fill", imageColor: proteinColor, labelName: "Protein", gram: model.proteinG)
         return stack
     }()
     
-    lazy var carbsStackView = {
+    private lazy var carbsStackView = {
         let stack = createStackView(imageName: "circle.fill", imageColor: carbsColor, labelName: "Carbs", gram: model.carbohydratesTotalG)
         return stack
     }()
     
-    lazy var fatStackView = {
+    private lazy var fatStackView = {
         let stack = createStackView(imageName: "circle.fill", imageColor: fatsColor, labelName: "Fats", gram: model.fatTotalG)
         return stack
     }()
     
-    lazy var caloriesStack = {
+    private lazy var caloriesStack = {
         let stack = createNutri(nutriName: "Calories:", value: model.calories)
         return stack
     }()
     
-    lazy var servingSizeStack = {
+    private lazy var servingSizeStack = {
         let stack = createNutri(nutriName: "Serving Size:", value: model.servingSizeG)
         return stack
     }()
     
-    lazy var sodiumStack = {
+    private lazy var sodiumStack = {
         let stack = createNutri(nutriName: "Sodium:", value: Double(model.sodiumMg))
         return stack
     }()
     
-    lazy var potassiumStack = {
+    private lazy var potassiumStack = {
         let stack = createNutri(nutriName: "Potassium:", value: Double(model.potassiumMg))
         return stack
     }()
     
-    lazy var cholesterolStack = {
+    private lazy var cholesterolStack = {
         let stack = createNutri(nutriName: "Cholesterol:", value: Double(model.cholesterolMg))
         return stack
     }()
     
-    lazy var fiberSizeStack = {
+    private lazy var fiberSizeStack = {
         let stack = createNutri(nutriName: "Fiber:", value: model.fiberG)
         return stack
     }()
     
-    lazy var sugarStack = {
+    private lazy var sugarStack = {
         let stack = createNutri(nutriName: "Sugar:", value: model.sugarG)
         return stack
     }()
     
-    lazy var saturatedStack = {
+    private lazy var saturatedStack = {
         let stack = createNutri(nutriName: "Saturated Fat:", value: model.fatSaturatedG)
         return stack
     }()
     
-    lazy var productName = {
+    private lazy var productName = {
         let label = UILabel()
         label.text = model.name
         label.font = UIFont.boldSystemFont(ofSize: 24)
@@ -156,7 +164,7 @@ class ProductDetailsView: UIViewController {
         return label
     }()
     
-    lazy var nutritionalName = {
+    private lazy var nutritionalName = {
         let label = UILabel()
         label.text = "Nutritional Information"
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -164,10 +172,14 @@ class ProductDetailsView: UIViewController {
         return label
     }()
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
+    
+    // MARK: - Private Methods
     
     private func setupUI() {
         view.backgroundColor = UIColor(settingsModel.backgroundColor)

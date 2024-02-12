@@ -9,9 +9,15 @@ import Foundation
 import UIKit
 import SwiftUI
 
-class ProductListView: UIViewController {
+final class ProductListView: UIViewController {
+    
+    // MARK: - Properties
+    
     var mainDB: MainDB
     var type: FoodType?
+    
+    // MARK: - Private Properties
+    
     private var settingsModel = ProfileViewModel.shared
     private var array: [Model] {
         get {
@@ -44,6 +50,8 @@ class ProductListView: UIViewController {
         }
     }
     
+    // MARK: - Int
+    
     init(mainDB: MainDB) {
         self.mainDB = mainDB
         super.init(nibName: nil, bundle: nil)
@@ -53,6 +61,8 @@ class ProductListView: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Private Methods
     
     private lazy var mainStackView = {
         let stackView = UIStackView(arrangedSubviews: [buttonStackView, tableViewStackView])
@@ -119,9 +129,10 @@ class ProductListView: UIViewController {
         return tableView
     }()
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         setupMainView()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -129,7 +140,9 @@ class ProductListView: UIViewController {
         checkEmptyTableView()
     }
     
-    func setupMainView() {
+    // MARK: - Private Methods
+    
+    private func setupMainView() {
         view.addSubview(mainStackView)
         view.backgroundColor = UIColor(settingsModel.backgroundColor)
         dummyViews.addSubview(menuButton)
@@ -157,7 +170,7 @@ class ProductListView: UIViewController {
         }
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -172,6 +185,8 @@ class ProductListView: UIViewController {
         ])
     }
 }
+
+// MARK: - Extensions
 
 extension ProductListView: UITableViewDataSource {
     
@@ -226,6 +241,8 @@ extension ProductListView: addViewDelegate {
         }
     }
 }
+
+// MARK: - Delegate
 
 protocol addViewDelegate: AnyObject {
     func fetchData(food: String, weight: String)

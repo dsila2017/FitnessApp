@@ -10,6 +10,8 @@ import UIKit
 
 final class CircularProgressView: UIView {
     
+    // MARK: - Properties
+    
     fileprivate var progressLayer = CAShapeLayer()
     var trackLayer = CAShapeLayer()
     fileprivate var didConfigureLabel = false
@@ -40,6 +42,8 @@ final class CircularProgressView: UIView {
             setProgress(duration: timeToFill * Double(pathMoved), to: progress)
         }
     }
+    
+    // MARK: - Methods
     
     fileprivate func createProgressView() {
         self.backgroundColor = .clear
@@ -84,6 +88,8 @@ final class CircularProgressView: UIView {
         progressLayer.strokeEnd = CGFloat(newProgress)
         progressLayer.add(animation, forKey: "animationProgress")
     }
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         progress = 0

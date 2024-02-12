@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - FoodModel
+
 struct FoodModel {
     let name: FoodType
     let image: String

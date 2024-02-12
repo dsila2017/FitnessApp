@@ -11,6 +11,8 @@ import Vision
 
 class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
+    // MARK: - Properties
+    
     var bufferSize: CGSize = .zero
     var rootLayer: CALayer! = nil
     
@@ -62,8 +64,9 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
     private let videoDataOutputQueue = DispatchQueue(label: "VideoDataOutput", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        // to be implemented in the subclass
     }
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +82,9 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Methods
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -100,8 +104,6 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
     
     func setupAVCapture() {
         var deviceInput: AVCaptureDeviceInput!
-        
-        // Select a video device, make an input
         let videoDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: .video, position: .back).devices.first
         do {
             deviceInput = try AVCaptureDeviceInput(device: videoDevice!)
@@ -111,9 +113,8 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
         }
         
         session.beginConfiguration()
-        session.sessionPreset = .vga640x480 // Model image size is smaller.
+        session.sessionPreset = .vga640x480
         
-        // Add a video input
         guard session.canAddInput(deviceInput) else {
             print("Could not add video device input to the session")
             session.commitConfiguration()
@@ -122,7 +123,6 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
         session.addInput(deviceInput)
         if session.canAddOutput(videoDataOutput) {
             session.addOutput(videoDataOutput)
-            // Add a video data output
             videoDataOutput.alwaysDiscardsLateVideoFrames = true
             videoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)]
             videoDataOutput.setSampleBufferDelegate(self, queue: videoDataOutputQueue)
@@ -132,7 +132,6 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
             return
         }
         let captureConnection = videoDataOutput.connection(with: .video)
-        // Always process the frames
         captureConnection?.isEnabled = true
         do {
             try  videoDevice!.lockForConfiguration()
@@ -155,14 +154,12 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
         session.startRunning()
     }
     
-    // Clean up capture setup
     func teardownAVCapture() {
         previewLayer.removeFromSuperlayer()
         previewLayer = nil
     }
     
     func captureOutput(_ captureOutput: AVCaptureOutput, didDrop didDropSampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        // print("frame dropped")
     }
     
     public func exifOrientationFromDeviceOrientation() -> CGImagePropertyOrientation {
@@ -170,13 +167,13 @@ class ScannerView: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
         let exifOrientation: CGImagePropertyOrientation
         
         switch curDeviceOrientation {
-        case UIDeviceOrientation.portraitUpsideDown:  // Device oriented vertically, home button on the top
+        case UIDeviceOrientation.portraitUpsideDown:
             exifOrientation = .left
-        case UIDeviceOrientation.landscapeLeft:       // Device oriented horizontally, home button on the right
+        case UIDeviceOrientation.landscapeLeft:
             exifOrientation = .upMirrored
-        case UIDeviceOrientation.landscapeRight:      // Device oriented horizontally, home button on the left
+        case UIDeviceOrientation.landscapeRight:
             exifOrientation = .down
-        case UIDeviceOrientation.portrait:            // Device oriented vertically, home button on the bottom
+        case UIDeviceOrientation.portrait:
             exifOrientation = .up
         default:
             exifOrientation = .up

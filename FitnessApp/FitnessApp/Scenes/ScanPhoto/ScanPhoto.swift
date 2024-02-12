@@ -12,9 +12,12 @@ import SwiftUI
 
 final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    private var settingsModel = ProfileViewModel.shared
+    // MARK: - Properties
     
     var delegate: addViewDelegate?
+    
+    // MARK: - Private Properties
+    private var settingsModel = ProfileViewModel.shared
     
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [imageDummy, labelDummy, chooseButtonDummy, labelButtonDummy])
@@ -114,7 +117,7 @@ final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UI
         return view
     }()
     
-    let emptyView = {
+    private let emptyView = {
         let emptyView = UIHostingController(rootView: ScanEmptyView())
         guard let view = emptyView.view else { return UIView()}
         view.backgroundColor = .clear
@@ -122,22 +125,20 @@ final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UI
         return view
     }()
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(settingsModel.backgroundColor)
-        
-        
         imageDummy.addSubview(emptyView)
         imageDummy.bringSubviewToFront(emptyView)
-        
-        // Do any additional setup after loading the view.
         view.addSubview(mainStackView)
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         setupConstraints()
-        
-        
     }
+    
+    // MARK: - Private Methods
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -189,7 +190,6 @@ final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     private func identifyModel(image: UIImage) {
-        
         guard let modelURL = Bundle.main.url(forResource: "CoreMLFruit", withExtension: "mlmodelc") else {
             return
         }

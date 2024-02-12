@@ -4,15 +4,16 @@ import Vision
 
 final class ScanViewPage: ScannerView {
     
-    private var detectionOverlay: CALayer! = nil
-    var counter = 0
+    // MARK: - Private Properties
     
-    // Vision parts
+    private var detectionOverlay: CALayer! = nil
+    private var counter = 0
+    
     private var requests = [VNRequest]()
     
     @discardableResult
     func setupVision() -> NSError? {
-        // Setup Vision parts
+        
         let error: NSError! = nil
         
         guard let modelURL = Bundle.main.url(forResource: "YOLOv3Tiny", withExtension: "mlmodelc") else {
@@ -38,12 +39,12 @@ final class ScanViewPage: ScannerView {
     func drawVisionRequestResults(_ results: [Any]) {
         CATransaction.begin()
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
-        detectionOverlay.sublayers = nil // remove all the old recognized objects
+        detectionOverlay.sublayers = nil
         for observation in results where observation is VNRecognizedObjectObservation {
             guard let objectObservation = observation as? VNRecognizedObjectObservation else {
                 continue
             }
-            // Select only the label with the highest confidence
+            
             let topLabelObservation = objectObservation.labels[0]
             let objectBounds = VNImageRectForNormalizedRect(objectObservation.boundingBox, Int(bufferSize.width), Int(bufferSize.height))
             
@@ -81,18 +82,14 @@ final class ScanViewPage: ScannerView {
     
     override func setupAVCapture() {
         super.setupAVCapture()
-        
-        // setup Vision parts
         setupLayers()
         updateLayerGeometry()
         setupVision()
-        
-        // start the capture
         startCaptureSession()
     }
     
     func setupLayers() {
-        detectionOverlay = CALayer() // container layer that has all the renderings of the observations
+        detectionOverlay = CALayer()
         detectionOverlay.name = "DetectionOverlay"
         detectionOverlay.bounds = CGRect(x: 0.0,
                                          y: 0.0,
@@ -116,9 +113,7 @@ final class ScanViewPage: ScannerView {
         CATransaction.begin()
         CATransaction.setValue(kCFBooleanTrue, forKey: kCATransactionDisableActions)
         
-        // rotate the layer into screen orientation and scale and mirror
         detectionOverlay.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(.pi / 2.0)).scaledBy(x: scale, y: -scale))
-        // center the layer
         detectionOverlay.position = CGPoint(x: bounds.midX, y: bounds.midY)
         
         CATransaction.commit()
@@ -137,8 +132,7 @@ final class ScanViewPage: ScannerView {
         textLayer.shadowOpacity = 0.7
         textLayer.shadowOffset = CGSize(width: 2, height: 2)
         textLayer.foregroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [0.0, 0.0, 0.0, 1.0])
-        textLayer.contentsScale = 2.0 // retina rendering
-        // rotate the layer into screen orientation and scale and mirror
+        textLayer.contentsScale = 2.0
         textLayer.setAffineTransform(CGAffineTransform(rotationAngle: CGFloat(.pi / 2.0)).scaledBy(x: 1.0, y: -1.0))
         return textLayer
     }

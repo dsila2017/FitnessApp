@@ -10,6 +10,8 @@ import SwiftUI
 
 final class MainView: UIViewController {
     
+    // MARK: - Private Properties
+    
     private var mainDB = MainDB()
     private lazy var model: MainPageViewModel = MainPageViewModel(mainDB: mainDB)
     private var settingsModel = ProfileViewModel.shared
@@ -26,23 +28,23 @@ final class MainView: UIViewController {
     }()
     
     private lazy var ProfileStackView = {
-        let stackView = UIStackView(arrangedSubviews: [profileDummy, usernameStack, calendarDummy])
+        let stackView = UIStackView(arrangedSubviews: [settingsView, usernameStack, calendarDummy])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
-    private let profileDummy = UIView()
+    private var settingsView: UIView = {
+        let lottieView = LottieView(animationName: "settings")
+        let hostingController = UIHostingController(rootView: lottieView)
+        let view = hostingController.view
+        view?.backgroundColor = .clear
+        return view!
+    }()
     
     private lazy var profileButton = {
         var configuration = UIButton.Configuration.plain()
-        configuration.image = UIImage(systemName: "person.crop.circle.fill")!
-            .applyingSymbolConfiguration(.init(pointSize: 40))
-        configuration.cornerStyle = .capsule
-        configuration.contentInsets = .zero
         let button = UIButton(configuration: configuration)
-        button.tintColor = .darkText
         button.translatesAutoresizingMaskIntoConstraints = false
-        
         button.addAction(UIAction(handler: { [weak self] _ in
             self?.present(UIHostingController(rootView: ProfileView()), animated: true)
         }), for: .touchUpInside)
@@ -67,7 +69,6 @@ final class MainView: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [helloLabel, usernameLabel])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
     
@@ -95,7 +96,6 @@ final class MainView: UIViewController {
     
     private lazy var mealsLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Meals"
         label.font = UIFont.boldSystemFont(ofSize: 24)
         return label
@@ -108,7 +108,6 @@ final class MainView: UIViewController {
         layout.minimumInteritemSpacing = spacing
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clear
         return collectionView
     }()
@@ -162,7 +161,6 @@ final class MainView: UIViewController {
     
     private var protein: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Protein"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = .center
@@ -188,7 +186,6 @@ final class MainView: UIViewController {
     
     private var carbs: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "carbs"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = .center
@@ -214,7 +211,6 @@ final class MainView: UIViewController {
     
     private var fats: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Fats"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = .center
@@ -248,6 +244,8 @@ final class MainView: UIViewController {
         return view
     }()
     
+    // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -280,15 +278,15 @@ final class MainView: UIViewController {
         self.settingsModel.updateUserDefaults()
     }
     
+    // MARK: - Private Methods
+    
     private func configure() {
         self.calories.text = String((self.model.calcNutrition(type: .Calories)))
         self.progressView.progress = (self.model.calcProgress(type: .Calories))
         self.proteinProgress.setProgress(self.model.calcProgress(type: .Protein), animated: true)
         self.carbsProgress.setProgress(self.model.calcProgress(type: .Carbs), animated: true)
         self.fatsProgress.setProgress(self.model.calcProgress(type: .Fats), animated: true)
-        
         updateSettingsLabels()
-        
         self.mainCollectionView.reloadData()
     }
     
@@ -313,9 +311,9 @@ final class MainView: UIViewController {
     private func setupUI() {
         view.addSubview(mainStackView)
         calendarDummy.addSubview(calendarButton)
-        profileDummy.addSubview(profileButton)
-        dummyProgressView.addSubview(progressView)
         
+        settingsView.addSubview(profileButton)
+        dummyProgressView.addSubview(progressView)
         setupConstraints()
         setupCollectionView()
     }
@@ -349,12 +347,12 @@ final class MainView: UIViewController {
             calendarButton.widthAnchor.constraint(equalToConstant: 44),
             calendarButton.heightAnchor.constraint(equalToConstant: 56),
             
-            profileButton.centerXAnchor.constraint(equalTo: profileDummy.centerXAnchor),
-            profileButton.centerYAnchor.constraint(equalTo: profileDummy.centerYAnchor),
-            profileButton.widthAnchor.constraint(equalToConstant: 50),
-            profileButton.heightAnchor.constraint(equalToConstant: 50),
+            profileButton.centerXAnchor.constraint(equalTo: settingsView.centerXAnchor),
+            profileButton.centerYAnchor.constraint(equalTo: settingsView.centerYAnchor),
+            profileButton.widthAnchor.constraint(equalTo: settingsView.widthAnchor),
+            profileButton.heightAnchor.constraint(equalTo: settingsView.heightAnchor),
             
-            profileDummy.widthAnchor.constraint(equalTo: ProfileStackView.widthAnchor, multiplier: 0.2),
+            settingsView.widthAnchor.constraint(equalTo: ProfileStackView.widthAnchor, multiplier: 0.2),
             calendarDummy.widthAnchor.constraint(equalTo: ProfileStackView.widthAnchor, multiplier: 0.2),
             
             progressView.centerXAnchor.constraint(equalTo: dummyProgressView.centerXAnchor),
@@ -386,6 +384,8 @@ final class MainView: UIViewController {
         ])
     }
 }
+
+// MARK: - Extensions
 
 extension MainView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

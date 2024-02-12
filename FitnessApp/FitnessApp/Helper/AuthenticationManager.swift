@@ -19,8 +19,13 @@ struct AuthResultModel {
 }
 
 final class AuthenticationManager {
+    
+    // MARK: - Properties
+    
     static let shared = AuthenticationManager()
     private init() { }
+    
+    // MARK: - Methods
     
     @discardableResult
     func createUser(email: String, password: String) async throws -> AuthResultModel {

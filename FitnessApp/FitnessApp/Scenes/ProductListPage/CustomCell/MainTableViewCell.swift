@@ -9,7 +9,12 @@ import UIKit
 
 final class MainTableViewCell: UITableViewCell {
     
+    // MARK: - Properties
+    
     var model: Model?
+    
+    // MARK: - Private Properties
+    
     private var textColor: UIColor = .black
     
     private lazy var mainView: UIView = {
@@ -45,7 +50,7 @@ final class MainTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    lazy var label: UILabel = {
+    private lazy var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = .center
@@ -225,6 +230,8 @@ final class MainTableViewCell: UITableViewCell {
         return view
     }()
     
+    // MARK: - Init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -234,6 +241,7 @@ final class MainTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // Clear cells for reuse
     override func prepareForReuse() {
         super.prepareForReuse()
         self.label.text = ""
@@ -242,11 +250,12 @@ final class MainTableViewCell: UITableViewCell {
         self.proteinQuantity.text = ""
         self.carbsQuantity.text = ""
         self.fatsQuantity.text = ""
-        
         self.proteinProgress.progress = 0.0
         self.carbsProgress.progress = 0.0
         self.fatsProgress.progress = 0.0
     }
+    
+    // MARK: - Methods
     
     func updateUI() {
         guard let model else { return }
@@ -260,6 +269,8 @@ final class MainTableViewCell: UITableViewCell {
         self.carbsProgress.progress = Float(model.carbohydratesTotalG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
         self.fatsProgress.progress = Float(model.fatTotalG) / Float(model.proteinG + model.carbohydratesTotalG + model.fatTotalG)
     }
+    
+    // MARK: - Private Methods
     
     private func setupUI() {
         addSubview(mainView)

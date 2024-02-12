@@ -11,6 +11,8 @@ import SwiftUI
 final class ProfileViewModel: ObservableObject {
     static let shared = ProfileViewModel()
     
+    // MARK: - Properties
+    
     @Published var gender = 0
     
     @Published var nickname = "Username"
@@ -26,6 +28,8 @@ final class ProfileViewModel: ObservableObject {
     @Published var mainProgressTrackColor = Color(UIColor.lightGray)
     
     var settingsUpdated: (()->Void)?
+    
+    // MARK: -  Init
     
     private init() {}
     
@@ -47,6 +51,8 @@ final class ProfileViewModel: ObservableObject {
             return 0
         }
     }
+    
+    // MARK: -  Methods
     
     func updateUserDefaults() {
         guard let nickname = UserDefaults.standard.string(forKey: "nickname") else { return }

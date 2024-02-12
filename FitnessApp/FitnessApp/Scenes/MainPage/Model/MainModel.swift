@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - Main Model
+
 struct Model: Codable {
     var name: String
     let calories, servingSizeG, fatTotalG, fatSaturatedG: Double

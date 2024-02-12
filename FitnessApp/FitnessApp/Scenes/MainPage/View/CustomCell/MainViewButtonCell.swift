@@ -9,6 +9,8 @@ import UIKit
 
 final class MainViewButtonCell: UICollectionViewCell {
     
+    // MARK: - Private Properties
+    
     private var settingsModel = ProfileViewModel.shared
     
     private lazy var stackView: UIStackView = {
@@ -70,6 +72,8 @@ final class MainViewButtonCell: UICollectionViewCell {
         return view
     }()
     
+    // MARK: - Life Cycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCell()
@@ -87,6 +91,8 @@ final class MainViewButtonCell: UICollectionViewCell {
         stackView.backgroundColor = nil
         calorieLabel.text = nil
     }
+    
+    // MARK: - Private Methods
     
     private func setupCell() {
         addSubview(stackView)
@@ -116,6 +122,8 @@ final class MainViewButtonCell: UICollectionViewCell {
             imageView.centerYAnchor.constraint(equalTo: dummyView.centerYAnchor),
         ])
     }
+    
+    // MARK: - Methods
     
     func configure(model: FoodModel, result: Int) {
         mainLabel.text = model.name.rawValue

@@ -32,7 +32,3 @@ struct CustomSecureTextFieldView: View {
         .cornerRadius(16)
     }
 }
-
-//#Preview {
-//    CustomSecureTextField()
-//}

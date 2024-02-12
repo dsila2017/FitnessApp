@@ -11,6 +11,8 @@ import UIKit
 
 final class MainDB {
     
+    // MARK: - Properties
+    
     var settingsModel = ProfileViewModel.shared
     
     var dataUpdated: (()->Void)?
@@ -55,6 +57,8 @@ final class MainDB {
             mainData = breakfastData + lunchData + dinnerData + snackData
         }
     }
+    
+    // MARK: - Methods
     
     func storeBreakfastData(_ data: [Model]) {
         let encoder = JSONEncoder()

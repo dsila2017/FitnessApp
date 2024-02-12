@@ -9,13 +9,16 @@ import SwiftUI
 
 struct OnboardView: View, MainNavigationController {
     
+    // MARK: - Properties
+    
     let title: String
     let image: LottieView
     let description: String
     let isLast: Bool
     
+    // MARK: - Body
+    
     var body: some View {
-        
         if !isLast {
             VStack{
                 image
@@ -29,8 +32,6 @@ struct OnboardView: View, MainNavigationController {
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 40)
                     .padding(.bottom, 140)
-                    
-                    
             }
         } else {
             VStack {

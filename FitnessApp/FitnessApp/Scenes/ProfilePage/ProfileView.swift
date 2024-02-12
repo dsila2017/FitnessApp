@@ -9,12 +9,15 @@ import SwiftUI
 
 struct ProfileView: View, MainNavigationController {
     
+    // MARK: - Properties
+    
     @StateObject var model = ProfileViewModel.shared
     @State var text = ""
     @State private var gender = 0
     
+    // MARK: - Body
+    
     var body: some View {
-        
         
         VStack {
             Spacer()
@@ -23,36 +26,25 @@ struct ProfileView: View, MainNavigationController {
                 .font(.title.bold())
             
             VStack {
-                Image(systemName: "person.crop.circle")
-                    .resizable()
-                    .frame(maxWidth: 140, maxHeight: 140)
-                
-            }
-            
-            Picker(selection: $model.gender, label: Text("Select Gender")) {
-                Text("Male").tag(0)
-                Text("Female").tag(1)
-            }
-            .padding()
-            .pickerStyle(.segmented)
-            .onChange(of: model.gender) { oldValue, newValue in
-                model.gender = newValue
+                LottieView(animationName: "profileSettings")
+                    .frame(maxWidth: 120, maxHeight: 120)
             }
             
             ScrollView {
                 
                 VStack{
-                    Text("Nickname:")
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Nickname")
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.horizontal, 10)
+                        .padding(.bottom, 10)
                     CustomTextFieldView(text: $model.nickname, placeholder: "Nickname")
-                    Text("Weight(kg):")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 10)
+                    Text("Weight(kg)")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(10)
                     CustomTextFieldView(text: $model.weight, placeholder: "Weight")
-                    Text("Suggested Calories Limit: \(model.calculateCalories())")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 10)
+                    Text("Suggested Calories Limit \(model.calculateCalories())")
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(10)
                         .onChange(of: model.calculateCalories()) { oldValue, newValue in
                             model.calories = String(newValue)
                         }
@@ -60,6 +52,16 @@ struct ProfileView: View, MainNavigationController {
                 }
                 .padding()
                 .font(.subheadline.bold())
+                
+                Picker(selection: $model.gender, label: Text("Select Gender")) {
+                    Text("Male").tag(0)
+                    Text("Female").tag(1)
+                }
+                .padding()
+                .pickerStyle(.segmented)
+                .onChange(of: model.gender) { oldValue, newValue in
+                    model.gender = newValue
+                }
                 
                 ColorPicker("Background Color:", selection: $model.backgroundColor)
                     .padding(.horizontal, 40)

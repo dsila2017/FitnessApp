@@ -85,6 +85,9 @@ struct ProfileView: View, MainNavigationController {
             })
             .primaryButtonStyle
             .padding(.horizontal, 120)
+            .onAppear(perform: {
+                model.updateUserDefaults()
+            })
         }
         .background(model.backgroundColor)
     }

@@ -12,7 +12,6 @@ import UIKit
 final class MainDB {
     
     var settingsModel = ProfileViewModel.shared
-    //static let shared = MainDB()
     
     var dataUpdated: (()->Void)?
     var reload: (()->Void)?
@@ -25,32 +24,70 @@ final class MainDB {
         }
     }
     
-    var breakfastData: [Model] = [] {
+    lazy var breakfastData: [Model] = retrieveModelData(forKey: "breakfastData") ?? [] {
         didSet {
             print("breakfastData Updated")
+            storeModelData(breakfastData, forKey: "breakfastData")
             mainData = breakfastData + lunchData + dinnerData + snackData
         }
     }
     
-    var lunchData: [Model] = [] {
+    lazy var lunchData: [Model] = retrieveModelData(forKey: "lunchData") ?? [] {
         didSet {
             print("lunchData Updated")
+            storeModelData(lunchData, forKey: "lunchData")
             mainData = breakfastData + lunchData + dinnerData + snackData
         }
     }
     
-    var dinnerData: [Model] = [] {
+    lazy var dinnerData: [Model] = retrieveModelData(forKey: "dinnerData") ?? [] {
         didSet {
+            storeModelData(dinnerData, forKey: "dinnerData")
             print("dinnerData Updated")
             mainData = breakfastData + lunchData + dinnerData + snackData
         }
     }
     
-    var snackData: [Model] = [] {
+    lazy var snackData: [Model] = retrieveModelData(forKey: "snackData") ?? [] {
         didSet {
+            storeModelData(snackData, forKey: "snackData")
             print("snackData Updated")
             mainData = breakfastData + lunchData + dinnerData + snackData
         }
+    }
+    
+    func storeBreakfastData(_ data: [Model]) {
+        let encoder = JSONEncoder()
+        if let encodedData = try? encoder.encode(data) {
+            UserDefaults.standard.set(encodedData, forKey: "breakfastData")
+        }
+    }
+    
+    func retrieveBreakfastData() -> [Model]? {
+        if let storedData = UserDefaults.standard.data(forKey: "breakfastData") {
+            let decoder = JSONDecoder()
+            if let breakfastData = try? decoder.decode([Model].self, from: storedData) {
+                return breakfastData
+            }
+        }
+        return nil
+    }
+    
+    func storeModelData(_ data: [Model], forKey: String) {
+        let encoder = JSONEncoder()
+        if let encodedData = try? encoder.encode(data) {
+            UserDefaults.standard.set(encodedData, forKey: forKey)
+        }
+    }
+    
+    func retrieveModelData(forKey: String) -> [Model]? {
+        if let storedData = UserDefaults.standard.data(forKey: forKey) {
+            let decoder = JSONDecoder()
+            if let breakfastData = try? decoder.decode([Model].self, from: storedData) {
+                return breakfastData
+            }
+        }
+        return nil
     }
     
     func foodFetch(type: FoodType, food: String, weight: String? = "100") {

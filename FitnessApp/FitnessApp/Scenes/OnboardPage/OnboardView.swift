@@ -46,6 +46,7 @@ struct OnboardView: View, MainNavigationController {
                     .padding(.horizontal, 40)
                 Spacer()
                 Button(action: {
+                    UserDefaults.standard.set(true, forKey: "has-seen-onboarding")
                     self.push(viewController: UIHostingController(rootView: SignInView()), animated: true)
                 }, label: {
                     Text("Continue")

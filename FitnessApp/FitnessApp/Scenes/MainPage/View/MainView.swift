@@ -276,6 +276,10 @@ final class MainView: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.settingsModel.updateUserDefaults()
+    }
+    
     private func configure() {
         self.calories.text = String((self.model.calcNutrition(type: .Calories)))
         self.progressView.progress = (self.model.calcProgress(type: .Calories))
@@ -284,8 +288,6 @@ final class MainView: UIViewController {
         self.fatsProgress.setProgress(self.model.calcProgress(type: .Fats), animated: true)
         
         updateSettingsLabels()
-        
-        
         
         self.mainCollectionView.reloadData()
     }

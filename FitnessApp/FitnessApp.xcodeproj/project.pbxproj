@@ -67,6 +67,9 @@
 		63743D262B7999CF005D3E61 /* CoreMLFruit.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63743D252B7999CF005D3E61 /* CoreMLFruit.mlmodel */; };
 		63743D2A2B7A52CF005D3E61 /* settings.json in Resources */ = {isa = PBXBuildFile; fileRef = 63743D292B7A52CF005D3E61 /* settings.json */; };
 		63743D362B7A57EC005D3E61 /* profileSettings.json in Resources */ = {isa = PBXBuildFile; fileRef = 63743D352B7A57EC005D3E61 /* profileSettings.json */; };
+		63743D382B7A768F005D3E61 /* SportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63743D372B7A768F005D3E61 /* SportView.swift */; };
+		63743D3B2B7A7806005D3E61 /* MainSportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63743D3A2B7A7806005D3E61 /* MainSportsView.swift */; };
+		63743D3D2B7A7A02005D3E61 /* HealthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63743D3C2B7A7A02005D3E61 /* HealthManager.swift */; };
 		63B463F12B73119400CF3B7D /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B463F02B73119400CF3B7D /* Scanner.swift */; };
 		63B463F62B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */; };
 		63B4643A2B74692100CF3B7D /* ScanPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B464392B74692100CF3B7D /* ScanPhoto.swift */; };
@@ -82,6 +85,8 @@
 		63B465DE2B618748005062F8 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465DD2B618747005062F8 /* ColorExtension.swift */; };
 		63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465E02B61981B005062F8 /* MainNavigationController.swift */; };
 		63B465E42B61C752005062F8 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465E32B61C752005062F8 /* AuthenticationManager.swift */; };
+		63E8D3C32B7A7D8E00C9F459 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8D3C22B7A7D8E00C9F459 /* ActivityModel.swift */; };
+		63E8D3C72B7A922D00C9F459 /* Run.json in Resources */ = {isa = PBXBuildFile; fileRef = 63E8D3C62B7A922D00C9F459 /* Run.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +123,9 @@
 		63743D252B7999CF005D3E61 /* CoreMLFruit.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CoreMLFruit.mlmodel; sourceTree = "<group>"; };
 		63743D292B7A52CF005D3E61 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
 		63743D352B7A57EC005D3E61 /* profileSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profileSettings.json; sourceTree = "<group>"; };
+		63743D372B7A768F005D3E61 /* SportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportView.swift; sourceTree = "<group>"; };
+		63743D3A2B7A7806005D3E61 /* MainSportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSportsView.swift; sourceTree = "<group>"; };
+		63743D3C2B7A7A02005D3E61 /* HealthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthManager.swift; sourceTree = "<group>"; };
 		63B463F02B73119400CF3B7D /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		63B463F52B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
 		63B464392B74692100CF3B7D /* ScanPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPhoto.swift; sourceTree = "<group>"; };
@@ -133,6 +141,9 @@
 		63B465DD2B618747005062F8 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		63B465E02B61981B005062F8 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		63B465E32B61C752005062F8 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		63E8D3C12B7A7C7400C9F459 /* FitnessApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitnessApp.entitlements; sourceTree = "<group>"; };
+		63E8D3C22B7A7D8E00C9F459 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		63E8D3C62B7A922D00C9F459 /* Run.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Run.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +224,7 @@
 		6310022F2B60938B000DF0DC /* FitnessApp */ = {
 			isa = PBXGroup;
 			children = (
+				63E8D3C12B7A7C7400C9F459 /* FitnessApp.entitlements */,
 				63344B672B6ED24B00499949 /* App */,
 				631002342B60938B000DF0DC /* ViewController.swift */,
 				63344B662B6ED23100499949 /* Scenes */,
@@ -259,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				630FCB332B66BF490068A6D5 /* MainView.swift */,
+				63E8D3C62B7A922D00C9F459 /* Run.json */,
 				63743D292B7A52CF005D3E61 /* settings.json */,
 				63344B652B6ED1B500499949 /* CustomCell */,
 			);
@@ -327,6 +340,7 @@
 				63344B6E2B71167200499949 /* ScanPage */,
 				63B464432B754C4200CF3B7D /* ProfilePage */,
 				63743D122B793D74005D3E61 /* OnboardPage */,
+				63743D392B7A7695005D3E61 /* SportView */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -383,6 +397,17 @@
 				63743D152B793F79005D3E61 /* MainOnboard.swift */,
 			);
 			path = OnboardPage;
+			sourceTree = "<group>";
+		};
+		63743D392B7A7695005D3E61 /* SportView */ = {
+			isa = PBXGroup;
+			children = (
+				63743D3A2B7A7806005D3E61 /* MainSportsView.swift */,
+				63743D3C2B7A7A02005D3E61 /* HealthManager.swift */,
+				63743D372B7A768F005D3E61 /* SportView.swift */,
+				63E8D3C22B7A7D8E00C9F459 /* ActivityModel.swift */,
+			);
+			path = SportView;
 			sourceTree = "<group>";
 		};
 		63B463F42B7317C900CF3B7D /* Helper */ = {
@@ -562,6 +587,7 @@
 				63743D182B794DE7005D3E61 /* secondPage.json in Resources */,
 				63743D2A2B7A52CF005D3E61 /* settings.json in Resources */,
 				63743D362B7A57EC005D3E61 /* profileSettings.json in Resources */,
+				63E8D3C72B7A922D00C9F459 /* Run.json in Resources */,
 				631002482B6147C7000DF0DC /* GoogleService-Info.plist in Resources */,
 				63743D1C2B79518F005D3E61 /* thirdPage.json in Resources */,
 				63743CF42B7924E6005D3E61 /* EmptyCart.json in Resources */,
@@ -575,14 +601,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63743D3B2B7A7806005D3E61 /* MainSportsView.swift in Sources */,
 				630FCB392B66CC130068A6D5 /* MainPageViewModel.swift in Sources */,
 				631002352B60938B000DF0DC /* ViewController.swift in Sources */,
 				63743D112B793D6E005D3E61 /* OnboardView.swift in Sources */,
 				630FCB342B66BF490068A6D5 /* MainView.swift in Sources */,
 				63344B6D2B71166E00499949 /* ScanPageView.swift in Sources */,
 				63743D262B7999CF005D3E61 /* CoreMLFruit.mlmodel in Sources */,
+				63743D382B7A768F005D3E61 /* SportView.swift in Sources */,
 				63743D142B793DA8005D3E61 /* Lottie.swift in Sources */,
 				63049C0B2B62D715001DDF16 /* SignUpViewModel.swift in Sources */,
+				63743D3D2B7A7A02005D3E61 /* HealthManager.swift in Sources */,
 				63B4643A2B74692100CF3B7D /* ScanPhoto.swift in Sources */,
 				631002312B60938B000DF0DC /* AppDelegate.swift in Sources */,
 				63B463F12B73119400CF3B7D /* Scanner.swift in Sources */,
@@ -592,6 +621,7 @@
 				63B464422B754C3D00CF3B7D /* ProfileView.swift in Sources */,
 				63B463F62B7319CB00CF3B7D /* YOLOv3Tiny.mlmodel in Sources */,
 				63743CF62B792E47005D3E61 /* ScanEmptyView.swift in Sources */,
+				63E8D3C32B7A7D8E00C9F459 /* ActivityModel.swift in Sources */,
 				63B465DC2B618704005062F8 /* Button Extension.swift in Sources */,
 				63049C082B62D6EA001DDF16 /* SignUpView.swift in Sources */,
 				63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */,
@@ -741,11 +771,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FitnessApp/FitnessApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 25A9GC2B9J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitnessApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera access";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We will use FaceID for Signing In";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "We need access to health data";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -768,11 +802,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FitnessApp/FitnessApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 25A9GC2B9J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FitnessApp/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need camera access";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We will use FaceID for Signing In";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "We need access to health data";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

@@ -55,7 +55,7 @@ private struct LogoView: View {
             Text("Nutrition")
                 .fontWeight(.bold)
         } icon: {
-            Image(systemName: "apple.logo")
+            //Image(systemName: "apple.logo")
         }
         .font(.system(size: 30))
         .foregroundStyle(.black)

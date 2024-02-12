@@ -20,10 +20,31 @@ struct ProfileView: View, MainNavigationController {
     var body: some View {
         
         VStack {
+            
             Spacer()
             Spacer()
-            Text("Settings")
-                .font(.title.bold())
+            
+            HStack {
+                
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Text("Settings")
+                    .font(.title.bold())
+                    .alignmentGuide(HorizontalAlignment.center) { dimension in
+                        dimension[.trailing]
+                    }
+                Spacer()
+                Button(action: {
+                    self.dismiss(animated: true)
+                    self.popToRoot(animated: true)
+                }, label: {
+                    Text("Log Out")
+                })
+                .buttonStyle(.borderless)
+                Spacer()
+            }
             
             VStack {
                 LottieView(animationName: "profileSettings")

@@ -16,7 +16,7 @@ protocol MainNavigationController {
     func push(viewController: UIViewController, animated: Bool)
     func present(viewController: UIViewController, animated: Bool)
     func pop(animated: Bool)
-
+    func popToRoot(animated: Bool)
 }
 
 extension MainNavigationController where Self:View {
@@ -47,4 +47,8 @@ extension MainNavigationController where Self:View {
     func dismiss(animated: Bool) {
         rootNavigationController?.dismiss(animated: animated)
     }
+    
+    func popToRoot(animated: Bool) { // Implementation of popToRoot method
+            rootNavigationController?.popToRootViewController(animated: animated)
+        }
 }

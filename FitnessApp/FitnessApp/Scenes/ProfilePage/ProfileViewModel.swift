@@ -48,7 +48,27 @@ final class ProfileViewModel: ObservableObject {
         }
     }
     
+    func updateUserDefaults() {
+        guard let nickname = UserDefaults.standard.string(forKey: "nickname") else { return }
+        self.nickname = nickname
+        
+        guard let weight = UserDefaults.standard.string(forKey: "weight") else { return }
+        self.weight = weight
+        
+        guard let calories = UserDefaults.standard.string(forKey: "calories") else { return }
+        self.calories = calories
+        
+        settingsUpdated?()
+    }
+    
     func button() {
+        
+        
+        //UserDefaults.standard.set(gender, forKey: "gender")
+        UserDefaults.standard.set(nickname, forKey: "nickname")
+        UserDefaults.standard.set(weight, forKey: "weight")
+        UserDefaults.standard.set(calories, forKey: "calories")
+        
         settingsUpdated?()
     }
 }

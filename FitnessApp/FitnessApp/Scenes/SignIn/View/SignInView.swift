@@ -13,6 +13,7 @@ struct SignInView: View, MainNavigationController {
     var body: some View {
         VStack {
             Spacer()
+            Spacer()
             
             LogoView()
             
@@ -26,6 +27,7 @@ struct SignInView: View, MainNavigationController {
             }
             .onAppear(perform: {
                 model.clearForm()
+                
             })
             
             Spacer()
@@ -50,7 +52,7 @@ struct SignInView: View, MainNavigationController {
 private struct LogoView: View {
     var body: some View {
         Label {
-            Text("Fitness")
+            Text("Nutrition")
                 .fontWeight(.bold)
         } icon: {
             Image(systemName: "apple.logo")

@@ -53,7 +53,7 @@ final class SignInViewModel: ObservableObject {
         let scanner = LAContext()
         var error: NSError?
         
-        if self.wantID == true {
+        if UserDefaults.standard.bool(forKey: "wantID") == true {
             if scanner.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
                 scanner.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: policy) { [weak self] result, authenticationError in
                     guard let self = self else { return }
@@ -61,7 +61,7 @@ final class SignInViewModel: ObservableObject {
                         // Successful Auth
                         Task {
                             do {
-                                try await self.signIn(email: self.IDEmail!, password: self.IDPassword!)
+                                try await self.signIn(email: UserDefaults.standard.string(forKey: "IDEmail")!, password: UserDefaults.standard.string(forKey: "IDPassword")!)
                                 DispatchQueue.main.async { [weak self] in
                                     self?.pushNavigation = true
                                 }
@@ -92,14 +92,14 @@ final class SignInViewModel: ObservableObject {
     
     // Method for storing biometric credentials
     func storeBiometricCredentials() {
-        self.wantID = true
-        self.IDEmail = self.email
-        self.IDPassword = self.password
+        UserDefaults.standard.set(true, forKey: "wantID")
+        UserDefaults.standard.set(self.email, forKey: "IDEmail")
+        UserDefaults.standard.set(self.password, forKey: "IDPassword")
     }
     
     // Method for asking the user if they want to use biometric authentication
     func askID() {
-        if self.wantID == false {
+        if UserDefaults.standard.bool(forKey: "wantID") == false {
             self.alertType = .IDAlert
             self.showAlert = true
         }

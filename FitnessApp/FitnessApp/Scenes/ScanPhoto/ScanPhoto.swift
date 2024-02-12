@@ -128,7 +128,6 @@ final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UI
         
         
         imageDummy.addSubview(emptyView)
-            // Bring emptyView to the front
         imageDummy.bringSubviewToFront(emptyView)
         
         // Do any additional setup after loading the view.
@@ -154,10 +153,6 @@ final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UI
             imageView.centerYAnchor.constraint(equalTo: imageDummy.centerYAnchor),
             imageView.widthAnchor.constraint(equalTo: imageDummy.widthAnchor, multiplier: 0.7),
             imageView.heightAnchor.constraint(equalTo: imageDummy.heightAnchor, multiplier: 0.7),
-            
-            
-            //chooseButton.centerYAnchor.constraint(equalTo: imageDummy.centerYAnchor),
-            //chooseButton.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.4),
             
             chooseButtonDummy.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.1),
             chooseButton.widthAnchor.constraint(equalTo: chooseButtonDummy.widthAnchor, multiplier: 0.4),
@@ -195,7 +190,7 @@ final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UI
     
     private func identifyModel(image: UIImage) {
         
-        guard let modelURL = Bundle.main.url(forResource: "Resnet50FP16", withExtension: "mlmodelc") else {
+        guard let modelURL = Bundle.main.url(forResource: "CoreMLFruit", withExtension: "mlmodelc") else {
             return
         }
         do {

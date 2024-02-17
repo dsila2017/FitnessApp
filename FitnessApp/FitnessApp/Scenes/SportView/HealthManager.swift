@@ -10,7 +10,7 @@ import HealthKit
 
 class HealthManager: ObservableObject {
     @Published var stepsActivity: ActivityModel = ActivityModel(title: "Today steps", subtitle: "Goal 10,000", image: "figure.walk", amount: "0")
-    @Published var caloriesActivity: ActivityModel = ActivityModel(title: "Today steps", subtitle: "Goal 10,000", image: "figure.walk", amount: "0")
+    @Published var caloriesActivity:ActivityModel = ActivityModel(title: "Today calories", subtitle: "Goal 400", image: "flame", amount: "0")
     @Published var runningActivity: ActivityModel = ActivityModel(title: "Running", subtitle: "120 min", image: "figure.run", amount: "0")
     @Published var swimmingActivity: ActivityModel = ActivityModel(title: "swimming", subtitle: "70 min", image: "figure.open.water.swim", amount: "0 min")
     @Published var basketballActivity: ActivityModel = ActivityModel(title: "Basketball", subtitle: "70 min", image: "basketball", amount: "0 min")
@@ -48,7 +48,6 @@ class HealthManager: ObservableObject {
             print(stepCount)
             let activity = ActivityModel(title: "Today steps", subtitle: "Goal 10,000", image: "figure.walk", amount: "\(Int(stepCount))")
             DispatchQueue.main.async {
-                print("Here")
                 self.stepsActivity = activity
             }
             
@@ -64,7 +63,6 @@ class HealthManager: ObservableObject {
             let calories = quantity.doubleValue(for: .kilocalorie())
             let activity = ActivityModel(title: "Today calories", subtitle: "Goal 400", image: "flame", amount: "\(calories)")
             DispatchQueue.main.async {
-                print("Calories")
                 self.caloriesActivity = activity
             }
             

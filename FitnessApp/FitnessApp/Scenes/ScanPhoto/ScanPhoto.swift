@@ -190,7 +190,7 @@ final class ScanPhotoView: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     private func identifyModel(image: UIImage) {
-        guard let modelURL = Bundle.main.url(forResource: "CoreMLFruit", withExtension: "mlmodelc") else {
+        guard let modelURL = Bundle.main.url(forResource: "Resnet50FP16", withExtension: "mlmodelc") else {
             return
         }
         do {

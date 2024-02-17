@@ -82,7 +82,6 @@ final class AddProductView: UIViewController {
         textField.placeholder = "Enter Food Weight"
         textField.layer.cornerRadius = 24
         textField.backgroundColor = UIColor.tertiaryLabel.withAlphaComponent(0.1)
-        textField.keyboardType = .numberPad
         textField.returnKeyType = .done
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: textField.heightAnchor.hashValue))
         textField.leftViewMode = .always

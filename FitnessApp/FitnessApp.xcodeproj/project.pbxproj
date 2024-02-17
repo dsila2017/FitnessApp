@@ -87,6 +87,7 @@
 		63B465E42B61C752005062F8 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B465E32B61C752005062F8 /* AuthenticationManager.swift */; };
 		63E8D3C32B7A7D8E00C9F459 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E8D3C22B7A7D8E00C9F459 /* ActivityModel.swift */; };
 		63E8D3C72B7A922D00C9F459 /* Run.json in Resources */ = {isa = PBXBuildFile; fileRef = 63E8D3C62B7A922D00C9F459 /* Run.json */; };
+		63E8D3C92B7D2F4000C9F459 /* Resnet50FP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 63E8D3C82B7D2F4000C9F459 /* Resnet50FP16.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,7 @@
 		63E8D3C12B7A7C7400C9F459 /* FitnessApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FitnessApp.entitlements; sourceTree = "<group>"; };
 		63E8D3C22B7A7D8E00C9F459 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		63E8D3C62B7A922D00C9F459 /* Run.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Run.json; sourceTree = "<group>"; };
+		63E8D3C82B7D2F4000C9F459 /* Resnet50FP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Resnet50FP16.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -426,6 +428,7 @@
 				63743CF52B792E47005D3E61 /* ScanEmptyView.swift */,
 				63743D0D2B793654005D3E61 /* Scan.json */,
 				63743D0B2B793602005D3E61 /* Scan_Color.json */,
+				63E8D3C82B7D2F4000C9F459 /* Resnet50FP16.mlmodel */,
 				63743D252B7999CF005D3E61 /* CoreMLFruit.mlmodel */,
 			);
 			path = ScanPhoto;
@@ -627,6 +630,7 @@
 				63B465E12B61981B005062F8 /* MainNavigationController.swift in Sources */,
 				63344B582B6AFFCC00499949 /* MainTableViewCell.swift in Sources */,
 				630FCB372B66CB340068A6D5 /* MainViewButtonCell.swift in Sources */,
+				63E8D3C92B7D2F4000C9F459 /* Resnet50FP16.mlmodel in Sources */,
 				630FCB3F2B6939CA0068A6D5 /* CircularProgressView.swift in Sources */,
 				63B464492B79045400CF3B7D /* EmptyView.swift in Sources */,
 				63B465DE2B618748005062F8 /* ColorExtension.swift in Sources */,
